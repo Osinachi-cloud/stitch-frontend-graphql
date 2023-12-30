@@ -1,0 +1,77 @@
+[
+    {
+        "name": "Grace",
+        "email": "ogbodouchenna1425@gmail.com",
+        "image":"Avatar (1).png",
+        "status": "ACTIVE",
+        "plan": "Enterprise",
+        "billing": "Auto Debit",
+        "paymentMethod": "visa",
+        "role": "maintainer"
+    },
+    {
+        "name": "Grace",
+        "email": "ogbodouchenna1425@gmail.com",
+        "image":"Avatar (1).png",
+        "status": "PENDING",
+        "plan": "Enterprise",
+        "billing": "Auto Debit",
+        "paymentMethod": "masterCard",
+        "role": "subscriber"
+
+    },
+    {
+        "name": "Grace",
+        "email": "ogbodouchenna1425@gmail.com",
+        "image":"Avatar (1).png",
+        "status": "PENDING",
+        "plan": "Enterprise",
+        "billing": "Auto Debit",
+        "paymentMethod": "visa",
+        "role": "editor"
+
+    },
+    {
+        "name": "Grace Grace",
+        "email": "ogbodouchenna1425@gmail.com",
+        "image":"Avatar (1).png",
+        "status": "ACTIVE",
+        "plan": "Enterprise",
+        "billing": "Auto Debit",
+        "paymentMethod": "visa",
+        "role": "author"
+
+    },
+    {
+        "name": "Grace Grace",
+        "email": "ogbodouchenna1425@gmail.com",
+        "image":"Avatar (1).png",
+        "status": "PENDING",
+        "plan": "Enterprise",
+        "billing": "Auto Debit",
+        "paymentMethod": "visa",
+        "role": "maintainer"
+
+    },
+    {
+        "name": "Grace Grace",
+        "email": "ogbodouchenna1425@gmail.com",
+        "image":"Avatar (1).png",
+        "status": "ACTIVE",
+        "plan": "Enterprise",
+        "billing": "Auto Debit",
+        "paymentMethod": "nibbs",
+        "role": "author"
+    },
+    {
+        "name": "Grace Grace",
+        "email": "ogbodouchenna1425@gmail.com",
+        "image":"Avatar (1).png",
+        "status": "PENDING",
+        "plan": "Enterprise",
+        "billing": "Auto Debit",
+        "paymentMethod": "nibbs",
+        "role": "subscriber"
+
+    }
+]

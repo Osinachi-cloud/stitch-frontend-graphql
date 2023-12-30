@@ -1,0 +1,61 @@
+<nav class="h-[8vh] bg-[#fff] shadow-sm flex justify-end px-[5rem] w-[100vw] fixed">
+    <div class="flex items-center gap-8">
+        <div>
+            <img src="/assets/images/shape.png" alt="">
+        </div>
+        <div>
+            <img src="/assets/images/shape (1).png" alt="">
+        </div>
+        <div>
+            <img src="/assets/images/avatar.png" alt="">
+        </div>
+        <div>
+            <div class="md:col-span-4 col-span-1 p-[1rem] py-[0.5rem] bg-[#fff] rounded-[8px]">
+                <select id="countries"
+                    class="outline-none text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Ogbodo Uchenna</option>
+                    <option value="US">Remiter</option>
+                    <option value="CA">Interswitch</option>
+                    <option value="FR">Flutterwave</option>
+                </select>
+
+            </div>
+        </div>
+    </div>
+
+</nav>
+
+
+
+
+<div class="sidenav shadow-sm" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
+    <div class="logo-container">
+        <!-- <button class="logo" (click)="toggleCollapse()">
+
+            <img src="assets/images/LOGO 1.png" alt="">
+        </button> -->
+    </div>
+    <div class="scrollwrap scrollwrap_delayed">
+        <ul class="sidenav-nav">
+            <li class="sidenav-nav-item" *ngFor="let data of navData">
+
+                <a class="sidenav-nav-link" *ngIf="!data.items || (data.items && data.items.length === 0)"
+                    [routerLink]="[data.routeLink]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                    (click)="shrinkItems(data)">
+                    <!-- <i class="sidenav-link-icon" [class]="data.icon"></i> -->
+                    <img class="sidenav-link-icon" [src]="data.icon">
+
+
+                    <span class="sidenav-link-text" *ngIf="collapsed">
+                        {{data.label}}
+                    </span>
+                </a>
+                <div *ngIf="collapsed && data.items && data.items.length > 0">
+                    <app-sublevel-menu [data]="data" [collapsed]="collapsed" [multiple]="multiple"
+                        [expanded]="data.expanded"></app-sublevel-menu>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+<div class="h-[100vh] flex justify-center items-center bg-no-repeat bg-cover bg-[url('/assets/images/Background.png')]">
+    <div class="grid bg-white relative rounded-[32px] p-[1rem]">
+        <div class="py-[1rem] p-[1rem] md:px-[2rem] w-full flex justify-center">
+            <div class="flex justify-between flex-col items-center">
+                <div class="m-auto">
+                    <div class="w-[40%] py-[2rem]"><img src="assets/images/LOGO2.png" alt=""></div>
+                    <div class="font-[DM Sans] font-[700] text-[24px] text-[#2B3674] leading-[40px]">Sign In</div>
+                    <p class="text-[16px] font-[DM Sans] text-[#A3AED0] mx-0 mt-[10px] mb-[90px] leading-[35px]">Welcome Back</p>
+
+                    <form class="text-[#2B3674]" [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+                        <div class="w-full"
+                            [ngClass]="{'has-error': !formData['email'].valid && formData['email'].touched}">
+                            <label class="" for="fname">Email*</label>
+                            <div class="border-none " *ngIf="formData['email'].touched && formData['email'].errors">
+                                <div class="shadow-none border-none  text-[red]"
+                                    *ngIf="formData['email'].errors['required']">
+                                    The Email is required
+                                </div>
+                                <div class="shadow-none text-[red]" *ngIf="formData['email'].errors['pattern']">
+                                    The Email is not valid
+                                </div>
+                            </div>
+                            <div class="rounded-[16px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
+                                <input class=" border-none shadow-none outline-none w-[25rem] p-[0.5rem]" type="text"
+                                    placeholder="mail@simmmple.com" name="email" formControlName="email">
+                            </div>
+                        </div>
+                        <div class="w-full"
+                            [ngClass]="{'has-error': formSubmitted && !formData['password'].valid && formData['password'].touched}">
+                            <label for="password">Password*</label>
+                            <div class="border-none "
+                                *ngIf="formSubmitted && formData['password'].touched && formData['password'].errors">
+                                <div class="shadow-none border-none  text-[red]"
+                                    *ngIf="formSubmitted && formData['password'].errors['required']">
+                                    The Password is required
+                                </div>
+                                <div class="shadow-none text-[red]"
+                                    *ngIf="formSubmitted && formData['password'].errors['pattern']">
+                                    The Password is not valid
+                                </div>
+                            </div>
+                            <div
+                                class="rounded-[16px] border px-[0.5rem] py-[0.8rem] flex justify-between items-center mb-[10px]">
+                                <input class=" border-none shadow-none outline-none w-[25rem] p-[0.5rem]"
+                                    [type]="password" placeholder="mail@simmmple.com" name="password"
+                                    formControlName="password">
+                                <img (click)="toggleShowPassword()" src="/assets/images/eye.png">
+                            </div>
+                        </div>
+
+                        <!-- <div class="w-full">
+                            <mat-form-field appearance="outline" floatLabel="always" class="w-full">
+                                <mat-label class="w-full">Outline form field</mat-label>
+                                <input matInput placeholder="Placeholder" type="text" class="w-full">
+                              </mat-form-field>
+                        </div> -->
+
+                        <div class="form-check flex items-center py-[1rem] gap-[4rem]">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="optionChecked"
+                                    formControlName="optionChecked">
+                                <span class="ml-[1rem] font-[200]">Remember me?</span>
+
+                            </label>
+                            <a href="#" class="text-[#4318FF] text-right">Forget password?</a>
+
+                        </div>
+                        <button type="submit"
+                            class="w-full gap-2.5 text-white mx-0 my-4 pl-2 pr-[8px,] py-[10px,] p-[1.2rem] rounded-[32px] border-[none] bg-[#7b57fc]">Sign
+                            In</button>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <button class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
+    Open regular modal
+  </button> -->
+<div *ngIf="showModal"
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+    <div class="relative w-full my-6 mx-auto max-w-3xl">
+        <!--content-->
+        <div
+            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <div class="grid place-items-center items-center p-[4rem] w-full">
+                <div class="flex justify-end w-full">
+                    <span class="cursor-pointer" (click)="toggleModal()"><img src="/assets/images/x.png" alt=""></span>
+                </div>
+                <div class="py-[2rem] grid gap-[1rem]">
+                    <div class="text-center text-[24px] font-[600] leading-[30px]">Pin</div>
+                    <div class="text-center">Kindly put in <b>Trevauty</b> secret pin number</div>
+                </div>
+                <div class="grid gap-[1rem] mt-[2rem] items-center place-items-center">
+                    <ngx-otp-input [config]="otpInputConfig" (otpChange)="handeOtpChange($event)"
+                        (fill)="handleFillEvent($event)">
+                    </ngx-otp-input>
+                    <div class="flex">
+                        <span>you don't Trevauty secret pin number ? </span> <a href=""
+                            class="text-[#7B57FC] underline">click here to start</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="flex items-center justify-end p-6 rounded-b">
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
+<ng-toast></ng-toast>
