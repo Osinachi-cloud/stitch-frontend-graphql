@@ -34,8 +34,9 @@ export class ClientsService {
   }
 
   getTerminals(): Observable<any> {
-    return this.http.get<any>('assets/data/terminalData.json');
+    return this.http.get<any>('assets/data/orders.json');
   }
+  
   getTerminal1(): Observable<any> {
     return this.http.get<any>('assets/data/terminalData1.json');
   }

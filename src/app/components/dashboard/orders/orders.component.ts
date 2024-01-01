@@ -7,7 +7,7 @@ import { ClientsService } from '../../../services/clients.service';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent {
-  data: any[] = []
+  customersOrder: any[] = []
 
   constructor(
     private clientService: ClientsService) {}
@@ -24,7 +24,7 @@ export class OrdersComponent {
   getTerminals(){
     this.clientService.getTerminals().subscribe({
       next:(items: any)=>{
-          this.data = items;
+          this.customersOrder = items;
       },
       error:(items:any)=>{
 
