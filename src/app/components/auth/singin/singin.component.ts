@@ -84,32 +84,52 @@ resetFormInputs() {
   });
 }
 
-onSubmit(user: any): void {
-console.log(this.formSubmitted);
-  this.formSubmitted = true;
-  if (this.authForm.valid) {
-    console.log({ user });
-    this.authService.accountLogin(this.authForm.value).subscribe({
-      next: (response) => {
-        console.log("response =>>>>", response);
-        this.apiResponse = response;
-        console.log(this.apiResponse);
-        this.resetFormInputs();
-        this.showSuccess()
-        this.toggleModal();
+// onSubmit(user: any): void {
+// console.log(this.formSubmitted);
+//   this.formSubmitted = true;
+//   if (this.authForm.valid) {
+//     console.log({ user });
+//     this.authService.accountLogin(this.authForm.value).subscribe({
+//       next: (response) => {
+//         console.log("response =>>>>", response);
+//         this.apiResponse = response;
+//         console.log(this.apiResponse);
+//         this.resetFormInputs();
+//         this.showSuccess()
+//         this.toggleModal();
         
-        // this.router.navigate(['login']);
+//         // this.router.navigate(['login']);
+//       },
+//       error: (error) => {
+//         console.log("sign up failed", error);
+//         this.router.navigate([]);
+//       }
+//     });
+//   } else {
+//     console.log(user);
+//     this.validateForm();
+//   }
+// }
+
+
+onSubmit(user: any) {
+  // if (this.authForm.valid) {
+    this.authService.login(this.authForm.value).subscribe({
+      next:(response: any) => {
+
+        console.log("entered response",response);
       },
-      error: (error) => {
-        console.log("sign up failed", error);
-        this.router.navigate([]);
+      error:(error: any) => {
+        console.error("entered error", error);
       }
-    });
-  } else {
-    console.log(user);
-    this.validateForm();
-  }
+  });
+  // }else{
+  //   console.log("form values  not valid")
+  // }
 }
+
+
+
 
   otpInputConfig: NgxOtpInputConfig = {
     otpLength: 6,

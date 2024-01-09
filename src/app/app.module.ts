@@ -28,6 +28,8 @@ import { DefaultArcObject } from 'd3-shape';
 import { ScaleLinear, ScalePoint, ScaleTime, ScaleBand } from 'd3-scale';
 import { CurveFactory } from 'd3-shape';
 import { BaseType } from 'd3-selection';
+import { ApolloModule } from 'apollo-angular';
+// import { HttpLinkModule } from 'apollo-angular-link-http';
 
 
 
@@ -60,6 +62,8 @@ import { BaseType } from 'd3-selection';
     MatFormFieldModule,
     MatInputModule,
     NgxChartsModule,
+    ApolloModule,
+    // HttpLinkModule
     
 
   ],

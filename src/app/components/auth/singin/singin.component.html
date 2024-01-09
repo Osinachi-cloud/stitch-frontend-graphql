@@ -1,18 +1,17 @@
-<div class="h-[100vh] flex justify-center items-center bg-no-repeat bg-cover bg-[url('/assets/images/Background.png')]">
+<div class="h-[100vh] flex justify-center items-center bg-no-repeat bg-cover">
     <div class="grid bg-white relative rounded-[32px] p-[1rem]">
         <div class="py-[1rem] p-[1rem] md:px-[2rem] w-full flex justify-center">
             <div class="flex justify-between flex-col items-center">
                 <div class="m-auto">
-                    <div class="w-[40%] py-[2rem]"><img src="assets/images/LOGO2.png" alt=""></div>
-                    <div class="font-[DM Sans] font-[700] text-[24px] text-[#2B3674] leading-[40px]">Sign In</div>
-                    <p class="text-[16px] font-[DM Sans] text-[#A3AED0] mx-0 mt-[10px] mb-[90px] leading-[35px]">Welcome Back</p>
+                    <div class="font-[DM Sans] text-center font-[700] text-[35px] tracking-[0.2rem] text-[#000] leading-[40px]">Login</div>
+                    <p class="text-[16px] font-[DM Sans] text-center text-[#A3AED0] mx-0 mt-[10px] mb-[90px] leading-[35px]">Login to continue using the site</p>
 
                     <form class="text-[#2B3674]" [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
                         <div class="w-full"
                             [ngClass]="{'has-error': !formData['email'].valid && formData['email'].touched}">
                             <label class="" for="fname">Email*</label>
                             <div class="border-none " *ngIf="formData['email'].touched && formData['email'].errors">
-                                <div class="shadow-none border-none  text-[red]"
+                                <div class="shadow-none border-none  text-[red] text-[12px]"
                                     *ngIf="formData['email'].errors['required']">
                                     The Email is required
                                 </div>
@@ -20,8 +19,8 @@
                                     The Email is not valid
                                 </div>
                             </div>
-                            <div class="rounded-[16px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
-                                <input class=" border-none shadow-none outline-none w-[25rem] p-[0.5rem]" type="text"
+                            <div class="rounded-[8px] border px-[0.5rem] py-[1.3rem] flex mb-[10px]">
+                                <input class=" border-none shadow-none outline-none w-[40rem] p-[0.5rem]" type="text"
                                     placeholder="mail@simmmple.com" name="email" formControlName="email">
                             </div>
                         </div>
@@ -30,7 +29,7 @@
                             <label for="password">Password*</label>
                             <div class="border-none "
                                 *ngIf="formSubmitted && formData['password'].touched && formData['password'].errors">
-                                <div class="shadow-none border-none  text-[red]"
+                                <div class="shadow-none border-none  text-[red] text-[12px]"
                                     *ngIf="formSubmitted && formData['password'].errors['required']">
                                     The Password is required
                                 </div>
@@ -40,8 +39,8 @@
                                 </div>
                             </div>
                             <div
-                                class="rounded-[16px] border px-[0.5rem] py-[0.8rem] flex justify-between items-center mb-[10px]">
-                                <input class=" border-none shadow-none outline-none w-[25rem] p-[0.5rem]"
+                                class="rounded-[8px] border px-[0.5rem] py-[1.3rem] flex justify-between items-center mb-[10px]">
+                                <input class=" border-none shadow-none outline-none w-[40rem] p-[0.5rem]"
                                     [type]="password" placeholder="mail@simmmple.com" name="password"
                                     formControlName="password">
                                 <img (click)="toggleShowPassword()" src="/assets/images/eye.png">
@@ -55,18 +54,18 @@
                               </mat-form-field>
                         </div> -->
 
-                        <div class="form-check flex items-center py-[1rem] gap-[4rem]">
+                        <div class="form-check flex justify-between py-[1rem] gap-[4rem]">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input" name="optionChecked"
                                     formControlName="optionChecked">
                                 <span class="ml-[1rem] font-[200]">Remember me?</span>
 
                             </label>
-                            <a href="#" class="text-[#4318FF] text-right">Forget password?</a>
+                            <a href="#" class="text-[blue] text-right">Forget password?</a>
 
                         </div>
                         <button type="submit"
-                            class="w-full gap-2.5 text-white mx-0 my-4 pl-2 pr-[8px,] py-[10px,] p-[1.2rem] rounded-[32px] border-[none] bg-[#7b57fc]">Sign
+                            class="w-full gap-2.5 text-white mx-0 my-4 pl-2 pr-[8px,] py-[10px,] p-[1.5rem] rounded-[8px] border-[none] bg-[#000]">Sign
                             In</button>
 
                     </form>
