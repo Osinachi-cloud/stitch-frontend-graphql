@@ -1,253 +1,189 @@
-<!-- <div class="grid grid-cols-1 md:grid-cols-2 bg-white relative h-[100vh]">
-    <div class="py-[1rem] p-[1rem] md:px-[2rem] w-full flex justify-center">
-        <div class="flex justify-between flex-col w-[80%] md:w-[50%]">
-            <div class="text-[#A3AED0]">Back to sign in</div>
-            <div>
-                <div class="font-[DM Sans] font-[700] text-[36px] text-[#2B3674] leading-[56px]">Registration</div>
-                <p class="text-[16px] font-[DM Sans] text-[#A3AED0] mx-0 mt-[10px] mb-[30px]">New to Trevauty, register below</p>
-                <div class="flex justify-center items-center mt-0 w-full h-[50px] bg-[#F4F7FE] rounded-[16px] my-[10px] mx-auto">`
-                    <div class="flex justify-center items-center gap-[1rem]">
-                        <div>
-                            <img src="/assets/images/google.jpg">
-                        </div>
-                        <div class="text-[12px] font-[500]">Sign in with Google</div>
-                    </div>
-                </div>
-                <div class="flex items-center mx-[5px] my-[0.5rem]">
-                    <hr class="flex-grow-[1] h-px bg-gray-300 border-none">
-                    <span class="my-0 mx-[10px] text-[#E0E5F2]">Or</span>
-                    <hr class="flex-grow-[1]">
-                </div>
-
-                <form class="text-[#2B3674]" [formGroup]="myform" (ngSubmit)="onSubmit(myform.value)">
-                    <div class="w-full"
-                        [ngClass]="{'has-error': !formData['fullName'].valid && formData['fullName'].touched}">
-                        <label for="fname">Full Name*</label>
-                        <div class="border-none " *ngIf="formData['fullName'].touched && formData['fullName'].errors">
-                            <div class="shadow-none border-none  text-danger"
-                                *ngIf="formData['fullName'].errors['required']">
-                                The Full Name is required
-                            </div>
-                            <div class="shadow-none text-danger" *ngIf="formData['fullName'].errors['pattern']">
-
-                                The Name is not valid, Numeric data not allowed
-                            </div>
-                        </div>
-                        <div class="rounded-[16px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
-                            <input class=" border-none shadow-none outline-none w-[90%] p-[0.5rem]" type="text"
-                                placeholder="mail@simmmple.com" name="fullName" formControlName="fullName">
-                        </div>
-                    </div>
-
-                    <div class="w-full "
-                        [ngClass]="{'has-error': !formData['mobile'].valid && formData['mobile'].touched}">
-                        <label for="fname">Phone Number*</label>
-                        <div class="border-none " *ngIf="formData['mobile'].touched && formData['mobile'].errors">
-                            <div class="shadow-none border-none  text-danger"
-                                *ngIf="formData['mobile'].errors['required']">
-                                The Phone Number is required
-                            </div>
-                            <div class="shadow-none text-danger" *ngIf="formData['mobile'].errors['pattern']">
-
-                                The Phone Number is not valid, Alphabets not allowed
-                            </div>
-                        </div>
-                        <div class="rounded-[16px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
-                            <input class=" border-none shadow-none outline-none w-[90%] p-[0.5rem]" type="text"
-                                placeholder="mail@simmmple.com" name="mobile" formControlName="mobile">
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="w-full"
-                        [ngClass]="{'has-error': !formData['password'].valid && formData['password'].touched}">
-                        <label for="password">Password*</label>
-                        <div class="border-none " *ngIf="formData['password'].touched && formData['password'].errors">
-                            <div class="shadow-none border-none  text-danger"
-                                *ngIf="formData['password'].errors['required']">
-                                The Password is required
-                            </div>
-                            <div class="shadow-none text-danger" *ngIf="formData['password'].errors['pattern']">
-
-                                The Password is not valid
-                            </div>
-                        </div>
-                        <div
-                            class="rounded-[16px] border px-[0.5rem] py-[0.8rem] flex justify-between items-center mb-[10px]">
-                            <input class=" border-none shadow-none outline-none w-[90%] p-[0.5rem]" [type]="password"
-                                placeholder="mail@simmmple.com" name="password" formControlName="password">
-                            <img (click)="toggleShowPassword()" src="/assets/images/eye.png">
-                        </div>
-                    </div>
-
-
-                    <div class="w-full"
-                        [ngClass]="{'has-error': !formData['password'].valid && formData['password'].touched}">
-                        <label for="password">Confirm Password*</label>
-                        <div class="border-none " *ngIf="formData['password'].touched && formData['password'].errors">
-                            <div class="shadow-none border-none  text-danger"
-                                *ngIf="formData['password'].errors['required']">
-                                The Password is required
-                            </div>
-                            <div class="shadow-none text-danger" *ngIf="formData['password'].errors['pattern']">
-
-                                The Password is not valid
-                            </div>
-                        </div>
-                        <div
-                            class="rounded-[16px] border px-[0.5rem] py-[0.8rem] flex justify-between items-center mb-[10px]">
-                            <input class=" border-none shadow-none outline-none w-[90%] p-[0.5rem]"
-                                [type]="confirmPassword" placeholder="mail@simmmple.com" name="password"
-                                formControlName="password">
-                            <img (click)="toggleShowConfirmPassword()" src="/assets/images/eye.png">
-                        </div>
-                    </div>
-
-                    <div class="form-group"
-                        [ngClass]="{'has-error': !formData['optionChecked'].valid && formData['optionChecked'].touched}">
-                        <div *ngIf="formData['optionChecked'].touched && formData['optionChecked'].errors"
-                            style="margin-top:10px">
-                            <div class="text-danger" *ngIf="formData['optionChecked'].errors['required']">
-                                The Check option is required
-                            </div>
-                        </div>
-                        <div class="form-check flex gap-[2rem] items-center">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input" name="optionChecked"
-                                    formControlName="optionChecked">
-                                <span class="ml-[1rem] font-[200]">I agree with the term of use</span>
-
-                            </label>
-                            <label for="using" class="text-[#4318FF] text-right">Terms of use</label>
-                        </div>
-
-                    </div>
-                    <button type="submit"
-                        class="w-full gap-2.5 text-white mx-0 my-4 pl-2 pr-[8px,] py-[10px,] p-[1.2rem] rounded-[16px] border-[none] bg-[#7b57fc]">Sign
-                        Up</button>
-                </form>
-                <p class="font-[DM Sans] text-[#707EAE] py-[1rem] ">Have an account?<a href="#" class="font-[700] text-[#4318FF] no-underline text-right"> Sign in</a></p>
-            </div>
-            <h4 class="reserved">© 2023 Trevauty. All Rights Reserved.</h4>
-        </div>
-    </div>
-    <div class="right md:flex max-w-full justify-center max-h-fit rounded-l-[100px] w-full relative ml-0 bg-no-repeat bg-cover bg-[url('/assets/images/Background.png')] ">
-        <div class="m-auto flex flex-col justify-center items-center">
-            <img src="assets/images/LOGO 3.png">
-            <div class="py-[3rem] px-[5rem] mt-[100px] flex justify-center items-center flex-col text-white border border-[rgba(255,255,255,0.2)] rounded-[26.3701px]">
-                <p class="text-[18px]">Learn more about Horizon UI on</p>
-                <h3 class="text-[29px] font-[700]">trevauty.com</h3>
-            </div>
-        </div>
-
-        <footer class="absolute bottom-[20px] m-auto left-[8%] text-[#fff] w-full flex mx-[100px] mt-[300px] mb-0">
-            <ul class="list-none flex">
-                <li class="m-[15px]">Marketplace</li>
-                <li class="m-[15px]">License</li>
-                <li class="m-[15px]">Term of use</li>
-                <li class="m-[15px]">Blog</li>
-            </ul>
-        </footer>
-    </div>
-</div> -->
-
-
-
-<div class="h-[100vh] flex justify-center items-center bg-no-repeat bg-cover bg-[url('/assets/images/Background.png')]">
+<div class="h-[100vh] flex justify-center items-center bg-no-repeat bg-cover">
     <div class="grid bg-white relative rounded-[32px] p-[1rem]">
         <div class="py-[1rem] p-[1rem] md:px-[2rem] w-full flex justify-center">
             <div class="flex justify-between flex-col items-center">
                 <div class="m-auto">
-                    <!-- <div class="w-[40%] py-[2rem]"><img src="assets/images/LOGO2.png" alt=""></div>
-                     -->
-                    <div class="font-[DM Sans] font-[700] text-[24px] text-[#2B3674] leading-[40px] text-center">Sign Up</div>
-                    <p class="text-[16px] font-[DM Sans] text-[#A3AED0] mx-0 mt-[10px] mb-[90px] leading-[35px] text-center">Let's get started</p>
+                    <div class="font-[DM Sans] font-[700] text-[24px] text-[#000] leading-[40px] text-center">Create a
+                        new account</div>
+                    <p
+                        class="text-[16px] font-[DM Sans] text-[#A3AED0] mx-0 mt-[10px] mb-[90px] leading-[35px] text-center">
+                        Fill in your details and get started</p>
 
-                    <form class="text-[#2B3674]" [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
-                       
-                        <div class="w-full"
-                        [ngClass]="{'has-error': !formData['fullName'].valid && formData['fullName'].touched}">
-                        <label for="fname">Full Name*</label>
-                        <div class="border-none " *ngIf="formData['fullName'].touched && formData['fullName'].errors">
-                            <div class="shadow-none border-none  text-[red]"
-                                *ngIf="formData['fullName'].errors['required']">
-                                The Full Name is required
-                            </div>
-                            <div class="shadow-none text-[red]" *ngIf="formData['fullName'].errors['pattern']">
+                    <form class="text-[#2B3674] grid gap-[2rem]" [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
 
-                                The Name is not valid, Numeric data not allowed
-                            </div>
-                        </div>
-                        <div class="rounded-[16px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
-                            <input class=" border-none shadow-none outline-none w-[90%] p-[0.5rem]" type="text"
-                                placeholder="mail@simmmple.com" name="fullName" formControlName="fullName">
-                        </div>
-                    </div>
+                        <div class="md:flex gap-[3rem]">
 
-                    <div class="w-full"
-                        [ngClass]="{'has-error': !formData['email'].valid && formData['email'].touched}">
-                        <label class="" for="fname">Email*</label>
-                        <div class="border-none " *ngIf="formData['email'].touched && formData['email'].errors">
-                            <div class="shadow-none border-none  text-[red]"
-                                *ngIf="formData['email'].errors['required']">
-                                The Email is required
-                            </div>
-                            <div class="shadow-none text-[red]" *ngIf="formData['email'].errors['pattern']">
-                                The Email is not valid
-                            </div>
-                        </div>
-                        <div class="rounded-[16px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
-                            <input class=" border-none shadow-none outline-none w-[25rem] p-[0.5rem]" type="text"
-                                placeholder="mail@simmmple.com" name="email" formControlName="email">
-                        </div>
-                    </div>
+                            <div class="w-full"
+                                [ngClass]="{'has-error': !formData['firstName'].valid && formData['firstName'].touched}">
+                                <label for="fname">First Name*</label>
+                                <div class="border-none "
+                                    *ngIf="formData['firstName'].touched && formData['firstName'].errors">
+                                    <div class="shadow-none border-none  text-[red]"
+                                        *ngIf="formData['firstName'].errors['required']">
+                                        The First Name is required
+                                    </div>
+                                    <div class="shadow-none text-[red]" *ngIf="formData['firstName'].errors['pattern']">
 
-                        <div class="w-full"
-                            [ngClass]="{'has-error': formSubmitted && !formData['password'].valid && formData['password'].touched}">
-                            <label for="password">Password*</label>
-                            <div class="border-none "
-                                *ngIf="formSubmitted && formData['password'].touched && formData['password'].errors">
-                                <div class="shadow-none border-none  text-[red]"
-                                    *ngIf="formSubmitted && formData['password'].errors['required']">
-                                    The Password is required
+                                        The Name is not valid, Numeric data not allowed
+                                    </div>
                                 </div>
-                                <div class="shadow-none text-[red]"
-                                    *ngIf="formSubmitted && formData['password'].errors['pattern']">
-                                    The Password is not valid
+                                <div
+                                    class="rounded-[8px] border px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+                                    <input class=" border-none shadow-none outline-none w-[40rem] p-[0.5rem]"
+                                        type="text" placeholder="mail@simmmple.com" name="firstName"
+                                        formControlName="firstName">
                                 </div>
                             </div>
-                            <div
-                                class="rounded-[16px] border px-[0.5rem] py-[0.8rem] flex justify-between items-center mb-[10px]">
-                                <input class=" border-none shadow-none outline-none w-[25rem] p-[0.5rem]"
-                                    [type]="password" placeholder="mail@simmmple.com" name="password"
-                                    formControlName="password">
-                                <img (click)="toggleShowPassword()" src="/assets/images/eye.png">
+
+                            <div class="w-full"
+                                [ngClass]="{'has-error': !formData['lastName'].valid && formData['lastName'].touched}">
+                                <label for="fname">Last Name*</label>
+                                <div class="border-none "
+                                    *ngIf="formData['lastName'].touched && formData['lastName'].errors">
+                                    <div class="shadow-none border-none  text-[red]"
+                                        *ngIf="formData['lastName'].errors['required']">
+                                        Last Name is required
+                                    </div>
+                                    <div class="shadow-none text-[red]" *ngIf="formData['lastName'].errors['pattern']">
+
+                                        The Name is not valid, Numeric data not allowed
+                                    </div>
+                                </div>
+                                <div
+                                    class="rounded-[8px] border px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+                                    <input class=" border-none shadow-none outline-none w-[40rem] p-[0.5rem]"
+                                        type="text" placeholder="mail@simmmple.com" name="lastName"
+                                        formControlName="lastName">
+                                </div>
                             </div>
+
                         </div>
 
-                        <!-- <div class="w-full">
-                            <mat-form-field appearance="outline" floatLabel="always" class="w-full">
-                                <mat-label class="w-full">Outline form field</mat-label>
-                                <input matInput placeholder="Placeholder" type="text" class="w-full">
-                              </mat-form-field>
-                        </div> -->
 
-                        <div class="form-check items-center py-[1rem] text-[16px] leading-[24px] font-[500] space-x-2">
-                            <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input" name="optionChecked"
-                                    formControlName="optionChecked">
-                                <span class="ml-[1rem] font-[200]">I agree to the </span>
-                            </label>
-                            <a href="#" class="text-[#4318FF] text-right">Terms and Services </a>  <span>and</span> <br>
-                            <a href="#" class="text-[#4318FF] text-right">Privacy Policy</a>
+                        <div class="md:flex gap-[3rem]">
+
+
+                            <div class="w-full"
+                                [ngClass]="{'has-error': !formData['username'].valid && formData['username'].touched}">
+                                <label class="" for="fname">Username*</label>
+                                <div class="border-none "
+                                    *ngIf="formData['username'].touched && formData['username'].errors">
+                                    <div class="shadow-none border-none  text-[red]"
+                                        *ngIf="formData['username'].errors['required']">
+                                        Username is required
+                                    </div>
+                                    <div class="shadow-none text-[red]" *ngIf="formData['username'].errors['pattern']">
+                                        Username is not valid
+                                    </div>
+                                </div>
+                                <div
+                                    class="rounded-[8px] border px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+                                    <input class=" border-none shadow-none outline-none w-[40rem] p-[0.5rem]"
+                                        type="text" placeholder="mail@simmmple.com" name="username"
+                                        formControlName="username">
+                                </div>
+                            </div>
+
+                            <div class="w-full"
+                                [ngClass]="{'has-error': !formData['emailAddress'].valid && formData['emailAddress'].touched}">
+                                <label class="" for="fname">Email*</label>
+                                <div class="border-none "
+                                    *ngIf="formData['emailAddress'].touched && formData['emailAddress'].errors">
+                                    <div class="shadow-none border-none  text-[red]"
+                                        *ngIf="formData['emailAddress'].errors['required']">
+                                        The Email is required
+                                    </div>
+                                    <div class="shadow-none text-[red]"
+                                        *ngIf="formData['emailAddress'].errors['pattern']">
+                                        The Email is not valid
+                                    </div>
+                                </div>
+                                <div
+                                    class="rounded-[8px] border px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+                                    <input class=" border-none shadow-none outline-none w-[40rem] p-[0.5rem]"
+                                        type="text" placeholder="mail@simmmple.com" name="emailAddress"
+                                        formControlName="emailAddress">
+                                </div>
+                            </div>
+
+
                         </div>
-                        <button type="submit"
-                            class="w-full gap-2.5 text-white mx-0 my-4 pl-2 pr-[8px,] py-[10px,] p-[1.2rem] rounded-[32px] border-[none] bg-[#7b57fc]">Sign
-                            In</button>
+
+                        <div class="md:flex gap-[3rem]">
+
+
+                            <div class="w-full"
+                                [ngClass]="{'has-error': formSubmitted && !formData['password'].valid && formData['password'].touched}">
+                                <label for="password">Password*</label>
+                                <div class="border-none "
+                                    *ngIf="formSubmitted && formData['password'].touched && formData['password'].errors">
+                                    <div class="shadow-none border-none  text-[red]"
+                                        *ngIf="formSubmitted && formData['password'].errors['required']">
+                                        The Password is required
+                                    </div>
+                                    <div class="shadow-none text-[red]"
+                                        *ngIf="formSubmitted && formData['password'].errors['pattern']">
+                                        The Password is not valid
+                                    </div>
+                                </div>
+                                <div
+                                    class="rounded-[8px] border px-[0.5rem] py-[1.3rem] flex justify-between items-center mb-[10px]">
+                                    <input class=" border-none shadow-none outline-none w-[40rem] p-[0.5rem]"
+                                        [type]="password" placeholder="mail@simmmple.com" name="password"
+                                        formControlName="password">
+                                    <img (click)="toggleShowPassword()" src="/assets/images/eye.png">
+                                </div>
+                            </div>
+
+                            <div class="w-full"
+                                [ngClass]="{'has-error': formSubmitted && !formData['password'].valid && formData['password'].touched}">
+                                <label for="password">Password*</label>
+                                <div class="border-none "
+                                    *ngIf="formSubmitted && formData['password'].touched && formData['password'].errors">
+                                    <div class="shadow-none border-none  text-[red]"
+                                        *ngIf="formSubmitted && formData['password'].errors['required']">
+                                        The Password is required
+                                    </div>
+                                    <div class="shadow-none text-[red]"
+                                        *ngIf="formSubmitted && formData['password'].errors['pattern']">
+                                        The Password is not valid
+                                    </div>
+                                </div>
+                                <div
+                                    class="rounded-[8px] border px-[0.5rem] py-[1.3rem] flex justify-between items-center mb-[10px]">
+                                    <input class=" border-none shadow-none outline-none w-[40rem] p-[0.5rem]"
+                                        [type]="password" placeholder="mail@simmmple.com" name="password"
+                                        formControlName="password">
+                                    <img (click)="toggleShowPassword()" src="/assets/images/eye.png">
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+ 
+                        <div class="grid items-center place-items-center">
+
+                            <!-- <div class="form-check items-center py-[1rem] text-[14px] leading-[24px] font-[500] space-x-2">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" name="optionChecked"
+                                        formControlName="optionChecked">
+                                    <span class="ml-[1rem] font-[200]">I agree to the </span>
+                                </label>
+                                <a href="#" class="text-[#4318FF] text-right">Terms and Services </a> <span>and</span>
+                                <a href="#" class="text-[#4318FF] text-right">Privacy Policy</a>
+                            </div> -->
+
+                            <button type="submit"
+                            class="md:w-[40rem] w-full gap-2.5 text-white mx-0 my-4 pl-2 pr-[8px,] py-[1.3rem,] p-[1.2rem] rounded-[8px] border-[none] bg-[#000]">Sign
+                            Up</button>
+                        </div>
+          
                     </form>
-                    <div class="form-check flex justify-center items-center py-[1rem] text-[16px] leading-[24px] font-[500]">
+                    <div
+                        class="form-check flex justify-center items-center py-[1rem] text-[16px] leading-[24px] font-[500]">
                         <span class="ml-[1rem] font-[200]">I already have an account? </span>
                         <a href="#" class="text-[#4318FF] text-right"> Login</a>
                     </div>

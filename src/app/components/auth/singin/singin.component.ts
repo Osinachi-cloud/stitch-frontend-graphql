@@ -32,9 +32,9 @@ export class SinginComponent implements OnInit{
     
     ) {
     this.authForm = new FormGroup({
-      email: new FormControl(  '',  [Validators.required, Validators.pattern('^.+@.+\..+$')]),
+       emailAddress: new FormControl(  '',  [Validators.required, Validators.pattern('^.+@.+\..+$')]),
        password: new FormControl(  '',  [Validators.required]),
-       optionChecked : new FormControl('',   [Validators.required]),
+       optionChecked : new FormControl('',),
   
     }); 
     
