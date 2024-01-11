@@ -1,4 +1,4 @@
-<div class="bg-[#F5F4F7] h-fit md:p-[6rem] p-[2rem]">
+<!-- <div class="bg-[#F5F4F7] h-fit md:p-[6rem] p-[2rem]">
     <div class="flex justify-between items-center mb-[5rem]">
         <div class="flex justify-between items-center w-[100%]">
             <div class="">
@@ -25,7 +25,6 @@
             </div>
             <div>
                 <div class="bg-[#000] w-[50px] h-[50px] flex justify-center items-center rounded-[50%]">
-                    <!-- <img src="/assets/images/Icon.png" alt=""> -->
                     <i class="fa fa-shopping-cart text-[20px] text-[#fff]"></i>
                 </div>
 
@@ -41,29 +40,12 @@
             </div>
             <div>
                 <div class="bg-[grey] w-[50px] h-[50px] flex justify-center items-center rounded-[50%]">
-                    <!-- <img src="/assets/images/Icon.png" alt=""> -->
                     <i class="fa fa-clock text-[20px] text-[#fff]"></i>
 
                 </div>
 
             </div>
         </div>
-
-        <!-- <div class="flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem]">
-            <div>
-                <div class="text-[grey] text-[16px] leading-[24px]">Completed</div>
-                <div class="flex items-center gap-[0.3rem]">
-                    <span class="text-[20px] font-[500] leading-[32px]">259</span>
-                </div>
-            </div>
-            <div>
-                <div class="bg-[#edeaf7] p-[1rem] rounded-[6px]">
-                    <img src="/assets/images/Icon.png" alt="">
-                    <i class="fa fa-user"></i>
-                </div>
-
-            </div>
-        </div> -->
 
         <div class="flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem]">
             <div>
@@ -74,7 +56,6 @@
             </div>
             <div>
                 <div class="bg-[#CC5F5F] w-[50px] h-[50px] flex justify-center items-center rounded-[50%]">
-                    <!-- <img src="/assets/images/Icon.png" alt=""> -->
                     <i class="fa fa-times text-[20px] text-[#fff]"></i>
                 </div>
 
@@ -90,7 +71,6 @@
             </div>
             <div>
                 <div class="bg-[#2148C0] w-[50px] h-[50px] flex justify-center items-center rounded-[50%]">
-                    <!-- <img src="/assets/images/Icon.png" alt=""> -->
                     <i class="fas fa-sync-alt text-[20px] text-[#fff]"></i>
                 </div>
 
@@ -106,7 +86,6 @@
             </div>
             <div>
                 <div class="bg-[#519C66] w-[50px] h-[50px] flex justify-center items-center rounded-[50%]">
-                    <!-- <img src="/assets/images/Icon.png" alt=""> -->
                     <i class="fa fa-check text-[20px] text-[#fff]"></i>
 
                 </div>
@@ -274,6 +253,265 @@
                                 </select>
                             </div>
                         </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mt-[4rem] bg-[#fff] flex  p-[1rem] justify-end">
+                <div class="flex items-center gap-[2rem]">
+                    <div class="p-[1rem] py-[0.5rem] flex items-center bg-[#fff] rounded-[12px]">
+                        <span class="whitespace-nowrap">Rows per page: </span>
+                        <select id="countries"
+                            class=" outline-none text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+
+                            <option selected>
+                                <div><img src="/assets/images/flag.png" alt=""></div>
+                                <span>10</span>
+                            </option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                        </select>
+                    </div>
+                    <div>
+                        1-5 of 13
+                    </div>
+                    <div class="flex justify-end gap-[2rem] md:mr-[2rem]">
+                        <div class="p-[1rem] py-[0.5rem] rounded-[4px]">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="p-[1rem] py-[0.5rem] rounded-[4px]">
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<div class="bg-[#F5F4F7] h-fit md:p-[6rem] p-[2rem]">
+    <div class="flex justify-between items-center mb-[5rem]">
+        <div class="flex justify-between items-center w-[100%]">
+            <div class="">
+                <h2 class="text-[#15192C] font-[600] text-[27px] leading-[33px]">Orders Summary</h2>
+            </div>
+            <div class="flex justify-center gap-2 items-center bg-[#fff] p-[1rem] rounded-[12px]">
+                <div class="flex justify-center h-[20px]">
+                    <img class="h-[100%]" src="/assets/images/download.png" alt="">
+                </div>
+                <span class="text-[#7B57FC]">
+                    Export
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid md:grid-cols-5 grid-cols-1 gap-[1rem]">
+        <div class="flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem]">
+            <div>
+                <div class="text-[grey] text-[16px] leading-[24px]">All Orders</div>
+                <div class="flex items-center gap-[0.3rem]">
+                    <span class="text-[20px] font-[500] leading-[32px]">21459</span>
+                </div>
+            </div>
+            <div>
+                <div class="bg-[#000] w-[50px] h-[50px] flex justify-center items-center rounded-[50%]">
+                    <i class="fa fa-shopping-cart text-[20px] text-[#fff]"></i>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem]">
+            <div>
+                <div class="text-[grey] text-[16px] leading-[24px]">In-Progress</div>
+                <div class="flex items-center gap-[0.3rem]">
+                    <span class="text-[20px] font-[500] leading-[32px]">459</span>
+                </div>
+            </div>
+            <div>
+                <div class="bg-[grey] w-[50px] h-[50px] flex justify-center items-center rounded-[50%]">
+                    <i class="fa fa-clock text-[20px] text-[#fff]"></i>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem]">
+            <div>
+                <div class="text-[grey] text-[16px] leading-[24px]">Cancelled</div>
+                <div class="flex items-center gap-[0.3rem]">
+                    <span class="text-[20px] font-[500] leading-[32px]">219</span>
+                </div>
+            </div>
+            <div>
+                <div class="bg-[#CC5F5F] w-[50px] h-[50px] flex justify-center items-center rounded-[50%]">
+                    <i class="fa fa-times text-[20px] text-[#fff]"></i>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem]">
+            <div>
+                <div class="text-[grey] text-[16px] leading-[24px]">In Transit</div>
+                <div class="flex items-center gap-[0.3rem]">
+                    <span class="text-[20px] font-[500] leading-[32px]">59</span>
+                </div>
+            </div>
+            <div>
+                <div class="bg-[#2148C0] w-[50px] h-[50px] flex justify-center items-center rounded-[50%]">
+                    <i class="fas fa-sync-alt text-[20px] text-[#fff]"></i>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem]">
+            <div>
+                <div class="text-[grey] text-[16px] leading-[24px]">Delivered</div>
+                <div class="flex items-center gap-[0.3rem]">
+                    <span class="text-[20px] font-[500] leading-[32px]">34</span>
+                </div>
+            </div>
+            <div>
+                <div class="bg-[#519C66] w-[50px] h-[50px] flex justify-center items-center rounded-[50%]">
+                    <i class="fa fa-check text-[20px] text-[#fff]"></i>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-[#fff] rounded-[12px]">
+        <div class="flex items-center justify-between pb-0  mt-[2rem] p-[1rem]">
+            <div class="w-[100%] grid gap-[2rem]  pt-[2rem]">
+
+                <div class="flex justify-between py-[1rem]">
+                    <div class="flex justify-center gap-2 items-center bg-[#fff] p-[1rem] rounded-[12px]">
+                        <div class="flex justify-center h-[20px]">
+
+                        </div>
+                        <span class="">
+                            Customer Orders
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-[1rem] w-[40%]">
+                        <div
+                            class="bg-[#FBFBFB] border rounded-[12px] gap-[1rem] flex p-[1rem] py-[0.5rem] w-[70%] md:mt-[0] mt-[1rem]">
+                            <div class="flex justify-center items-center">
+                                <img src="/assets/images/inputSearch.png" alt="">
+                            </div>
+                            <input type="text" id="table-search"
+                                class="block p-2 w-[90%] bg-[#FBFBFB] text-gray-900 outline-none  rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Search by amount , payment method...">
+                        </div>
+                        <div
+                            class="flex items-center gap-[1rem] cursor-pointer border p-[0.8rem] rounded-[12px] whitespace-nowrap">
+                            <div>
+                                <img src="/assets/icons/Calendar.png" alt="">
+                            </div>
+                            <span>
+                                Filter
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative overflow-x-auto sm:rounded-lg border-t">
+
+            <table class="w-full text-[14px] leading-[150%]  text-[#4B5563] text-left">
+                <thead class="text-[14px] italic font-[100]  text-[#374151] uppercase bg-[#fff]">
+                    <tr class="border-b">
+                        <th scope="col" class="p-[2rem]">
+                            <div class="flex items-center">
+                                <input id="checkbox-all-search" type="checkbox"
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                                <label for="checkbox-all-search" class="sr-only">Payment ID</label>
+                            </div>
+                        </th>
+                        <th scope="col" class="p-[2rem]">
+                            Product Name
+                        </th>
+                        <th scope="col" class="p-[2rem]">
+                            Order Date
+                        </th>
+                        <th scope="col" class="p-[2rem]">
+                            Tracking Id
+                        </th>
+                        <th scope="col" class="p-[2rem]">
+                            Order Total
+                        </th>
+                        <th scope="col" class="p-[2rem]">
+                            Status
+                        </th>
+                        <!-- <th scope="col" class="p-[2rem]">
+                            Action
+                        </th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of customersOrder" class="text-[#6E7079] bg-[#fff] border-b hover:bg-gray-50">
+                        <td class="w-4 p-[2rem]">
+                            <div class="flex items-center">
+                                <input id="checkbox-table-search-3" type="checkbox"
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2">
+                                <label for="checkbox-table-search-3" class="sr-only">checkbox</label>
+                            </div>
+                        </td>
+                        <td scope="row" class="px-[2rem] font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <div class="flex gap-[1rem]">
+                                <div class="p-0">
+                                    <span class="leading-0">{{order.name}}</span><br>
+                                    <span class="text-[grey] leading-0">{{order.name}}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-[2rem]">
+                            <div class="flex items-center gap-[1rem]">
+                                <div>
+                                    {{order.date}}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-[2rem]">
+                            {{order.trackingId}}
+                        </td>
+                        <td class="px-[2rem]">
+                            ₦{{order.amount}}
+                        </td>
+
+                        <td class="px-[1rem]">
+                            <div *ngIf="order.status === 'PENDING' "
+                                class="bg-[lightgrey] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
+                                <span class="text-[#fff]">{{order.status}}</span>
+                            </div>
+
+                            <div *ngIf="order.status === 'ACTIVE' "
+                                class="bg-[#e9dffc] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
+                                <span class="text-[#7b57fc]">{{order.status}}</span>
+                            </div>
+                            <div *ngIf="order.status === 'CANCELLED' "
+                                class="bg-[#fdeae9] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
+                                <span class="text-[#F57E77]">{{order.status}}</span>
+                            </div>
+                            <div *ngIf="order.status === 'IN_TRANSIT' "
+                                class="bg-[#E4E7FD] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
+                                <span class="text-[#5570F1]">{{order.status}}</span>
+                            </div>
+                            <div *ngIf="order.status === 'DELIVERED' "
+                                class="bg-[#DEEEE7] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
+                                <span class="text-[#32936F]">{{order.status}}</span>
+                            </div>
+                        </td>
+
                     </tr>
                 </tbody>
             </table>

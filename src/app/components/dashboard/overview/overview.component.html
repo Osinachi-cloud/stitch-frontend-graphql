@@ -1,71 +1,4 @@
-<div>
-
-    <div
-        class="dashbord_items gap-[1rem] grid md:grid-cols-4 grid-cols-1 justify-between my-0 bg-[#fff] rounded-[20px] p-[30px] mb-[20px] w-[80%]">
-        <div class="col-span-1 flex md:justify-center p-[1rem] items-center  md:border-r border-b md:border-b-0">
-            <div class="mr-[8px] flex justify-center items-center bg-[#CEE0F3] rounded-[16px] p-[2rem]">
-                <img src="/assets/images/Paper.png" />
-            </div>
-
-            <div class="mr-[35px] font-[700] text-[16px] leading-[24px] text-[#92959E]">
-
-                <div class="mr-[35px] font-[700] text-[16px] leading-[24px] text-[#92959E]">
-                    <p>Terminals</p>
-                </div>
-                <div class="text-[20px] leading-[30px] text-[#15192C]">
-                    <p>3</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-span-1 flex md:justify-center p-[1rem] items-center  md:border-r border-b md:border-b-0">
-
-
-            <div class="mr-[8px] flex justify-center items-center bg-[#CEE0F3] rounded-[16px] p-[2rem]">
-                <img src="/assets/images/Swap.png" />
-            </div>
-            <div class="mr-[35px] font-[700] text-[16px] leading-[24px] text-[#92959E]">
-                <div class="">
-                    <p>Active</p>
-                </div>
-                <div class="text-[20px] leading-[30px] text-[#15192C]">
-                    <p>2</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-span-1 flex md:justify-center p-[1rem] items-center  md:border-r border-b md:border-b-0">
-
-            <div class="mr-[8px] flex justify-center items-center bg-[#CEE0F3] rounded-[16px] p-[2rem]">
-                <img src="/assets/images/Profile.png" />
-            </div>
-            <div class="mr-[35px] font-[700] text-[16px] leading-[24px] text-[#92959E]">
-
-
-                <div class="">
-                    <p>Users</p>
-                </div>
-                <div class="text-[20px] leading-[30px] text-[#15192C]">
-                    <p>2</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-span-1 flex md:justify-center p-[1rem] items-center">
-            <div class="mr-[8px] flex justify-center items-center bg-[#CEE0F3] rounded-[16px] p-[2rem]">
-                <img src="/assets/images/Graph.png" />
-            </div>
-            <div class="mr-[35px] font-[700] text-[16px] leading-[24px] text-[#92959E]">
-
-                <div class="">
-                    <p>Balance</p>
-                </div>
-                <div class="text-[20px] leading-[30px] text-[#15192C]">
-                    <p class="whitespace-nowrap">N 549, 600.00</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
+<!-- <div>
     <div class="rounded-[20px] bg-[#fff] w-[90%] p-[5rem]">
 
         <h1 class="py-[2rem]">Quick Actions</h1>
@@ -109,8 +42,71 @@
 
 
 
-</div>
+</div> -->
 
+
+<div class=" w-[90%] h-[90%] rounded-[8px] p-[2rem] m-auto bg-[#fff]">
+    <h1 class="py-[2rem] ">Account Overview</h1>
+
+    <div class=" grid grid-cols-10">
+
+        <div class="col-span-2">
+            <div>
+                <img src="/assets/images/Upload Image.png" alt="">
+            </div>
+        </div>
+        <div class="col-span-4 leading-[3rem] grid gap-[3rem]">
+            <div>
+                <div class="font-[900] text-[18px] font-[NUNITO]">Contact Information</div>
+                <div class="text-[14px] font-[NUNITO-LIGHT]">John Doe</div>
+                <div class="text-[14px] font-[NUNITO-LIGHT]">JohnDoe@gmail.com</div>
+                <div class="text-[14px] font-[NUNITO-LIGHT]">08167144768</div>
+                <div class="flex gap-[3rem]">
+                    <div (click)="toggleTerminalFormModal()" class="px-[1rem] rounded-[8px] bg-[#E6F1FA] cursor-pointer">Edit Details</div>
+                    <div class="px-[1rem] rounded-[8px] bg-[#E6F1FA]">Reset Password</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="font-[900] text-[18px] font-[NUNITO]">Default Billing Address</div>
+                <ul>
+                <div class="text-[14px] font-[NUNITO-LIGHT]">No. 93 Skyfield Apartments, Yaba, Lagos</div>
+                    
+                </ul>
+                <div class="flex gap-[3rem]">
+                    <div class="px-[1rem] rounded-[8px] bg-[#E6F1FA]">Edit Address</div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-span-4 leading-[3rem] grid gap-[3rem]">
+            <div>
+                <div class="font-[900] text-[18px] font-[NUNITO]">News Letters</div>
+                <div class="text-[14px] font-[NUNITO-LIGHT]">You don't subscribe to our newsletter.</div>
+                <div class="flex gap-[3rem]">
+                    <div class="px-[1rem] rounded-[8px] bg-[#E6F1FA]">Edit Details</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="font-[900] text-[18px] font-[NUNITO]">Default Billing Address</div>
+                <ul>
+                <div class="text-[14px] font-[NUNITO-LIGHT]">No. 93 Skyfield Apartments, Yaba, Lagos</div>
+                    
+                </ul>
+                <div class="flex gap-[3rem]">
+                    <div class="px-[1rem] rounded-[8px] bg-[#E6F1FA]">Edit Address</div>
+                </div>
+            </div>
+
+
+        </div>
+    
+    
+    </div>
+
+</div>
 
 
 
@@ -120,53 +116,37 @@
 
 <div *ngIf="showTerminalFormModal"
     class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
-    <div class="relative w-full my-6 mx-auto max-w-3xl">
-        <!--content-->
+    <div class="relative w-full my-6 mx-auto max-w-3xl ">
         <div
-            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            class="border-0 rounded-[20px] shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             <div class="grid place-items-center items-center p-[4rem] w-full">
                 <div class="flex justify-end w-full">
                     <span class="cursor-pointer" (click)="toggleTerminalFormModal()"><img class="h-[20px]" src="/assets/images/x.png" alt=""></span>
                 </div>
                 <div class="py-[2rem] grid gap-[1rem]">
-                    <div class="text-center text-[16px] font-[500] leading-[30px]">Add Terminal</div>
+                    <div class="text-center text-[16px] font-[500] leading-[30px]">Edit User</div>
                 </div>
                 <div class="grid gap-[1rem] mt-[2rem] items-center place-items-center">
 
 
 
-                    <form class="w-[30rem]" action="">
-
-
+                    <form class="w-[40rem]" action="">
 
                         <div class="w-full"
                             [ngClass]="{'has-error': !formData['uName'].valid && formData['uName'].touched}">
-                            <label class="font-[400]" for="fname">Choose a location</label>    
                             <div class="border-none " *ngIf="formData['uName'].touched && formData['uName'].errors">
                                 <div class="shadow-none border-none  text-danger"
                                     *ngIf="formData['uName'].errors['required']">
-                                    The Full Name is required
+                                    The First Name is required
                                 </div>
                                 <div class="shadow-none text-danger" *ngIf="formData['uName'].errors['pattern']">
 
-                                    The Name is not valid, Numeric data not allowed
+                                    The First Name is not valid, Numeric data not allowed
                                 </div>
                             </div>
                             <div class="rounded-[8px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
-                                <!-- <input class=" border-none shadow-none outline-none w-[90%] p-[0.5rem]" type="text"
-                                    placeholder="Enter  Client's Name" name="uName" formControlName="uName"> -->
-
-                                    <select id="countries"
-                                    class=" outline-none text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option selected>
-                                        <div><img src="/assets/images/flag.png" alt=""></div>
-                                        <span>Select Location</span>
-                                    </option>
-                                    <option value="US">Success</option>
-                                    <option value="CA">Failure</option>
-                                    <option value="FR">Pending</option>
-                                </select>
-
+                                <input class=" border-none shadow-none outline-none w-[100%] p-[0.5rem]" type="text"
+                                    placeholder="First Name" name="uName" formControlName="uName">
                             </div>
                         </div>
 
@@ -176,16 +156,16 @@
                             <div class="border-none " *ngIf="formData['uName'].touched && formData['uName'].errors">
                                 <div class="shadow-none border-none  text-danger"
                                     *ngIf="formData['uName'].errors['required']">
-                                    The Full Name is required
+                                    Last Name is required
                                 </div>
                                 <div class="shadow-none text-danger" *ngIf="formData['uName'].errors['pattern']">
 
-                                    The Name is not valid, Numeric data not allowed
+                                    Last is not valid, Numeric data not allowed
                                 </div>
                             </div>
                             <div class="rounded-[8px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
                                 <input class=" border-none shadow-none outline-none w-[90%] p-[0.5rem]" type="text"
-                                    placeholder="Enter  Client's Name" name="uName" formControlName="uName">
+                                    placeholder="Last Name" name="uName" formControlName="uName">
                             </div>
                         </div>
 
@@ -195,46 +175,22 @@
                             <div class="border-none " *ngIf="formData['uName'].touched && formData['uName'].errors">
                                 <div class="shadow-none border-none  text-danger"
                                     *ngIf="formData['uName'].errors['required']">
-                                    The Full Name is required
+                                    Phone number Name is required
                                 </div>
                                 <div class="shadow-none text-danger" *ngIf="formData['uName'].errors['pattern']">
 
-                                    The Name is not valid, Numeric data not allowed
+                                    Phone number is not valid, Numeric data not allowed
                                 </div>
                             </div>
                             <div class="rounded-[8px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
                                 <input class=" border-none shadow-none outline-none w-[90%] p-[0.5rem]" type="text"
-                                    placeholder="Enter  Terminal Location" name="uName" formControlName="uName">
-                            </div>
-                        </div>
-
-
-                        <div class="w-full"
-                            [ngClass]="{'has-error': !formData['uName'].valid && formData['uName'].touched}">
-                            <div class="border-none " *ngIf="formData['uName'].touched && formData['uName'].errors">
-                                <div class="shadow-none border-none  text-danger"
-                                    *ngIf="formData['uName'].errors['required']">
-                                    The Full Name is required
-                                </div>
-                                <div class="shadow-none text-danger" *ngIf="formData['uName'].errors['pattern']">
-
-                                    The Name is not valid, Numeric data not allowed
-                                </div>
-                            </div>
-                            <div class="rounded-[8px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
-                                <input class=" border-none shadow-none outline-none w-[90%] p-[0.5rem]" type="text"
-                                    placeholder="Enter  Terminal's Operator Name" name="uName" formControlName="uName">
+                                    placeholder="Phone number" name="uName" formControlName="uName">
                             </div>
                         </div>
 
                         <button class="bg-[#7535FD] text-[#fff] text-[2rem] p-[1rem] m-auto w-[100%] rounded-[8px] my-[1rem]">Continue</button>
 
                     </form>
-
-
-
-
-
                 </div>
 
             </div>

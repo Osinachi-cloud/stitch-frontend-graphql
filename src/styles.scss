@@ -8,6 +8,49 @@
 
 @import '~normalize.css';
 
+@font-face {
+    font-family: 'DM Sans';
+    src: url('/assets/fonts/DM_Sans/DMSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NUNITO';
+    src: url('/assets/fonts/nunito/Nunito-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NUNITO-EXTRA-BOLD';
+    src: url('/assets/fonts/nunito/Nunito-ExtraBold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'POPPINS-LIGHT';
+    src: url('/assets/fonts/poppins/Poppins-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NUNITO-LIGHT';
+    src: url('/assets/fonts/nunito/Nunito-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+  
+@font-face {
+    font-family: 'DM Sans';
+    src: url('/assets/fonts/DM_Sans/DMSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
 *{
     margin: 0;
     padding: 0;

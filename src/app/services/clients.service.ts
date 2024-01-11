@@ -7,10 +7,6 @@ import { Observable, map } from 'rxjs';
 })
 export class ClientsService {
 
-
-
-
-
   baseURL = "http://localhost:8080";
   singupUrl = 'https://smartb2c.ubagroup.com/bscv2/api/Accounts/Login';
 
