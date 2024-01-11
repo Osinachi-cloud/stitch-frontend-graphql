@@ -7,10 +7,32 @@ import { Observable, map } from 'rxjs';
 })
 export class ClientsService {
 
+
+
+
+
   baseURL = "http://localhost:8080";
   singupUrl = 'https://smartb2c.ubagroup.com/bscv2/api/Accounts/Login';
 
   constructor(private http: HttpClient) { }
+
+  getCountryCode() {
+    return this.http.get<any>('https://ipinfo.io/json');
+  }
+
+  // getCountryNameByCode(countryCode: string):Observable<string> {
+  //   return this.http.get<any>(`https://restcountries.com/v2/alpha/${countryCode}`).pipe(
+  //     map((res: any)=> {
+  //       console.log("map",res);
+  //       return res.name;
+  //     })
+  //   );
+  // }
+
+
+  getCountryNameByCode(countryCode: string) {
+    return this.http.get<any>(`https://restcountries.com/v2/alpha/${countryCode}`);
+  }
 
   terminalRequest(userDetails:any){
     console.log("hello world");

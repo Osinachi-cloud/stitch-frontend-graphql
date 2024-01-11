@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { NgxOtpInputConfig } from 'ngx-otp-input';
+import { ClientsService } from 'src/app/services/clients.service';
 
 @Component({
   selector: 'app-signup',
@@ -135,10 +136,14 @@ export class SignupComponent {
   password: string = "password";
   formSubmitted: boolean = false;
   apiResponse: any;
+  countryCode: string = "";
+  countryName: string = "";
+
 
   constructor(private http: HttpClient,
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private clientService: ClientsService,
     private router: Router,
     private toast: NgToastService
 
@@ -147,7 +152,7 @@ export class SignupComponent {
       firstName: new FormControl('', [Validators.required]),
       lastName: new FormControl('', [Validators.required]),
       username: new FormControl(''),
-      country: new FormControl('NIGERIA'),
+      country: new FormControl(this.countryName),
       phoneNumber: new FormControl('+2348167144768'),
       emailAddress: new FormControl('', [Validators.required, Validators.pattern('^.+@.+\..+$')]),
       password: new FormControl('', [Validators.required]),
@@ -156,6 +161,8 @@ export class SignupComponent {
     });
 
   }
+
+
 
   get formData() { return this.authForm.controls; };
 
@@ -170,6 +177,7 @@ export class SignupComponent {
   }
 
   ngOnInit(): void {
+    this.getCountryCode();
     this.showSuccess();
     console.log(this.formSubmitted);
   }
@@ -193,8 +201,45 @@ export class SignupComponent {
     });
   }
 
+  getCountryCode():string{
+    this.clientService.getCountryCode().subscribe({
+      next: (res: any) => {
+        this.countryCode = res.country;
+        console.log(this.countryCode);
+
+      },
+      error: (err: any) => {
+        console.error('Error fetching country name:', err);
+      }
+    });
+    // return this.countryCode;
+    return "NG";
+  }
+
+  getCountryName(countryCode: string): string {
+
+    this.clientService.getCountryNameByCode(countryCode).subscribe({
+      next: (res: any) => {
+        this.countryName = res.name;
+        console.log("country name1: " +this.countryName);
+        console.log(res.name);
+
+      },
+      error: (err: any) => {
+        console.error('Error fetching country name:', err);
+      }
+    });
+    console.log("country name2: " + this.countryName);
+    return this.countryName;
+  }
+
+
 
   onSubmit(user: any) {
+
+    this.getCountryName(this.getCountryCode());
+    console.log("after countryCode");
+
     // if (this.authForm.valid) {
     this.authService.signup(this.authForm.value).subscribe({
       next: (response: any) => {
