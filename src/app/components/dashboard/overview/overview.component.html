@@ -54,6 +54,20 @@
             <div>
                 <img src="/assets/images/Upload Image.png" alt="">
             </div>
+
+
+            <form [formGroup]="profileImageForm" (ngSubmit)="onSubmitProfileImage(profileImageForm.value)">
+                            
+                <label for="profileImage">Profile Image:</label>
+                <input type="file" id="profileImage" (change)="onFileSelected($event)" formControlName="profileImage"  required>
+              
+                <button type="submit">Submit</button>
+              </form>
+
+
+
+
+
         </div>
         <div class="col-span-4 leading-[3rem] grid gap-[3rem]">
             <div>
@@ -107,6 +121,7 @@
     </div>
 
 </div>
+
 
 
 
