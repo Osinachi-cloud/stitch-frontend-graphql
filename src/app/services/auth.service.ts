@@ -19,12 +19,12 @@ export class AuthService {
   singupUrl = 'https://smartb2c.ubagroup.com/bscv2/api/Accounts/Login';
 
   constructor(private apollo: Apollo, private httpLink: HttpLink, private httpClient: HttpClient) {
-    const uri = 'http://localhost:8085/graphql'; 
-    const http = httpLink.create({ uri });
-    apollo.create({
-      link: http,
-      cache: new InMemoryCache(),
-    });
+    // const uri = 'http://localhost:8085/graphql'; 
+    // const http = httpLink.create({ uri });
+    // apollo.create({
+    //   link: http,
+    //   cache: new InMemoryCache(),
+    // });
   }
 
   login(loginRequest: LoginRequest): Observable<FetchResult<LoginResponse>> {
@@ -43,6 +43,7 @@ export class AuthService {
           country
           accessToken
           refreshToken
+          profileImage
         }
       }
     `;

@@ -48,15 +48,15 @@
 <div class=" w-[90%] h-[90%] rounded-[8px] p-[2rem] m-auto bg-[#fff]">
     <h1 class="py-[2rem] ">Account Overview</h1>
 
-    <div class=" grid grid-cols-10">
+    <div class=" grid grid-cols-10 gap-[2rem]">
 
         <div class="col-span-2">
             <div>
-                <img src="/assets/images/Upload Image.png" alt="">
+                <img [src]="imageSource" [alt]="imageSource">
             </div>
 
 
-            <form [formGroup]="profileImageForm" (ngSubmit)="onSubmitProfileImage(profileImageForm.value)">
+            <form [formGroup]="profileImageForm" (ngSubmit)="onSubmitProfileImage()">
                             
                 <label for="profileImage">Profile Image:</label>
                 <input type="file" id="profileImage" (change)="onFileSelected($event)" formControlName="profileImage"  required>
@@ -72,9 +72,9 @@
         <div class="col-span-4 leading-[3rem] grid gap-[3rem]">
             <div>
                 <div class="font-[900] text-[18px] font-[NUNITO]">Contact Information</div>
-                <div class="text-[14px] font-[NUNITO-LIGHT]">John Doe</div>
-                <div class="text-[14px] font-[NUNITO-LIGHT]">JohnDoe@gmail.com</div>
-                <div class="text-[14px] font-[NUNITO-LIGHT]">08167144768</div>
+                <div class="text-[14px] font-[NUNITO-LIGHT]">{{userDetails.firstName}} {{userDetails.lastName}}</div>
+                <div class="text-[14px] font-[NUNITO-LIGHT]">{{userDetails.emailAddress}}</div>
+                <div class="text-[14px] font-[NUNITO-LIGHT]">{{userDetails.phoneNumber}}</div> 
                 <div class="flex gap-[3rem]">
                     <div (click)="toggleTerminalFormModal()" class="px-[1rem] rounded-[8px] bg-[#E6F1FA] cursor-pointer">Edit Details</div>
                     <div class="px-[1rem] rounded-[8px] bg-[#E6F1FA]">Reset Password</div>

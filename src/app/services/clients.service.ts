@@ -8,6 +8,7 @@ import { HttpLink } from 'apollo-angular/http';
 import { gql } from 'graphql-tag';
 import { MutationOptions, FetchResult, InMemoryCache } from '@apollo/client/core';
 import { Observable, map } from 'rxjs';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -41,8 +42,6 @@ export class ClientsService {
   //   );
   // }
 
-
-
   updateCustomer(customerUpdateRequest: any, emailAddress: string): Observable<FetchResult<any>>{
 
     console.log("entered the submit service btn");
@@ -73,6 +72,66 @@ export class ClientsService {
       mutation
     });
   }
+
+
+  updateCustomerProfileImage(customerProfileImage: string, emailAddress: string): Observable<FetchResult<any>>{
+    console.log("entered the submit service image btn");
+    console.log("token",TokenService.getToken())
+    const mutation = gql`
+    mutation{
+      updateCustomerProfileImage(profileImage: "${customerProfileImage}", emailAddress: "${emailAddress}"){
+          code
+          message
+      }
+    }
+    `;
+
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${TokenService.getToken()}`)
+
+    return this.apollo.mutate<any>({
+      mutation,
+      context: {
+        headers
+      }
+    });
+  }
+
+
+
+  getCustomerDetails(emailAddress: string): Observable<FetchResult<any>>{
+    console.log("entered the submit service image btn");
+    console.log("token",TokenService.getToken())
+    const mutation = gql`
+    query{
+      customerDetails(emailAddress: "${emailAddress}"){
+        customerId
+        firstName
+        lastName
+        emailAddress
+        phoneNumber
+        tier
+        country
+        hasPin
+        enablePush
+        profileImage
+      }
+    }
+    `;
+
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${TokenService.getToken()}`)
+
+    return this.apollo.mutate<any>({
+      mutation,
+      context: {
+        headers
+      }
+    });
+  }
+
+
+
 
 
   getCountryNameByCode(countryCode: string) {

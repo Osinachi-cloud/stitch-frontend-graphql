@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { NgxOtpInputConfig } from 'ngx-otp-input';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgToastService } from 'ng-angular-popup';
+import { TokenService } from 'src/app/services/token.service';
+import { UtilService } from 'src/app/services/util.service';
 // import {Component} from '@angular/core';
 
 
@@ -28,7 +30,8 @@ export class SinginComponent implements OnInit{
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private toast: NgToastService
+    private toast: NgToastService,
+    // private tokenService: TokenService
     
     ) {
     this.authForm = new FormGroup({
@@ -60,9 +63,7 @@ showSuccess() {
 
 ngOnInit(): void {
   this.showSuccess();
-console.log(this.formSubmitted);
-
-  
+console.log(this.formSubmitted); 
 }
 
 
@@ -117,7 +118,12 @@ onSubmit(user: any) {
     this.authService.login(this.authForm.value).subscribe({
       next:(response: any) => {
 
-        console.log("entered response",response);
+        TokenService.setToken(response?.data?.login?.accessToken);
+        UtilService.setUserDetails(response?.data?.login);
+
+        this.router.navigate(["dashboard"]);
+
+        console.log({response});
       },
       error:(error: any) => {
         console.error("entered error", error);
