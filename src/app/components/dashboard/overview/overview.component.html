@@ -45,10 +45,10 @@
 </div> -->
 
 
-<div class=" w-[90%] h-[90%] rounded-[8px] p-[2rem] m-auto bg-[#fff]">
+<div class=" w-[90%] h-fit rounded-[8px] p-[2rem] m-auto bg-[#fff]">
     <h1 class="py-[2rem] ">Account Overview</h1>
 
-    <div class=" grid grid-cols-10 gap-[2rem]">
+    <div class=" grid md:grid-cols-10 grid-cols-1 gap-[2rem]">
 
         <div class="col-span-2">
             <div>
@@ -129,6 +129,12 @@
 
 
 
+
+
+
+
+
+
 <div *ngIf="showTerminalFormModal"
     class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
     <div class="relative w-full my-6 mx-auto max-w-3xl ">
@@ -145,66 +151,66 @@
 
 
 
-                    <form class="w-[40rem]" action="">
+                    <form class="w-[40rem]" [formGroup]="customerUpdateRequestForm" (ngSubmit)="updateCustomer()">
 
                         <div class="w-full"
-                            [ngClass]="{'has-error': !formData['uName'].valid && formData['uName'].touched}">
-                            <div class="border-none " *ngIf="formData['uName'].touched && formData['uName'].errors">
+                            [ngClass]="{'has-error': !updateCustomerFormData['firstName'].valid && updateCustomerFormData['firstName'].touched}">
+                            <div class="border-none " *ngIf="updateCustomerFormData['firstName'].touched && updateCustomerFormData['firstName'].errors">
                                 <div class="shadow-none border-none  text-danger"
-                                    *ngIf="formData['uName'].errors['required']">
+                                    *ngIf="updateCustomerFormData['firstName'].errors['required']">
                                     The First Name is required
                                 </div>
-                                <div class="shadow-none text-danger" *ngIf="formData['uName'].errors['pattern']">
-
+                                <div class="shadow-none text-danger" *ngIf="updateCustomerFormData['firstName'].errors['pattern']">
+                    
                                     The First Name is not valid, Numeric data not allowed
                                 </div>
                             </div>
                             <div class="rounded-[8px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
                                 <input class=" border-none shadow-none outline-none w-[100%] p-[0.5rem]" type="text"
-                                    placeholder="First Name" name="uName" formControlName="uName">
+                                    placeholder="First Name" name="firstName"  formControlName="firstName">
                             </div>
                         </div>
-
-
+                    
+                    
                         <div class="w-full"
-                            [ngClass]="{'has-error': !formData['uName'].valid && formData['uName'].touched}">
-                            <div class="border-none " *ngIf="formData['uName'].touched && formData['uName'].errors">
+                            [ngClass]="{'has-error': !updateCustomerFormData['lastName'].valid && updateCustomerFormData['lastName'].touched}">
+                            <div class="border-none " *ngIf="updateCustomerFormData['lastName'].touched && updateCustomerFormData['lastName'].errors">
                                 <div class="shadow-none border-none  text-danger"
-                                    *ngIf="formData['uName'].errors['required']">
+                                    *ngIf="updateCustomerFormData['lastName'].errors['required']">
                                     Last Name is required
                                 </div>
-                                <div class="shadow-none text-danger" *ngIf="formData['uName'].errors['pattern']">
-
+                                <div class="shadow-none text-danger" *ngIf="updateCustomerFormData['lastName'].errors['pattern']">
+                    
                                     Last is not valid, Numeric data not allowed
                                 </div>
                             </div>
                             <div class="rounded-[8px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
                                 <input class=" border-none shadow-none outline-none w-[90%] p-[0.5rem]" type="text"
-                                    placeholder="Last Name" name="uName" formControlName="uName">
+                                    placeholder="Last Name" name="lastName"  formControlName="lastName">
                             </div>
                         </div>
-
-
+                    
+                    
                         <div class="w-full"
-                            [ngClass]="{'has-error': !formData['uName'].valid && formData['uName'].touched}">
-                            <div class="border-none " *ngIf="formData['uName'].touched && formData['uName'].errors">
+                            [ngClass]="{'has-error': !updateCustomerFormData['phoneNumber'].valid && updateCustomerFormData['phoneNumber'].touched}">
+                            <div class="border-none " *ngIf="updateCustomerFormData['phoneNumber'].touched && updateCustomerFormData['phoneNumber'].errors">
                                 <div class="shadow-none border-none  text-danger"
-                                    *ngIf="formData['uName'].errors['required']">
+                                    *ngIf="updateCustomerFormData['phoneNumber'].errors['required']">
                                     Phone number Name is required
                                 </div>
-                                <div class="shadow-none text-danger" *ngIf="formData['uName'].errors['pattern']">
-
+                                <div class="shadow-none text-danger" *ngIf="updateCustomerFormData['phoneNumber'].errors['pattern']">
+                    
                                     Phone number is not valid, Numeric data not allowed
                                 </div>
                             </div>
                             <div class="rounded-[8px] border px-[0.5rem] py-[0.8rem] flex justify-between mb-[10px]">
                                 <input class=" border-none shadow-none outline-none w-[90%] p-[0.5rem]" type="text"
-                                    placeholder="Phone number" name="uName" formControlName="uName">
+                                    placeholder="Phone number" name="phoneNumber" formControlName="phoneNumber">
                             </div>
                         </div>
-
-                        <button class="bg-[#7535FD] text-[#fff] text-[2rem] p-[1rem] m-auto w-[100%] rounded-[8px] my-[1rem]">Continue</button>
-
+                    
+                        <button type="submit" class="bg-[#7535FD] text-[#fff] text-[2rem] p-[1rem] m-auto w-[100%] rounded-[8px] my-[1rem]">Continue</button>
+                    
                     </form>
                 </div>
 

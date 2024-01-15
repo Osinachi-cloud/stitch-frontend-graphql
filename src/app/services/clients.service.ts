@@ -68,8 +68,14 @@ export class ClientsService {
     }
     `;
 
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${TokenService.getToken()}`)
+
     return this.apollo.mutate<any>({
-      mutation
+      mutation,
+      context: {
+        headers
+      }
     });
   }
 

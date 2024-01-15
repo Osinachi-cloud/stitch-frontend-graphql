@@ -17,8 +17,12 @@ export class UtilService {
     return userDetails;
   }
 
-  static formatBase64(base64Char: string, base64: string): string {
-    base64Char = base64?.replace("data:image/png;base64,", "");
-    return base64Char;
+  static formatBase64(base64: string): string {
+    console.log("ans",base64)
+
+   let res = base64.split(",")[1];
+    //  let res = base64?.replace("data:image/png;base64,", "");
+     console.log("ans",res)
+     return res;
   }
 }

@@ -22,6 +22,7 @@ export class OverviewComponent {
   emailAddress: string = "";
   imageSource: any;
   userDetails: any = {};
+  customerUpdateRequestForm: FormGroup;
 
   constructor(private http: HttpClient,
     private clientService: ClientsService,
@@ -40,8 +41,14 @@ export class OverviewComponent {
 
     });
 
+    this.customerUpdateRequestForm = new FormGroup({
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      phoneNumber: new FormControl(this.userDetails.phoneNumber),
+    });
+
     this.profileImageForm = new FormGroup({
-      profileImage: new FormControl(this.formatBase64(this.base64Char), [Validators.required]),
+      profileImage: new FormControl(UtilService.formatBase64(this.base64Char), [Validators.required]),
     })
   }
 
@@ -54,20 +61,11 @@ export class OverviewComponent {
     return this.imageSource.length < 1 && this.imageSource == "";
   }
 
-  formatBase64(base64: string): string {
-    this.base64Char = base64?.replace("data:image/png;base64,", "");
-    return this.base64Char;
-  }
-
-  //   formatBase64(base64: string): string {
-  //   this.base64Char = base64?.replace("data:image/png;base64,", "");
-  //   return this.base64Char;
-  // }
-
   get formData() { return this.myform.controls; };
 
   get profileImageFormData() { return this.profileImageForm.controls; };
 
+  get updateCustomerFormData() { return this.customerUpdateRequestForm.controls; };
 
   toggleModal() {
     this.showModal = !this.showModal;
@@ -94,18 +92,13 @@ export class OverviewComponent {
       });
     };
     reader.readAsDataURL(this.selectedImage);
-
-    this.base64Char = this.formatBase64(this.profileImageForm.get('profileImage')?.value);
-
   }
 
   onSubmitProfileImage(): void {
     this.base64Char = this.profileImageForm.get('profileImage')?.value;
-    const formData = new FormData();
-    formData.append('profileImage', this.profileImageForm.get('profileImage')?.value);
-
-    this.clientService.updateCustomerProfileImage(this.base64Char, this.emailAddress).subscribe({
+    this.clientService.updateCustomerProfileImage(UtilService.formatBase64(this.base64Char), this.emailAddress).subscribe({
       next: (response: any) => {
+        window.location.reload();
       },
       error: (error: any) => {
         console.error("entered error", error);
@@ -118,11 +111,32 @@ export class OverviewComponent {
       next: (response: any) => {
         this.userDetails = response.data.customerDetails;
         this.imageSource = `data:image/png;base64, ${this.userDetails.profileImage}`
+
       },
       error: (error: any) => {
         console.error("entered error", error);
       }
     });
+  }
+
+  updateCustomer(): void {
+    console.log("entered the update", this.customerUpdateRequestForm);
+    if (this.customerUpdateRequestForm.valid) {
+      this.clientService.updateCustomer(this.customerUpdateRequestForm.value, this.emailAddress).subscribe({
+        next: (response: any) => {
+          window.location.reload();
+
+          console.log({ response });
+        },
+        error: (error: any) => {
+          console.error("entered error", error);
+        }
+      });
+    }else{
+      console.log("not valid credentials");
+    }
+
+
   }
 
 
