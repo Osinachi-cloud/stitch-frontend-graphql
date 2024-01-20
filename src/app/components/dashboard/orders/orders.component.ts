@@ -7,7 +7,15 @@ import { ClientsService } from '../../../services/clients.service';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent {
-  customersOrder: any[] = []
+  customersOrder: any[] = [
+    {
+      name:"order",
+      date: "1203",
+      amount: 50,
+      trackingId:"1234567890",
+      status:"Processing"
+    }
+  ]
 
   constructor(
     private clientService: ClientsService) {}

@@ -53,6 +53,7 @@ export class OverviewComponent {
   }
 
   ngOnInit(): void {
+    // this.showMenu();
     this.emailAddress = UtilService.getUserDetails().emailAddress;
     this.getCustomerDetails();
   }
@@ -135,10 +136,6 @@ export class OverviewComponent {
     }else{
       console.log("not valid credentials");
     }
-
-
   }
-
-
 
 }

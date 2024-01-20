@@ -50,7 +50,7 @@ export const navbarData: INavbarData[] = [
         label: 'Inventory'
     },
     {
-        routeLink: 'orders',
+        routeLink: 'review',
         icon: 'assets/icons/Chat.png',
         label: 'Reviews',
         // items: [

@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'trevautyInternalApp';
+  isRed = true;
+  isBlue = true;
+  isGreen = true;
+
+  dynamicClass = 'dynamicClass'
 }
