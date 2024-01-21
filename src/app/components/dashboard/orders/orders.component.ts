@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ClientsService } from '../../../services/clients.service';
+import { ProductOrder } from 'src/app/types/Type';
+import { OrderService } from 'src/app/services/order.service';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-orders',
@@ -7,73 +10,88 @@ import { ClientsService } from '../../../services/clients.service';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent {
-  customersOrder: any[] = [
-    {
-      name:"order",
-      date: "1203",
-      amount: 50,
-      trackingId:"1234567890",
-      status:"Processing"
-    }
-  ]
+  customersOrder: any[] = []
+  orderTotal: number = 0;
+  numOfPages: number = 0;
 
-  constructor(
-    private clientService: ClientsService) {}
-
-  ngOnInit(): void {
-    this.getTerminals();
-    this.getUsers();
-    this.getUsersList();
-    this.getTerminal1();
-    this.getTerminalDetail();
-    this.getTransactions();
+  productOrderRequest: ProductOrder = {
+    productId: null,
+    customerId: UtilService.getUserDetails().customerId,
+    status: null,
+    orderId: null,
+    productCategory: null,
+    vendorId: null,
+    page: 0,
+    size: 10
   }
 
-  getTerminals(){
-    this.clientService.getTerminals().subscribe({
-      next:(items: any)=>{
-          this.customersOrder = items;
-      },
-      error:(items:any)=>{
+  status = {
+    failed: "FAILED",
+    completed: "COMPLETED",
+    processing: "PROCESSING",
+    rejected: "REJECTED",
+    all: null
+  }
 
+  constructor(
+    // private clientService: ClientsService, 
+    private orderService: OrderService) {}
+
+  ngOnInit(): void {
+    this.getCustomerOrders();
+  }
+
+  getNumberOfPages(orderTotal : number): void {
+    console.log(orderTotal);
+    console.log(this.productOrderRequest.size);
+    if(orderTotal % this.productOrderRequest.size == 0){
+      this.numOfPages = orderTotal / this.productOrderRequest.size;
+    }else{
+    this.numOfPages = 1 +  Math.floor(orderTotal / this.productOrderRequest.size);
+    }
+  }
+
+  filterByStatus(status: string | null){
+    this.productOrderRequest.status = status;
+    this.getCustomerOrders();
+  }
+
+  getCustomerOrders(): void{
+    this.orderService.getCustomerOrders(this.productOrderRequest).subscribe({
+      next:(items: any)=>{
+        this.customersOrder = items.data.fetchCustomerOrdersBy.data;
+        this.orderTotal = items.data.fetchCustomerOrdersBy.total;
+        this.getNumberOfPages(this.orderTotal);
+        console.log(items.data.fetchCustomerOrdersBy.data);
+    },
+      error:(error:any)=>{
+          console.log(error);
       }
     })
   }
 
+  nextPage(): void {
+    if(this.productOrderRequest.page + 1 < this.numOfPages){
+      this.productOrderRequest.page = this.productOrderRequest.page + 1;
+      this.getCustomerOrders();
+    }
+  }
 
+  previousPage(): void {
+    if(this.productOrderRequest.page + 1 > 1){
+      this.productOrderRequest.page = this.productOrderRequest.page - 1;
+      this.getCustomerOrders();
+    }
+  }
 
-
-
-
-
-
+  getSize(size: number): void{
+    this.productOrderRequest.size = size;
+    this.getCustomerOrders();
+  }
 
   users: any[] = []
 
-  getUsers(){
-    this.clientService.getUsers().subscribe({
-      next:(items: any)=>{
-          this.users = items;
-      },
-      error:(items:any)=>{
-
-      }
-    })
-  }
-
-  
   usersList: any[] = []
-
-  getUsersList(){
-    this.clientService.getUsersList().subscribe({
-      next:(items: any)=>{
-          this.usersList = items;
-      },
-      error:(items:any)=>{
-
-      }
-    })
-  }
 
   getRatings(num:number): number []{
     const ratings: number[] = [];
@@ -83,55 +101,11 @@ export class OrdersComponent {
     return ratings;
   }
 
-
-
   terminalData1 : any[] = [];
-
-  getTerminal1(){
-    this.clientService.getTerminal1().subscribe({
-      next:(items: any)=>{
-          this.terminalData1 = items;
-      },
-      error:(items:any)=>{
-
-      }
-    })
-  }
-
 
   terminal : any = {};
 
-  getTerminalDetail(){
-    this.clientService.getTerminal().subscribe({
-      next:(item: any)=>{
-        this.terminal = item;
-      },
-      error:(err: any)=>{
-          console.log(err);
-      }
-    })
-  }
-
-
   transactions : any = {};
-
-  getTransactions(){
-    this.clientService.getTransactions().subscribe({
-      next:(item: any)=>{
-        this.transactions = item;
-      },
-      error:(err: any)=>{
-          console.log(err);
-      },
-      complete: () => {
-        console.info("Get Transactions Implementation!");
-      }
-    })
-  }
-
-
-
-
 
 
   name = 'Angular';

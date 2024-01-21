@@ -41,3 +41,14 @@ export interface LoginRequest {
       accessToken: string;
       refreshToken: string;
   }
+
+  export interface ProductOrder {
+    productId: string | null;
+    customerId: string;
+    status: string | null;
+    orderId: string | null;
+    productCategory: string | null;
+    vendorId: string | null;
+    page: number;
+    size: number;
+  }

@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 // import { FetchResult, InMemoryCache } from '@apollo/client';
 // import { Apollo, gql } from 'apollo-angular';
 // import { HttpLink } from 'apollo-angular-link-http';
-import { Apollo } from 'apollo-angular';
+import { Apollo, gql } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
-import { gql } from 'graphql-tag';
+// import { gql } from 'graphql-tag';
 import { MutationOptions, FetchResult, InMemoryCache } from '@apollo/client/core';
 import { Observable, map } from 'rxjs';
 import { TokenService } from './token.service';
@@ -20,12 +20,12 @@ export class ClientsService {
 
 
   constructor(private apollo: Apollo, private httpLink: HttpLink, private httpClient: HttpClient) {
-    const uri = 'http://localhost:8085/graphql'; 
-    const http = httpLink.create({ uri });
-    apollo.create({
-      link: http,
-      cache: new InMemoryCache(),
-    });
+    // const uri = 'http://localhost:8085/graphql'; 
+    // const http = httpLink.create({ uri });
+    // apollo.create({
+    //   link: http,
+    //   cache: new InMemoryCache(),
+    // });
   }
 
 

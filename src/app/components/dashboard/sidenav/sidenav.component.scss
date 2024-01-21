@@ -83,7 +83,7 @@
         width: 100%;
         // margin-bottom: 0.625rem;
         // background-color: red;
-        padding:1.5rem 0rem;
+        padding:1rem 0rem;
 
         .sidenav-nav-link {
             padding: 0 1rem;
@@ -195,7 +195,6 @@
     }
 }
 
-//scrollbar and visibility on hover and focus
 
 .scrollwrap {
     overflow-y: auto;
@@ -236,18 +235,28 @@
     // scrollbar-color: #556268 transparent;
 }
 .log-out{
-    background-color: #7B57FC;
+    background-color: #000;
     color: #fff;
-    // position:;
-    margin-top: 200px;
+    margin-top: 270px;
     left: 0;
-    // display: block;
     text-align: center;
     padding: 20px;
     display: flex;
     gap: 1rem;
     justify-content: center;
 }
+
+// .log-out{
+//     background-color: #7B57FC;
+//     color: #fff;
+//     margin-top: 330px;
+//     left: 0;
+//     text-align: center;
+//     padding: 20px;
+//     display: flex;
+//     gap: 1rem;
+//     justify-content: center;
+// }
 
 .active{
     // background: black;
