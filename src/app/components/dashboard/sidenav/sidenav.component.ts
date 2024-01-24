@@ -3,6 +3,7 @@ import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/
 import { Router } from '@angular/router';
 import { fadeInOut, INavbarData } from './helper';
 import { navbarData } from './nav-data';
+import { UtilService } from 'src/app/services/util.service';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -43,6 +44,9 @@ export class SidenavComponent implements OnInit {
       this.onToggleSideNav.emit({collapsed: this.collapsed, screenWidth: this.screenWidth});
     }
   }
+
+  user = UtilService.getUserDetails().firstName + " " + UtilService.getUserDetails().lastName;
+  userProfileImage = "data:image/png;base64," +  UtilService.getUserDetails().profileImage;
 
   constructor(public router: Router) {}
 

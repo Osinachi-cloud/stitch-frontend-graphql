@@ -310,11 +310,11 @@
     </div>
 
     <div class="grid md:grid-cols-5 grid-cols-1 gap-[1rem]">
-        <div (click)="filterByStatus(status.all)" class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem]">
+        <div (click)="filterByStatus(status.all)" class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem] hover:bg-[#dddfdf]">
             <div>
                 <div class="text-[grey] text-[16px] leading-[24px]">All Orders</div>
                 <div class="flex items-center gap-[0.3rem]">
-                    <span class="text-[20px] font-[500] leading-[32px]">21459</span>
+                    <span class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.allOrdersCount}}</span>
                 </div>
             </div>
             <div>
@@ -325,11 +325,11 @@
             </div>
         </div>
 
-        <div (click)="filterByStatus(status.processing)" class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem]">
+        <div (click)="filterByStatus(status.processing)" class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem] hover:bg-[#dddfdf]">
             <div>
                 <div class="text-[grey] text-[16px] leading-[24px]">In-Progress</div>
                 <div class="flex items-center gap-[0.3rem]">
-                    <span class="text-[20px] font-[500] leading-[32px]">459</span>
+                    <span class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.processingOrdersCount}}</span>
                 </div>
             </div>
             <div>
@@ -341,11 +341,11 @@
             </div>
         </div>
 
-        <div (click)="filterByStatus(status.rejected)" class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem]">
+        <div (click)="filterByStatus(status.rejected)" class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem] hover:bg-[#dddfdf]">
             <div>
                 <div class="text-[grey] text-[16px] leading-[24px]">Cancelled</div>
                 <div class="flex items-center gap-[0.3rem]">
-                    <span class="text-[20px] font-[500] leading-[32px]">219</span>
+                    <span class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.cancelledOrdersCount}}</span>
                 </div>
             </div>
             <div>
@@ -356,11 +356,11 @@
             </div>
         </div>
 
-        <div (click)="filterByStatus(status.failed)"  class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem]">
+        <div (click)="filterByStatus(status.failed)"  class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem] hover:bg-[#dddfdf]">
             <div>
                 <div class="text-[grey] text-[16px] leading-[24px]">Failed</div>
                 <div class="flex items-center gap-[0.3rem]">
-                    <span class="text-[20px] font-[500] leading-[32px]">59</span>
+                    <span class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.failedOrdersCount}}</span>
                 </div>
             </div>
             <div>
@@ -371,11 +371,11 @@
             </div>
         </div>
 
-        <div (click)="filterByStatus(status.completed)" class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem]">
+        <div (click)="filterByStatus(status.completed)" class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem] hover:bg-[#dddfdf]">
             <div>
                 <div class="text-[grey] text-[16px] leading-[24px]">Delivered</div>
                 <div class="flex items-center gap-[0.3rem]">
-                    <span class="text-[20px] font-[500] leading-[32px]">34</span>
+                    <span class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.completedOrdersCount}}</span>
                 </div>
             </div>
             <div>
@@ -405,9 +405,13 @@
                         <div
                             class="bg-[#FBFBFB] border rounded-[12px] gap-[1rem] flex p-[1rem] py-[0.5rem] w-[70%] md:mt-[0] mt-[1rem]">
                             <div class="flex justify-center items-center">
-                                <img src="/assets/images/inputSearch.png" alt="">
+                                <img (click)="getCustomerOrders()" src="/assets/images/inputSearch.png" alt="">
                             </div>
-                            <input type="text" id="table-search"
+                                
+
+                            <input 
+                                [(ngModel)]="productOrderRequest.orderId"
+                                type="text" id="table-search"
                                 class="block p-2 w-[90%] bg-[#FBFBFB] text-gray-900 outline-none  rounded-lg focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Search by amount , payment method...">
                         </div>

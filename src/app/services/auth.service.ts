@@ -1,31 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
 import { gql } from 'graphql-tag';
-import { MutationOptions, FetchResult, InMemoryCache } from '@apollo/client/core';
+import { FetchResult } from '@apollo/client/core';
 import { Observable } from 'rxjs';
 import { CustomerSignUpRequest, CustomerSignUpResponse, LoginRequest, LoginResponse } from '../types/Type';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
+import { ApolloService } from './apollo.service';
+import { baseUrl, singupUrl } from './utils';
 
 
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-
-
-  baseURL = "http://localhost:8080";
-  singupUrl = 'https://smartb2c.ubagroup.com/bscv2/api/Accounts/Login';
-
-  constructor(private apollo: Apollo, private httpLink: HttpLink, private httpClient: HttpClient) {
-    // const uri = 'http://localhost:8085/graphql'; 
-    // const http = httpLink.create({ uri });
-    // apollo.create({
-    //   link: http,
-    //   cache: new InMemoryCache(),
-    // });
-  }
+export class AuthService extends ApolloService{
 
   login(loginRequest: LoginRequest): Observable<FetchResult<LoginResponse>> {
     const mutation = gql`
@@ -90,37 +77,37 @@ export class AuthService {
     console.log("hello world");
     const headers = new HttpHeaders()
     .append('Content-Type', 'application/json')
-    return this.httpClient.post<any>(this.baseURL, signup);
+    return this.httpClient.post<any>(baseUrl, signup);
   }
 
   accountLogin(authCredentials:any): Observable<any>{
     const headers = new HttpHeaders()
     .append('Content-Type', 'application/json')
-    return this.httpClient.post<any>(this.singupUrl, authCredentials);
+    return this.httpClient.post<any>(singupUrl, authCredentials);
   }
 
   forgotPasswordAuth(authCredentials:any): Observable<any>{
     const headers = new HttpHeaders()
     .append('Content-Type', 'application/json')
-    return this.httpClient.post<any>(this.singupUrl, authCredentials);
+    return this.httpClient.post<any>(singupUrl, authCredentials);
   }
 
   passwordReset(usersDetail:any): Observable<any>{
     const headers = new HttpHeaders()
     .append('Content-Type', 'application/json')
-    return this.httpClient.post<any>(this.singupUrl, usersDetail);
+    return this.httpClient.post<any>(singupUrl, usersDetail);
   }
 
   changePasswordAuth(usersDetail:any): Observable<any>{
     const headers = new HttpHeaders()
     .append('Content-Type', 'application/json')
-    return this.httpClient.post<any>(this.singupUrl, usersDetail);
+    return this.httpClient.post<any>(singupUrl, usersDetail);
   }
 
   getTerminalAnalysis(): Observable<any>{
     const headers = new HttpHeaders()
     .append('Content-Type', 'application/json')
-    return this.httpClient.get<any>(this.singupUrl);
+    return this.httpClient.get<any>(singupUrl);
   }
 
 

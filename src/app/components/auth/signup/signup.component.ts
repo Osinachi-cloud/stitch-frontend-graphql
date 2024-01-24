@@ -177,7 +177,7 @@ export class SignupComponent {
   }
 
   ngOnInit(): void {
-    this.getCountryCode();
+    // this.getCountryCode();
     this.showSuccess();
     console.log(this.formSubmitted);
   }
@@ -237,7 +237,7 @@ export class SignupComponent {
 
   onSubmit(user: any) {
 
-    this.getCountryName(this.getCountryCode());
+    // this.getCountryName(this.getCountryCode());
     console.log("after countryCode");
 
     // if (this.authForm.valid) {

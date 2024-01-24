@@ -52,3 +52,13 @@ export interface LoginRequest {
     page: number;
     size: number;
   }
+
+  export interface ProductOrderStatistics {
+    allOrdersCount: number
+    processingOrdersCount:number
+    cancelledOrdersCount:number
+    failedOrdersCount:number
+    completedOrdersCount:number
+  }
+
+

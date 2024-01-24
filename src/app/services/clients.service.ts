@@ -9,24 +9,13 @@ import { HttpLink } from 'apollo-angular/http';
 import { MutationOptions, FetchResult, InMemoryCache } from '@apollo/client/core';
 import { Observable, map } from 'rxjs';
 import { TokenService } from './token.service';
+import { ApolloService } from './apollo.service';
+import { baseUrl, singupUrl } from './utils';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClientsService {
-
-  baseURL = "http://localhost:8080";
-  singupUrl = 'https://smartb2c.ubagroup.com/bscv2/api/Accounts/Login';
-
-
-  constructor(private apollo: Apollo, private httpLink: HttpLink, private httpClient: HttpClient) {
-    // const uri = 'http://localhost:8085/graphql'; 
-    // const http = httpLink.create({ uri });
-    // apollo.create({
-    //   link: http,
-    //   cache: new InMemoryCache(),
-    // });
-  }
+export class ClientsService extends ApolloService{
 
 
   getCountryCode() {
@@ -148,21 +137,21 @@ export class ClientsService {
     console.log("hello world");
     const headers = new HttpHeaders()
     .append('Content-Type', 'application/json')
-    return this.httpClient.post<any>(this.baseURL + "terminal request", userDetails);
+    return this.httpClient.post<any>(baseUrl + "terminal request", userDetails);
   }
 
   accountLogin(authCredentials:any){
     console.log("hello world");
     const headers = new HttpHeaders()
     .append('Content-Type', 'application/json')
-    return this.httpClient.post<any>(this.singupUrl, authCredentials);
+    return this.httpClient.post<any>(singupUrl, authCredentials);
   }
 
   passwordReset(usersDetail:any){
     console.log("hello world");
     const headers = new HttpHeaders()
     .append('Content-Type', 'application/json')
-    return this.httpClient.post<any>(this.singupUrl, usersDetail);
+    return this.httpClient.post<any>(singupUrl, usersDetail);
   }
 
   getTerminals(): Observable<any> {

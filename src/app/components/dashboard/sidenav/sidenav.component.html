@@ -6,17 +6,19 @@
         <div>
             <img src="/assets/images/shape (1).png" alt="">
         </div>
-        <div>
-            <img src="/assets/images/avatar.png" alt="">
+        <div class="h-[50px] w-[50px] rounded-[50px] bg-[#fdf3f3] flex justify-center items-center">
+            <img [src]="userProfileImage" alt="">
+            <!-- <img src="/assets/images/Avatar (1).png" alt=""> -->
+
         </div>
         <div>
             <div class="md:col-span-4 col-span-1 p-[1rem] py-[0.5rem] bg-[#fff] rounded-[8px]">
                 <select id="countries"
                     class="outline-none text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option selected>Ogbodo Uchenna</option>
-                    <option value="US">Remiter</option>
+                    <option selected>{{user}}</option>
+                    <!-- <option value="US">Remiter</option>
                     <option value="CA">Interswitch</option>
-                    <option value="FR">Flutterwave</option>
+                    <option value="FR">Flutterwave</option> -->
                 </select>
 
             </div>

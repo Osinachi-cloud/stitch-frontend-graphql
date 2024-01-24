@@ -2,31 +2,16 @@ import { Injectable } from '@angular/core';
 import { TokenService } from './token.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-// import { FetchResult, InMemoryCache } from '@apollo/client';
-import { MutationOptions, FetchResult, InMemoryCache } from '@apollo/client/core';
-
-import { Apollo, gql } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
-// import { HttpLink } from 'apollo-angular-link-http';
-import { uri } from './utils';
+import { FetchResult } from '@apollo/client/core';
+import { gql } from 'apollo-angular';
 import { ProductOrder } from '../types/Type';
 import { UtilService } from './util.service';
-import { query } from '@angular/animations';
+import { ApolloService } from './apollo.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService {
-
-  constructor(private apollo: Apollo, private httpLink: HttpLink, private httpClient: HttpClient) {
-
-    const http = httpLink.create({ uri });
-    apollo.create({
-      link: http,
-      cache: new InMemoryCache(),
-    });
-  }
-
+export class OrderService extends ApolloService{
 
   getCustomerOrders(productOrder: ProductOrder): Observable<FetchResult<any>> {
     const query = gql`
@@ -74,6 +59,31 @@ export class OrderService {
       context: {
         headers,
       },
+    });
+  }
+
+
+  getOrderStats(): Observable<FetchResult<any>>{
+    const query = gql`
+    query{
+      getProductOrderStatsByCustomer(customerId: "${UtilService.getUserDetails().customerId}"){
+        allOrdersCount
+        processingOrdersCount
+        cancelledOrdersCount
+        failedOrdersCount
+        completedOrdersCount
+      }
+    }
+    `;
+
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${TokenService.getToken()}`)
+
+    return this.apollo.query<any>({
+      query,
+      context: {
+        headers
+      }
     });
   }
   
