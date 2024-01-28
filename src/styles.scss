@@ -7,6 +7,8 @@
 @tailwind utilities;
 
 @import '~normalize.css';
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
 
 @font-face {
     font-family: 'DM Sans';
@@ -57,7 +59,12 @@
     box-sizing: border-box;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+    font-family: var(--font-family);
+}
+
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 input:-webkit-autofill,

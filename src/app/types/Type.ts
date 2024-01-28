@@ -2,6 +2,21 @@ export interface LoginRequest {
     emailAddress: string
     password: string
   }
+
+export interface EmailVerificationRequest {
+    emailAddress: string
+}
+
+export interface OtpValidationRequest {
+  emailAddress: string | null
+  verificationCode:string 
+}
+
+export interface ContactVerificationResponse {
+  code:string
+  message:string
+}
+
   
  export interface LoginResponse {
       customerId: string;
@@ -20,6 +35,7 @@ export interface LoginRequest {
 
   export interface CustomerSignUpRequest {
     emailAddress: String
+    username:String
     password: String
     firstName: String
     lastName: String

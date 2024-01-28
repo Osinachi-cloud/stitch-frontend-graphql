@@ -9,7 +9,7 @@
                         class="text-[16px] font-[DM Sans] text-[#A3AED0] mx-0 mt-[10px] mb-[90px] leading-[35px] text-center">
                         Fill in your details and get started</p>
 
-                    <form class="text-[#2B3674] grid gap-[2rem]" [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+                    <form class="text-[#2B3674] grid gap-[2rem]" [formGroup]="authForm" (ngSubmit)="onSubmit()">
 
                         <div class="md:flex gap-[3rem]">
 
@@ -111,6 +111,28 @@
 
                         <div class="md:flex gap-[3rem]">
 
+                            <div class="w-full"
+                                [ngClass]="{'has-error': !formData['phoneNumber'].valid && formData['phoneNumber'].touched}">
+                                <label class="" for="fname">Phone Number*</label>
+                                <div class="border-none "
+                                    *ngIf="formData['phoneNumber'].touched && formData['phoneNumber'].errors">
+                                    <div class="shadow-none border-none  text-[red]"
+                                        *ngIf="formData['phoneNumber'].errors['required']">
+                                        Phone Number is required
+                                    </div>
+                                    <div class="shadow-none text-[red]"
+                                        *ngIf="formData['phoneNumber'].errors['pattern']">
+                                        Phone Number is not valid
+                                    </div>
+                                </div>
+                                <div
+                                    class="rounded-[8px] border px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+                                    <input class=" border-none shadow-none outline-none w-[40rem] p-[0.5rem]"
+                                        type="text" placeholder="mail@simmmple.com" name="phoneNumber"
+                                        formControlName="phoneNumber">
+                                </div>
+                            </div>
+
 
                             <div class="w-full"
                                 [ngClass]="{'has-error': formSubmitted && !formData['password'].valid && formData['password'].touched}">
@@ -135,7 +157,7 @@
                                 </div>
                             </div>
 
-                            <div class="w-full"
+                            <!-- <div class="w-full"
                                 [ngClass]="{'has-error': formSubmitted && !formData['password'].valid && formData['password'].touched}">
                                 <label for="password">Password*</label>
                                 <div class="border-none "
@@ -156,14 +178,11 @@
                                         formControlName="password">
                                     <img (click)="toggleShowPassword()" src="/assets/images/eye.png">
                                 </div>
-                            </div>
-
-
-
+                            </div> -->
 
                         </div>
 
- 
+
                         <div class="grid items-center place-items-center">
 
                             <!-- <div class="form-check items-center py-[1rem] text-[14px] leading-[24px] font-[500] space-x-2">
@@ -177,10 +196,10 @@
                             </div> -->
 
                             <button type="submit"
-                            class="md:w-[40rem] w-full gap-2.5 text-white mx-0 my-4 pl-2 pr-[8px,] py-[1.3rem,] p-[1.2rem] rounded-[8px] border-[none] bg-[#000]">Sign
-                            Up</button>
+                                class="md:w-[40rem] w-full gap-2.5 text-white mx-0 my-4 pl-2 pr-[8px,] py-[1.3rem,] p-[1.2rem] rounded-[8px] border-[none] bg-[#000]">Sign
+                                Up</button>
                         </div>
-          
+
                     </form>
                     <div
                         class="form-check flex justify-center items-center py-[1rem] text-[16px] leading-[24px] font-[500]">
@@ -192,3 +211,6 @@
         </div>
     </div>
 </div>
+
+
+<ng-toast></ng-toast>

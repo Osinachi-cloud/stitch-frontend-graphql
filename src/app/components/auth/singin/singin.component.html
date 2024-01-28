@@ -6,7 +6,7 @@
                     <div class="font-[DM Sans] text-center font-[700] text-[35px] tracking-[0.2rem] text-[#000] leading-[40px]">Login</div>
                     <p class="text-[16px] font-[DM Sans] text-center text-[#A3AED0] mx-0 mt-[10px] mb-[90px] leading-[35px]">Login to continue using the site</p>
 
-                    <form class="text-[#2B3674]" [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+                    <form class="text-[#2B3674]" [formGroup]="authForm" (ngSubmit)="onSubmit()">
                         <div class="w-full"
                             [ngClass]="{'has-error': !formData['emailAddress'].valid && formData['emailAddress'].touched}">
                             <label class="" for="fname">Email*</label>
@@ -25,16 +25,16 @@
                             </div>
                         </div>
                         <div class="w-full"
-                            [ngClass]="{'has-error': formSubmitted && !formData['password'].valid && formData['password'].touched}">
+                            [ngClass]="{'has-error':  !formData['password'].valid && formData['password'].touched}">
                             <label for="password">Password*</label>
                             <div class="border-none "
-                                *ngIf="formSubmitted && formData['password'].touched && formData['password'].errors">
+                                *ngIf=" formData['password'].touched && formData['password'].errors">
                                 <div class="shadow-none border-none  text-[red] text-[12px]"
-                                    *ngIf="formSubmitted && formData['password'].errors['required']">
+                                    *ngIf=" formData['password'].errors['required']">
                                     The Password is required
                                 </div>
                                 <div class="shadow-none text-[red]"
-                                    *ngIf="formSubmitted && formData['password'].errors['pattern']">
+                                    *ngIf=" formData['password'].errors['pattern']">
                                     The Password is not valid
                                 </div>
                             </div>
@@ -86,6 +86,7 @@
 
 
 
+
 <!-- <button class="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" (click)="toggleModal()">
     Open regular modal
   </button> -->
@@ -121,4 +122,8 @@
 </div>
 <div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
 
-<ng-toast></ng-toast>
+
+
+
+
+<!-- <ng-toast></ng-toast> -->

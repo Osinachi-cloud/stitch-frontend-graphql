@@ -8,8 +8,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { OverviewComponent } from './components/dashboard/overview/overview.component';
 import { OrdersComponent } from './components/dashboard/orders/orders.component';
 import { DocumentationComponent } from './components/dashboard/documentation/documentation.component';
+import { ContactVerificationComponent } from './components/auth/contact-verification/contact-verification.component';
 
 const routes: Routes = [
+  { path: 'email-verification', component: ContactVerificationComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: SinginComponent },
   { path: 'password-reset', component: PasswordresetComponent },

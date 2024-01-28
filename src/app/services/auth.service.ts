@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { gql } from 'graphql-tag';
 import { FetchResult } from '@apollo/client/core';
 import { Observable } from 'rxjs';
-import { CustomerSignUpRequest, CustomerSignUpResponse, LoginRequest, LoginResponse } from '../types/Type';
+import { ContactVerificationResponse, CustomerSignUpRequest, CustomerSignUpResponse, EmailVerificationRequest, LoginRequest, LoginResponse, OtpValidationRequest } from '../types/Type';
 import { HttpHeaders } from '@angular/common/http';
 import { ApolloService } from './apollo.service';
 import { baseUrl, singupUrl } from './utils';
@@ -13,6 +13,39 @@ import { baseUrl, singupUrl } from './utils';
   providedIn: 'root',
 })
 export class AuthService extends ApolloService{
+
+  emailVerification(request: EmailVerificationRequest): Observable<FetchResult<ContactVerificationResponse>> {
+    const mutation = gql`
+      mutation{
+        verifyEmail(emailAddress: "${request.emailAddress}"){
+          code
+          message
+        }
+      }
+    `;
+
+    return this.apollo.mutate<ContactVerificationResponse>({
+      mutation,
+    });
+  }
+
+  otpValidation(request: OtpValidationRequest): Observable<FetchResult<ContactVerificationResponse>> {
+    const mutation = gql`
+      mutation{
+        validateEmailCode(verificationRequest: {
+          emailAddress:"${request.emailAddress}",
+          verificationCode:"${request.verificationCode}"
+        }){
+          code
+          message
+        }
+      }
+    `;
+
+    return this.apollo.mutate<ContactVerificationResponse>({
+      mutation,
+    });
+  }
 
   login(loginRequest: LoginRequest): Observable<FetchResult<LoginResponse>> {
     const mutation = gql`
@@ -46,6 +79,7 @@ export class AuthService extends ApolloService{
     mutation{
       createCustomer(customerRequest: {
         emailAddress:"${customerSignUpRequest.emailAddress}",
+        username:"${customerSignUpRequest.username}",
         password:"${customerSignUpRequest.password}",
         firstName:"${customerSignUpRequest.firstName}",
         lastName:"${customerSignUpRequest.lastName}",

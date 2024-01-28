@@ -52,13 +52,13 @@
                         {{data.label}}
                     </span>
                 </a>
-                <div *ngIf="collapsed && data.items && data.items.length > 0">
+                <!-- <div *ngIf="collapsed && data.items && data.items.length > 0">
                     <app-sublevel-menu [data]="data" [collapsed]="collapsed" [multiple]="multiple"
                         [expanded]="data.expanded"></app-sublevel-menu>
-                </div>
+                </div> -->
             </li>
 
-            <li class="log-out">
+            <li (click)="logOut()" class="log-out">
                 <div>
                     <img class="sidenav-link-icon" src="/assets/images/Logout.png">
                 </div>

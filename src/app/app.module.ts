@@ -31,6 +31,10 @@ import { BaseType } from 'd3-selection';
 import { ApolloModule } from 'apollo-angular';
 import { MenuModule } from 'primeng/menu';
 // import { HttpLinkModule } from 'apollo-angular-link-http';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ToastrModule } from 'ngx-toastr';
+import { ContactVerificationComponent } from './components/auth/contact-verification/contact-verification.component';
 
 
 
@@ -50,6 +54,7 @@ import { MenuModule } from 'primeng/menu';
     OrdersComponent,
     SublevelMenuComponent,
     DocumentationComponent,
+    ContactVerificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,12 +69,14 @@ import { MenuModule } from 'primeng/menu';
     MatInputModule,
     NgxChartsModule,
     ApolloModule,
-    MenuModule
+    MenuModule,
+    ToastModule,
+    ToastrModule
     // HttpLinkModule
     
 
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

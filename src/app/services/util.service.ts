@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
 
+
 export class UtilService {
 
-  constructor() { }
+    
+    constructor() { }
 
 
   static setUserDetails(value: string): void | null {
     return localStorage.setItem('userDetails', JSON.stringify(value));
+  }
+
+  static setEmailAddress(value: string): void | null {
+    return localStorage.setItem('email', value);
+  }
+
+  static getEmailAddress(): string | null{
+    return localStorage.getItem('email');
   }
 
   static getUserDetails():any {
@@ -25,4 +35,9 @@ export class UtilService {
      console.log("ans",res)
      return res;
   }
+
+  static clearStorage(): void{
+    return localStorage.clear();
+  }
+
 }
