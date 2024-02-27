@@ -85,8 +85,8 @@ export class SinginComponent implements OnInit {
       this.authService.login(this.authForm.value).subscribe({
         next: (response: any) => {
           this.showSuccessResponse("Login ", "Login Successful", 3000);
-          TokenService.setToken(response?.data?.login?.accessToken);
-          UtilService.setUserDetails(response?.data?.login);
+          TokenService.setToken(response?.data?.customerLogin?.accessToken);
+          UtilService.setUserDetails(response?.data?.customerLogin);
 
           this.router.navigate(["dashboard"]);
 

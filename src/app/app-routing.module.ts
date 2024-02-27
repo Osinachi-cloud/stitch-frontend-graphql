@@ -9,6 +9,8 @@ import { OverviewComponent } from './components/dashboard/overview/overview.comp
 import { OrdersComponent } from './components/dashboard/orders/orders.component';
 import { DocumentationComponent } from './components/dashboard/documentation/documentation.component';
 import { ContactVerificationComponent } from './components/auth/contact-verification/contact-verification.component';
+import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
+import { AddProductItemComponent } from './components/dashboard/add-product-item/add-product-item.component';
 
 const routes: Routes = [
   { path: 'email-verification', component: ContactVerificationComponent },
@@ -20,8 +22,9 @@ const routes: Routes = [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
     { path: 'overview', component: OverviewComponent },
     { path: 'orders', component: OrdersComponent },
+    { path: 'inventory', component: InventoryComponent },
+    { path: 'add-product', component: AddProductItemComponent },
     { path: 'api-documentation', component: DocumentationComponent}
-
   ]
 }
 ];

@@ -2,72 +2,92 @@
     {
         "name": "Grace Favor",
         "transaction": 1234,
-        "conversion":0,
+        "conversion": 0,
         "total": 56.00,
         "rate": 0.5,
-        "status": "PENDING",
+        "status": "Publish",
         "rating": 1,
-        "option": ""
+        "option": "",
+        "price": 50,
+        "discount": 10,
+        "duration": 5
     },
     {
         "name": "Grace Favor",
         "transaction": 1234,
-        "conversion":12.3,
+        "conversion": 12.3,
         "total": 56.00,
         "rate": 0.5,
-        "status": "PENDING",
+        "status": "Publish",
         "rating": 2,
-        "option": ""
+        "option": "",
+        "price": 50,
+        "discount": 10,
+        "duration": 5
     },
     {
         "name": "Grace Favor",
         "transaction": 1234,
-        "conversion":12.3,
+        "conversion": 12.3,
         "total": 56.00,
         "rate": 0.5,
-        "status": "ACTIVE",
+        "status": "Unpublish",
         "rating": 3,
-        "option": ""
+        "option": "",
+        "price": 50,
+        "discount": 10,
+        "duration": 5
     },
     {
         "name": "Grace Favor",
         "transaction": 1234,
-        "conversion":12.3,
+        "conversion": 12.3,
         "total": 56.00,
         "rate": 0.5,
-        "status": "PENDING",
+        "status": "Publish",
         "rating": 4,
-        "option": ""
+        "option": "",
+        "price": 50,
+        "discount": 10,
+        "duration": 5
     },
     {
         "name": "Grace Favor",
         "transaction": 1234,
-        "conversion":0,
+        "conversion": 0,
         "total": 56.00,
         "rate": 0.5,
-        "status": "PENDING",
+        "status": "Publish",
         "rating": 5,
-        "option": ""
+        "option": "",
+        "price": 50,
+        "discount": 10,
+        "duration": 5
     },
     {
         "name": "Grace Favor",
         "transaction": 1234,
-        "conversion":12.3,
+        "conversion": 12.3,
         "total": 56.00,
         "rate": 0.5,
-        "status": "PENDING",
+        "status": "Publish",
         "rating": 4,
-        "option": ""
+        "option": "",
+        "price": 50,
+        "discount": 10,
+        "duration": 5
     },
     {
         "name": "Grace Favor",
         "transaction": 1234,
-        "conversion":-12.3,
+        "conversion": -12.3,
         "total": 56.00,
         "rate": 0.5,
-        "status": "PENDING",
+        "status": "Publish",
         "rating": 3,
-        "option": ""
-
+        "option": "",
+        "price": 50,
+        "discount": 10,
+        "duration": 5
     }
 ]

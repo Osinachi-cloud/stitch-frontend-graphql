@@ -45,7 +45,7 @@ export const navbarData: INavbarData[] = [
         label: 'Orders',
     },
     {
-        routeLink: 'analytic',
+        routeLink: 'inventory',
         icon: 'assets/icons/Folder.png',
         label: 'Inventory'
     },

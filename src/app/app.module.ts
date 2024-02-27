@@ -35,6 +35,8 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ToastrModule } from 'ngx-toastr';
 import { ContactVerificationComponent } from './components/auth/contact-verification/contact-verification.component';
+import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
+import { AddProductItemComponent } from './components/dashboard/add-product-item/add-product-item.component';
 
 
 
@@ -55,6 +57,8 @@ import { ContactVerificationComponent } from './components/auth/contact-verifica
     SublevelMenuComponent,
     DocumentationComponent,
     ContactVerificationComponent,
+    InventoryComponent,
+    AddProductItemComponent,
   ],
   imports: [
     BrowserModule,
