@@ -14,36 +14,197 @@
                                 <div class="border w-full ">
                                     <div class="bg-[#fff] p-[4rem] grid gap-[2rem]">
 
-                                        <div class="grid grid-cols-2 gap-[3rem]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                        <form [formGroup]="productForm" (ngSubmit)="onSubmit()" action="">
 
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
-                                                <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">                
-                            
-                                        </div>
-                             
+
+
+                                            <div class="grid grid-cols-2 gap-[3rem]">
 
 
 
 
 
 
+                                                <div class="w-full"
+                                                    [ngClass]="{'has-error': !formData['phoneNumber'].valid && formData['phoneNumber'].touched}">
+                                                    <!-- <label class="" for="fname">Phone Number*</label> -->
+                                                    <div class="border-none "
+                                                        *ngIf="formData['phoneNumber'].touched && formData['phoneNumber'].errors">
+                                                        <div class="shadow-none border-none  text-[red]"
+                                                            *ngIf="formData['phoneNumber'].errors['required']">
+                                                            Phone Number is required
+                                                        </div>
+                                                        <div class="shadow-none text-[red]"
+                                                            *ngIf="formData['phoneNumber'].errors['pattern']">
+                                                            Phone Number is not valid
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="rounded-[8px] bg-[#f1f1f1] px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+                                                        <input
+                                                            class=" border-none shadow-none bg-transparent outline-none w-[40rem] p-[0.5rem]"
+                                                            type="text" placeholder="mail@simmmple.com"
+                                                            name="phoneNumber" formControlName="phoneNumber">
+                                                    </div>
+                                                </div>
 
+
+
+
+                                                <div class="w-full"
+                                                    [ngClass]="{'has-error': !formData['phoneNumber'].valid && formData['phoneNumber'].touched}">
+                                                    <!-- <label class="" for="fname">Phone Number*</label> -->
+                                                    <div class="border-none "
+                                                        *ngIf="formData['phoneNumber'].touched && formData['phoneNumber'].errors">
+                                                        <div class="shadow-none border-none  text-[red]"
+                                                            *ngIf="formData['phoneNumber'].errors['required']">
+                                                            Category is required
+                                                        </div>
+                                                        <div class="shadow-none text-[red]"
+                                                            *ngIf="formData['phoneNumber'].errors['pattern']">
+                                                            Category is not valid
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="rounded-[8px] bg-[#f1f1f1] px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+
+
+                                                        <textarea id="countries"
+                                                            class="outline-none bg-transparent text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+
+                                                </textarea>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="w-full"
+                                                    [ngClass]="{'has-error': !formData['phoneNumber'].valid && formData['phoneNumber'].touched}">
+                                                    <!-- <label class="" for="fname">Phone Number*</label> -->
+                                                    <div class="border-none "
+                                                        *ngIf="formData['phoneNumber'].touched && formData['phoneNumber'].errors">
+                                                        <div class="shadow-none border-none  text-[red]"
+                                                            *ngIf="formData['phoneNumber'].errors['required']">
+                                                            Phone Number is required
+                                                        </div>
+                                                        <div class="shadow-none text-[red]"
+                                                            *ngIf="formData['phoneNumber'].errors['pattern']">
+                                                            Phone Number is not valid
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="rounded-[8px] bg-[#f1f1f1] px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+
+
+                                                        <select id="countries"
+                                                            class="outline-none bg-transparent text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                                            <option selected>Category 1</option>
+                                                            <option>Category 2</option>
+                                                            <option>Category 3</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="w-full"
+                                                    [ngClass]="{'has-error': !formData['phoneNumber'].valid && formData['phoneNumber'].touched}">
+                                                    <!-- <label class="" for="fname">Phone Number*</label> -->
+                                                    <div class="border-none "
+                                                        *ngIf="formData['phoneNumber'].touched && formData['phoneNumber'].errors">
+                                                        <div class="shadow-none border-none  text-[red]"
+                                                            *ngIf="formData['phoneNumber'].errors['required']">
+                                                            Category is required
+                                                        </div>
+                                                        <div class="shadow-none text-[red]"
+                                                            *ngIf="formData['phoneNumber'].errors['pattern']">
+                                                            Category is not valid
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="rounded-[8px] bg-[#f1f1f1] px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+
+
+                                                        <textarea id="countries"
+                                                            class="outline-none bg-transparent h-[8rem] text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+
+                                            </textarea>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="w-full"
+                                                    [ngClass]="{'has-error': !formData['phoneNumber'].valid && formData['phoneNumber'].touched}">
+                                                    <!-- <label class="" for="fname">Phone Number*</label> -->
+                                                    <div class="border-none "
+                                                        *ngIf="formData['phoneNumber'].touched && formData['phoneNumber'].errors">
+                                                        <div class="shadow-none border-none  text-[red]"
+                                                            *ngIf="formData['phoneNumber'].errors['required']">
+                                                            Category is required
+                                                        </div>
+                                                        <div class="shadow-none text-[red]"
+                                                            *ngIf="formData['phoneNumber'].errors['pattern']">
+                                                            Category is not valid
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="rounded-[8px] bg-[#f1f1f1] px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+
+
+                                                        <textarea id="countries"
+                                                            class="outline-none bg-transparent h-[8rem] text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+
+                                        </textarea>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+                                                <input type="text" placeholder="Value"
+                                                    class="bg-[#f1f1f1] w-full outline-none p-[1.5rem] rounded-[4px]">
+
+                                            </div>
+
+                                        </form>
 
                                     </div>
                                 </div>
@@ -59,15 +220,91 @@
             <div class="col-span-1  bg-[#fff] w-full px-[2rem] py-[4rem]">
 
                 <div class="w-full h-[30rem] mb-[2rem]">
-                    <input type="text" placeholder="Value" class="bg-[#f1f1f1] w-full h-full outline-none p-[1.5rem] rounded-[4px]">
+
+
+
+
+                    <div class="w-full"
+                        [ngClass]="{'has-error': !formData['phoneNumber'].valid && formData['phoneNumber'].touched}">
+                        <div class="border-none "
+                            *ngIf="formData['phoneNumber'].touched && formData['phoneNumber'].errors">
+                            <div class="shadow-none border-none  text-[red]"
+                                *ngIf="formData['phoneNumber'].errors['required']">
+                                Phone Number is required
+                            </div>
+                            <div class="shadow-none text-[red]" *ngIf="formData['phoneNumber'].errors['pattern']">
+                                Phone Number is not valid
+                            </div>
+                        </div>
+                        <label for="files"
+                            class="rounded-[8px] bg-[#f1f1f1] h-[32rem] px-[0.5rem] py-[1.3rem] w-full mb-[10px]">
+                            <div class="grid  h-full">
+
+                                <div class="w-full flex flex-col justify-center gap-[1rem] font-[200]">
+                                    <div class="flex justify-center items-center w-full mb-[2rem]">
+                                        <img src="/assets/icons/Image-placeHolder.png" alt="">
+                                    </div>
+                                    <div class="flex justify-center items-center w-full gap-[2rem]">
+                                        <img src="/assets/icons/fi_upload-cloud.png" alt="">
+                                        <span class="text-[#5570F1] text-[20px]">Upload Image</span>
+                                    </div>
+                                    <div class="text-center text-[#8B8D97] text-[14px]">Upload a cover image for your product.</div>
+                                    <div class="text-center text-[#8B8D97] text-[14px]">File Format jpeg, png Recommened Size 600x600 (1:1)</div>
+                                </div>
+
+                            </div>
+
+
+                            <input id="files"
+                                class="bg-[#f1f1f1] w-full h-full hidden  outline-none p-[1.5rem] rounded-[4px] border-none shadow-none bg-transparent"
+                                type="file" placeholder="mail@simmmple.com" name="phoneNumber"
+                                formControlName="phoneNumber">
+                        </label>
+                    </div>
 
                 </div>
 
                 <p>Additional Images</p>
                 <div class="w-full h-[15rem] grid gap-[2rem] grid-cols-2">
-                    <input type="text" placeholder="Value" class="bg-[#f1f1f1] h-full outline-none p-[1.5rem] rounded-[4px]">
-                    <input type="text" placeholder="Value" class="bg-[#f1f1f1] h-full outline-none p-[1.5rem] rounded-[4px]">
-                    
+
+                    <div class="w-full"
+                    [ngClass]="{'has-error': !formData['phoneNumber'].valid && formData['phoneNumber'].touched}">
+                    <div class="border-none "
+                        *ngIf="formData['phoneNumber'].touched && formData['phoneNumber'].errors">
+                        <div class="shadow-none border-none  text-[red]"
+                            *ngIf="formData['phoneNumber'].errors['required']">
+                            Phone Number is required
+                        </div>
+                        <div class="shadow-none text-[red]" *ngIf="formData['phoneNumber'].errors['pattern']">
+                            Phone Number is not valid
+                        </div>
+                    </div>
+                    <label for="files"
+                        class="rounded-[8px] bg-[#f1f1f1] h-[16rem] px-[0.5rem] py-[1.3rem] w-full mb-[10px]">
+                        <div class="grid  h-full">
+
+                            <div class="w-full flex flex-col justify-center gap-[1rem] font-[200]">
+                                <div class="flex justify-center items-center w-full mb-[2rem]">
+                                    <img src="/assets/icons/Image-placeHolder.png" alt="">
+                                </div>
+                                <div class="flex justify-center items-center w-full gap-[2rem]">
+                                    <img src="/assets/icons/fi_upload-cloud.png" alt="">
+                                    <span class="text-[#5570F1] text-[14px]">Upload Image</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <input id="files"
+                            class="bg-[#f1f1f1] w-full h-full hidden  outline-none p-[1.5rem] rounded-[4px] border-none shadow-none bg-transparent"
+                            type="file" placeholder="mail@simmmple.com" name="phoneNumber"
+                            formControlName="phoneNumber">
+                    </label>
+                </div>
+                    <input type="text" placeholder="Value"
+                        class="bg-[#f1f1f1] h-full outline-none p-[1.5rem] rounded-[4px]">
+
                 </div>
 
 
