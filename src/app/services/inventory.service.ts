@@ -117,4 +117,25 @@ export class InventoryService extends ApolloService{
       },
     });
   }
+
+
+  togglePublishProduct(productId: string): Observable<FetchResult<any>> {
+    const mutation = gql`
+      mutation togglePublishProduct($productId: String!) {
+        togglePublishProduct(productId: $productId)
+      }
+    `;
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+
+    return this.apollo.mutate<any>({
+      mutation: mutation,
+      variables: { productId }, 
+      context: {
+        headers,
+      },
+    });
+  }
+
+
 }

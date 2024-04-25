@@ -20,12 +20,12 @@
                     <div
                         class="bg-[#FBFBFB] border rounded-[12px] gap-[1rem] flex p-[1rem] py-[0.5rem] w-[70%] md:mt-[0] mt-[1rem]">
                         <div class="flex justify-center items-center">
-                            <img (click)="getCustomerOrders()" src="/assets/images/inputSearch.png" alt="">
+                            <img (click)="getVendorsProductInventory()" src="/assets/images/inputSearch.png" alt="">
                         </div>
                             
 
                         <input 
-                            [(ngModel)]="productOrderRequest.orderId"
+                            [(ngModel)]="productRequest.productId"
                             type="text" id="table-search"
                             class="block p-2 w-[90%] bg-[#FBFBFB] text-gray-900 outline-none  rounded-lg focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Search by amount , payment method...">
@@ -184,16 +184,9 @@
                     </td> -->
 
                 <td class="px-[2rem]">
-                    <div class="p-[0.2rem] py-[0.5rem] border flex items-center bg-[#fff] rounded-[15px]">
-                        <select id="countries"
-                            class=" outline-none text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-
-                            <option selected>
-                                Select action
-                            </option>
-                            <option *ngIf="product.publishStatus === 'UNPUBLISH' " value="read">Publish</option>
-                            <option *ngIf="product.publishStatus === 'PUBLISH' " value="write">Unpublish</option>
-                        </select>
+                    <div class=" flex items-center ">
+                            <div class="bg-[#d3fdd3] cursor-pointer rounded-[8px] border p-[1rem] py-[0.5rem]" (click)="togglePublishProduct(product.productId)" *ngIf="product.publishStatus === 'UNPUBLISH' " value="read">Publish</div>
+                            <div class="bg-[#fecda8] cursor-pointer rounded-[8px] border p-[1rem] py-[0.5rem]" (click)="togglePublishProduct(product.productId)" *ngIf="product.publishStatus === 'PUBLISH' " value="write">Unpublish</div>
                     </div>
 
                 </td>
@@ -218,29 +211,31 @@
     </table>
     <div class="mt-[4rem] bg-[#fff] flex  p-[1rem] justify-end">
         <div class="flex items-center gap-[2rem]">
-            <div class="p-[1rem] py-[0.5rem] flex items-center bg-[#fff] rounded-[8px]">
+            <div class="p-[1rem] py-[0.5rem] flex items-center bg-[#fff] rounded-[12px]">
                 <span class="whitespace-nowrap">Rows per page: </span>
-                <select id="countries"
-                    class=" outline-none text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-
-                    <option selected>
-                        <div><img src="/assets/images/flag.png" alt=""></div>
-                        <span>10</span>
-                    </option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
+                <select (change)="getSize(productRequest.size)"
+                        [(ngModel)]="productRequest.size"
+                    class=" outline-none text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <option value=10 selected>10</option>
+                    <option value=20>20</option>
+                    <option value=30>30</option>
                 </select>
             </div>
             <div>
-                1-5 of 13
+                <!-- 1-5 of 13 -->
+                {{productRequest.page + 1}} - {{numOfPages}} of {{productTotal}}
+
             </div>
             <div class="flex justify-end gap-[2rem] md:mr-[2rem]">
                 <div class="p-[1rem] py-[0.5rem] rounded-[4px]">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <!-- <i class="fa fa-arrow-left" aria-hidden="true"></i> -->
+                    <i (click)="previousPage()" class="fa fa-arrow-left" aria-hidden="true"></i>
+
                 </div>
                 <div class="p-[1rem] py-[0.5rem] rounded-[4px]">
-                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    <!-- <i class="fa fa-arrow-right" aria-hidden="true"></i> -->
+                    <i (click)="nextPage()" class="fa fa-arrow-right" aria-hidden="true"></i>
+
                 </div>
             </div>
         </div>

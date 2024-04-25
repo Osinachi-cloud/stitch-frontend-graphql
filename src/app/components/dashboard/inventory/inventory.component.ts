@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { InventoryService } from 'src/app/services/inventory.service';
 import { UtilService } from 'src/app/services/util.service';
 import { Products } from 'src/app/types/Type';
@@ -14,17 +15,20 @@ export class InventoryComponent {
   productList: any[] = [];
   productTotal: number = 0;
   numOfPages: number = 0;
+  publishedMessage: string = "";
 
   constructor(private inventoryService: InventoryService,
     private router: Router,
+    private toast: NgToastService,
+
 
   ) {
   }
 
 
-  productOrderRequest = {
-    orderId: ""
-  }
+  // productOrderRequest = {
+  //   orderId: ""
+  // }
 
   productRequest: Products = {
     // productId: null,
@@ -36,6 +40,10 @@ export class InventoryComponent {
     productId: null,
     category: null
 
+  }
+
+  showSuccessResponse(message: string, header: string, duration: number) {
+    this.toast.success({ detail: message, summary: header, duration: duration });
   }
 
 
@@ -66,21 +74,42 @@ export class InventoryComponent {
   ngOnInit() {
     this.getVendorsProductInventory();
   }
-  getCustomerOrders() {
 
-  }
 
   navigateToProductPage() {
     this.router.navigate(['dashboard/add-product'])
   }
 
   getVendorsProductInventory(): void {
+    console.log("called general method");
     this.inventoryService.getProductsBy(this.productRequest).subscribe({
       next: (items: any) => {
         this.productList = items.data.getAllProductsBy.data;
         this.productTotal = items.data.getAllProductsBy.total;
         this.getNumberOfPages(this.productTotal);
         // console.log(items.data.fetchCustomerOrdersBy.data);
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    })
+  }
+
+  togglePublishProduct(productId: string): void {
+    console.log("productId", productId);
+    this.inventoryService.togglePublishProduct(productId).subscribe({
+      next: (items: any) => {
+        if(items.data.togglePublishProduct === true){
+          this.publishedMessage = "PRODUCT PUBLISHED";
+          this.showSuccessResponse("Publish Status",this.publishedMessage, 3000);
+          this.getVendorsProductInventory();
+
+        }else{
+          this.publishedMessage = "PRODUCT UNPUBLISHED";
+          this.showSuccessResponse("Publish Status",this.publishedMessage, 3000);
+          this.getVendorsProductInventory();
+        }
+
       },
       error: (error: any) => {
         console.log(error);
@@ -102,27 +131,27 @@ export class InventoryComponent {
     console.log("got to status");
     this.productRequest.category = status;
     // this.productRequest.orderId = null;
-    this.getCustomerOrders();
+    this.getVendorsProductInventory();
 
   }
 
   nextPage(): void {
     if (this.productRequest.page + 1 < this.numOfPages) {
       this.productRequest.page = this.productRequest.page + 1;
-      this.getCustomerOrders();
+      this.getVendorsProductInventory();
     }
   }
 
   previousPage(): void {
     if (this.productRequest.page + 1 > 1) {
       this.productRequest.page = this.productRequest.page - 1;
-      this.getCustomerOrders();
+      this.getVendorsProductInventory();
     }
   }
 
   getSize(size: number): void {
     this.productRequest.size = size;
-    this.getCustomerOrders();
+    this.getVendorsProductInventory();
   }
 
   getRatings(num: number): number[] {
