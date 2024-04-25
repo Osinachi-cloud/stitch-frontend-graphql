@@ -11,11 +11,13 @@ import { DocumentationComponent } from './components/dashboard/documentation/doc
 import { ContactVerificationComponent } from './components/auth/contact-verification/contact-verification.component';
 import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
 import { AddProductItemComponent } from './components/dashboard/add-product-item/add-product-item.component';
+import { VendorSignInComponent } from './components/auth/vendor-sign-in/vendor-sign-in.component';
 
 const routes: Routes = [
   { path: 'email-verification', component: ContactVerificationComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: SinginComponent },
+  { path: 'vendor-login', component: VendorSignInComponent },
   { path: 'password-reset', component: PasswordresetComponent },
   { path: 'submit-password', component: PasswordRequestFormComponent},
   { path: 'dashboard', component: DashboardComponent, children: [

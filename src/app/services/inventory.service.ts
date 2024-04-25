@@ -11,14 +11,14 @@ import { Products } from '../types/Type';
 @Injectable({
   providedIn: 'root'
 })
-export class InventoryService{
+export class InventoryService extends ApolloService{
 
-  constructor(private http: HttpClient) {
-  }
+  // constructor(private http: HttpClient) {
+  // }
 
-  getProductsByVendorId(): Observable<any> {
-    return this.http.get<any>('assets/data/usersList.json');
-  }
+  // getProductsByVendorId(): Observable<any> {
+  //   return this.http.get<any>('assets/data/usersList.json');
+  // }
 
   // getProductsByVendorId(product: Products): Observable<FetchResult<any>> {
   //   const query = gql`
@@ -70,4 +70,51 @@ export class InventoryService{
   //     },
   //   });
   // }
+
+
+
+  getProductsBy(productRequest: Products): Observable<FetchResult<any>> {
+    const query = gql`
+      query getAllProductsBy($productId: String, $category: String, $page: Int!, $size: Int!) {
+        getAllProductsBy(productFilterRequest: {
+          page:$page,
+          size:$size,
+          productId:$productId
+          category:$category
+          
+        }){
+          page
+          size
+          total
+          data{
+            name
+            category
+            productId
+            amount
+            quantity
+            publishStatus
+            discount
+            outOfStock
+          }
+        }
+      }
+    `;
+  
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+  
+    return this.apollo.query<any>({
+      query: query,
+      variables: {
+        productId: productRequest.productId,
+        customerId: UtilService.getUserDetails().customerId,
+        category: productRequest.category,
+        vendorId: productRequest.vendorId,
+        page: productRequest.page,
+        size: productRequest.size,
+      },
+      context: {
+        headers,
+      },
+    });
+  }
 }

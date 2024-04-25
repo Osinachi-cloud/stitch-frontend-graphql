@@ -37,6 +37,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ContactVerificationComponent } from './components/auth/contact-verification/contact-verification.component';
 import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
 import { AddProductItemComponent } from './components/dashboard/add-product-item/add-product-item.component';
+import { VendorSignInComponent } from './components/auth/vendor-sign-in/vendor-sign-in.component';
 
 
 
@@ -59,6 +60,7 @@ import { AddProductItemComponent } from './components/dashboard/add-product-item
     ContactVerificationComponent,
     InventoryComponent,
     AddProductItemComponent,
+    VendorSignInComponent,
   ],
   imports: [
     BrowserModule,

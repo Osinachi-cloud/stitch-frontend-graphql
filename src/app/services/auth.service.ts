@@ -73,6 +73,33 @@ export class AuthService extends ApolloService{
     });
   }
 
+
+  vendorLogin(loginRequest: LoginRequest): Observable<FetchResult<LoginResponse>> {
+    const mutation = gql`
+      mutation {
+        vendorLogin(loginRequest: { emailAddress: "${loginRequest.emailAddress}", password: "${loginRequest.password}" }) {
+          vendorId
+          firstName
+          lastName
+          emailAddress
+          phoneNumber
+          hasPin
+          saveCard
+          enablePush
+          tier
+          country
+          accessToken
+          refreshToken
+          profileImage
+        }
+      }
+    `;
+
+    return this.apollo.mutate<LoginResponse>({
+      mutation,
+    });
+  }
+
   signup(customerSignUpRequest: CustomerSignUpRequest): Observable<FetchResult<CustomerSignUpResponse>>{
 
     const mutation = gql`

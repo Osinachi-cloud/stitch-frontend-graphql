@@ -76,6 +76,8 @@ export interface ContactVerificationResponse {
     vendorId: string | null;
     page: number;
     size: number;
+    category: string | null;
+    productId: string | null;
   }
 
   export interface ProductOrderStatistics {
