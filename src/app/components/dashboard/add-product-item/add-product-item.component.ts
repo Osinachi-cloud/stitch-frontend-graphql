@@ -22,6 +22,7 @@ export class AddProductItemComponent {
   countryName: string = "NIGERIA";
 
 
+
   constructor(private http: HttpClient,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -29,29 +30,93 @@ export class AddProductItemComponent {
 
   ) {
     this.productForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      username: new FormControl('', [Validators.required]),
-      emailAddress: new FormControl('', [Validators.required, Validators.pattern('^.+@.+\..+$')]),
-      country: new FormControl(this.countryName),
-      phoneNumber: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      // optionChecked: new FormControl('', [Validators.required]),
-
+      name: new FormControl('', [Validators.required]),
+      shortDescription: new FormControl('', [Validators.required]),
+      longDescription: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required, Validators.pattern('^.+@.+\..+$')]),
+      sellingPrice: new FormControl('', [Validators.required, Validators.pattern('^.+@.+\..+$')]),
+      readyIn: new FormControl('', [Validators.required]),
+      discount: new FormControl('', [Validators.required]),
+      expiryDate: new FormControl('', [Validators.required]),
+      materialUsed: new FormControl('', [Validators.required]),
     });
 
   }
 
-  get formData() { return this.productForm.controls; };
-
-  validateForm() {
-
-    for (let i in this.productForm.controls)
-      this.productForm.controls[i].markAsTouched();
-  }
-
-  onSubmit(){
     
+    // this.authForm = this.formBuilder.group({
+    //   email: ['', [Validators.required, Validators.pattern('^.+@.+\..+$')]],
+    //   password: ['', [Validators.required]],
+    //   optionChecked: ['', [Validators.required]],
+    // });
+  
+
+
+   get formData() { return this.productForm.controls; };
+
+validateForm() { 
+
+for(let i in this.productForm.controls)
+  this.productForm.controls[i].markAsTouched();
+}
+
+showSuccess() {
+  this.toast.success({detail:"SUCCESS",summary:this.apiResponse.displayMessage ,duration:5000});
+}
+
+ngOnInit(): void {
+  this.showSuccess();
+console.log(this.formSubmitted);
+
+  
+}
+
+
+toggleShowPassword(){
+  if (this.password === 'password') {
+    this.password = 'text';
+    this.showPassword = true;
+  } else {
+    this.password = 'password';
+    this.showPassword = false;
   }
+}
+
+resetFormInputs() {
+  this.productForm.setValue({
+    email: '',
+    password: '',
+    optionChecked: '',
+  });
+}
+
+onSubmit(): void {
+// console.log(this.formSubmitted);
+//   this.formSubmitted = true;
+//   if (!this.authForm.valid) {
+//     console.log({ user });
+//     this.authService.accountLogin(this.authForm.value).subscribe({
+//       next: (response) => {
+//         console.log("response =>>>>", response);
+//         this.apiResponse = response;
+//         console.log(this.apiResponse);
+//         this.resetFormInputs();
+//         this.showSuccess();
+//         this.toggleModal();
+        
+//         // this.router.navigate(['login']);
+//       },
+//       error: (error) => {
+//         console.log("sign up failed", error);
+//         this.router.navigate([]);
+//       }
+//     });
+//   } else {
+//     console.log(user);
+//     this.validateForm();
+//   }
+}
+
+
 
 }

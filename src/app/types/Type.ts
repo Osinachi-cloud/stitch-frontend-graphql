@@ -69,6 +69,15 @@ export interface ContactVerificationResponse {
     size: number;
   }
 
+  export interface Products {
+    // productId: string | null;
+    // status: string | null;
+    // productCategory: string | null;
+    vendorId: string | null;
+    page: number;
+    size: number;
+  }
+
   export interface ProductOrderStatistics {
     allOrdersCount: number
     processingOrdersCount:number

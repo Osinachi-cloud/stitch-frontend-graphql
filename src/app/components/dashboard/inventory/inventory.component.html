@@ -94,7 +94,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let terminal of usersList; let i = index" class="bg-[#fff] border-b  hover:bg-gray-50 ">
+            <tr *ngFor="let product of productList; let i = index" class="bg-[#fff] border-b  hover:bg-gray-50 ">
                 <td class="w-4 p-[2rem]">
                     <div class="flex items-center">
                         <input id="checkbox-table-search-3" type="checkbox"
@@ -109,73 +109,75 @@
                                 'bg-[#F8E2C0] text-[#FFB536]': (i + 1) % 2 == 0,
                                 'bg-[#EEC7F4] text-[#DB5AEE]': (i + 1) % 3 == 0,
                             }">{{i + 1}}</span>
-                        <span>{{terminal.name}}</span>
+                        <span>{{product.name}}</span>
                     </div>
                 </td>
                 <td class="px-[2rem]">
                     <div class="rounded-[8px]">
-                        {{terminal.transaction}}
+                        {{product.category}}
                     </div>
                 </td>
                 <td class="px-[2rem]">
                     <div class="rounded-[8px]">
-                        {{terminal.price}}
+                        {{product.amount}}
                     </div>
                 </td>
                 <!-- <td class="px-[2rem]">
                         <div class="flex items-center gap-[1rem]">
                             <div [ngClass]="{
-                                'bg-[#BAF3E0]': terminal.conversion > 0,
-                                'bg-[#E6ECF0]': terminal.conversion === 0,
-                                'bg-[#f9e2e2]': terminal.conversion < 0
+                                'bg-[#BAF3E0]': product.conversion > 0,
+                                'bg-[#E6ECF0]': product.conversion === 0,
+                                'bg-[#f9e2e2]': product.conversion < 0
                             }" class="p-[0.5rem] rounded-[50%]">
-                                <img *ngIf="terminal.conversion > 0" src="/assets/images/arrow1.png" alt="">
-                                <img *ngIf="terminal.conversion < 0" src="/assets/images/arrow2.png" alt="">
-                                <img *ngIf="terminal.conversion == 0" src="/assets/images/arrow3.png" alt="">
+                                <img *ngIf="product.conversion > 0" src="/assets/images/arrow1.png" alt="">
+                                <img *ngIf="product.conversion < 0" src="/assets/images/arrow2.png" alt="">
+                                <img *ngIf="product.conversion == 0" src="/assets/images/arrow3.png" alt="">
 
                             </div>
                             <span [ngClass]="{
-                                'text-[#1AD598]': terminal.conversion > 0,
-                                'text-[grey]': terminal.conversion === 0,
-                                'text-[#EA3A3D]': terminal.conversion < 0
+                                'text-[#1AD598]': product.conversion > 0,
+                                'text-[grey]': product.conversion === 0,
+                                'text-[#EA3A3D]': product.conversion < 0
                               }">
-                                {{terminal.conversion}}</span>
+                                {{product.conversion}}</span>
                         </div>
                     </td> -->
 
+                    
+
                 <td class="px-[2rem]">
-                    ${{terminal.discount}}
+                    ${{product.discount}}
                 </td>
                 <td class="px-[2rem]">
-                    ${{terminal.total}} 
+                    {{product.quantity}} 
 
                 </td>
                 <td class="px-[2rem]">
-                    {{terminal.duration}}
+                    {{product.duration}}
 
                 </td>
                 <!-- <td class="px-[1rem]">
-                        <div *ngIf="terminal.status === 'ACTIVE' "
+                        <div *ngIf="product.status === 'ACTIVE' "
                             class="bg-[#bff9e6] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
-                            <span class="text-[#1AD598]">{{terminal.status}}</span>
+                            <span class="text-[#1AD598]">{{product.status}}</span>
                         </div>
-                        <div *ngIf="terminal.status === 'PENDING' "
+                        <div *ngIf="product.status === 'PENDING' "
                             class="bg-[#edecec] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
-                            <span class="text-[grey]">{{terminal.status}}</span>
+                            <span class="text-[grey]">{{product.status}}</span>
                         </div>
 
-                        <div *ngIf="terminal.status === 'unpaid' "
+                        <div *ngIf="product.status === 'unpaid' "
                             class="bg-[#f9c0c0] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
-                            <span class="text-[#EA3A3D]">{{terminal.status}}</span>
+                            <span class="text-[#EA3A3D]">{{product.status}}</span>
                         </div>
 
                     </td> -->
 
                 <!-- <td class="px-[1rem]">
-                        <ng-container *ngFor="let index of getRatings(terminal.rating)">
+                        <ng-container *ngFor="let index of getRatings(product.rating)">
                             <i class="fa fa-star text-[#FFB536]" aria-hidden="true"></i>
                         </ng-container>
-                        <ng-container *ngFor="let index of getRatings(5 - terminal.rating)">
+                        <ng-container *ngFor="let index of getRatings(5 - product.rating)">
                             <i class="fa fa-star text-[#99B2C6]" aria-hidden="true"></i>
                         </ng-container>
 
@@ -189,21 +191,21 @@
                             <option selected>
                                 Select action
                             </option>
-                            <option *ngIf="terminal.status === 'Unpublish' " value="read">Publish</option>
-                            <option *ngIf="terminal.status === 'Publish' " value="write">Unpublish</option>
+                            <option *ngIf="product.publishStatus === 'UNPUBLISH' " value="read">Publish</option>
+                            <option *ngIf="product.publishStatus === 'PUBLISH' " value="write">Unpublish</option>
                         </select>
                     </div>
 
                 </td>
                 <td>
                     <div class="h-[30%] m-auto p-[1rem]">
-                        <div *ngIf="terminal.status === 'Unpublish' "
+                        <div *ngIf="product.publishStatus === 'UNPUBLISH' "
                             class="bg-[#FFF2E2] p-[1rem] py-[0.5rem] gap-[1rem] text-center rounded-[12px]">
-                            <span class="text-[#000]">{{terminal.status}}</span>
+                            <span class="text-[#000]">{{product.publishStatus}}</span>
                         </div>
-                        <div *ngIf="terminal.status === 'Publish' "
+                        <div *ngIf="product.publishStatus === 'PUBLISH' "
                             class="bg-[#e3e2e2] p-[1rem] py-[0.5rem] text-center  gap-[1rem] rounded-[12px]">
-                            <span class="text-[#000]">{{terminal.status}}</span>
+                            <span class="text-[#000]">{{product.publishStatus}}</span>
                         </div>
                     </div>
                 </td>
