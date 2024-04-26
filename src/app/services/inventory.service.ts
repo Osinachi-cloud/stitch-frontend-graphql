@@ -6,12 +6,12 @@ import gql from 'graphql-tag';
 import { TokenService } from './token.service';
 import { UtilService } from './util.service';
 import { FetchResult } from '@apollo/client';
-import { Products } from '../types/Type';
+import { ProductRequest, Products } from '../types/Type';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InventoryService extends ApolloService{
+export class InventoryService extends ApolloService {
 
   // constructor(private http: HttpClient) {
   // }
@@ -50,9 +50,9 @@ export class InventoryService extends ApolloService{
   //       }
   //     }
   //   `;
-  
+
   //   const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
-  
+
   //   return this.apollo.query<any>({
   //     query: query,
   //     variables: {
@@ -99,9 +99,9 @@ export class InventoryService extends ApolloService{
         }
       }
     `;
-  
+
     const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
-  
+
     return this.apollo.query<any>({
       query: query,
       variables: {
@@ -130,7 +130,58 @@ export class InventoryService extends ApolloService{
 
     return this.apollo.mutate<any>({
       mutation: mutation,
-      variables: { productId }, 
+      variables: { productId },
+      context: {
+        headers,
+      },
+    });
+  }
+
+  createProduct(productRequest: any): Observable<FetchResult<any>> {
+    console.log("in service class");
+    const query = gql`
+      mutation createProduct($productRequest: ProductRequest!) {
+        createProduct(productRequest: $productRequest) {
+          name
+          amount
+          quantity
+          fixedPrice
+          code
+          category
+          productImage
+          publishStatus
+          shortDescription
+          longDescription
+          materialUsed
+          readyIn
+          amount
+          discount
+
+        }
+      }
+    `;
+  
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+  
+    return this.apollo.mutate<any>({
+      mutation: query,
+      variables: {
+        productRequest: {
+          name: productRequest.name,
+          category: productRequest.category,
+          amount: productRequest.amount,
+          quantity: productRequest.quantity,
+          code: productRequest.code,
+          fixedPrice: true,
+          productImage:'imageq',
+          publishStatus: productRequest.publishStatus,
+          shortDescription: productRequest.shortDescription,
+          longDescription: productRequest.longDescription,
+          materialUsed: productRequest.materialUsed,
+          readyIn: productRequest.readyIn,
+          discount: productRequest.discount,
+        },
+      },
       context: {
         headers,
       },

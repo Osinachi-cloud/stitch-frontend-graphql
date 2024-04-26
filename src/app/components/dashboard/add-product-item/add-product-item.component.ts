@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { InventoryService } from 'src/app/services/inventory.service';
 
 @Component({
   selector: 'app-add-product-item',
@@ -26,96 +27,127 @@ export class AddProductItemComponent {
   constructor(private http: HttpClient,
     private formBuilder: FormBuilder,
     private router: Router,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private inventoryService: InventoryService
 
   ) {
-    this.productForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      shortDescription: new FormControl('', [Validators.required]),
-      longDescription: new FormControl('', [Validators.required]),
-      category: new FormControl('', [Validators.required, Validators.pattern('^.+@.+\..+$')]),
-      sellingPrice: new FormControl('', [Validators.required, Validators.pattern('^.+@.+\..+$')]),
-      readyIn: new FormControl('', [Validators.required]),
-      discount: new FormControl('', [Validators.required]),
-      expiryDate: new FormControl('', [Validators.required]),
-      materialUsed: new FormControl('', [Validators.required]),
+    // this.productForm = new FormGroup({
+    //   name: new FormControl('', [Validators.required]),
+    //   shortDescription: new FormControl('', [Validators.required]),
+    //   longDescription: new FormControl('', [Validators.required]),
+    //   category: new FormControl('', [Validators.required, Validators.pattern('^.+@.+\..+$')]),
+    //   sellingPrice: new FormControl('', [Validators.required, Validators.pattern('^.+@.+\..+$')]),
+    //   readyIn: new FormControl('', [Validators.required]),
+    //   discount: new FormControl('', [Validators.required]),
+    //   expiryDate: new FormControl('', [Validators.required]),
+    //   materialUsed: new FormControl('', [Validators.required]),
+    // });
+
+    this.productForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      shortDescription: ['', Validators.required],
+      longDescription: ['', Validators.required],
+      category: ['', [Validators.required]],
+      sellingPrice: ['', Validators.required],
+      readyIn: ['', Validators.required],
+      discount: [0, Validators.required],
+      expiryDate: ['', Validators.required],
+      materialUsed: ['', Validators.required],
+      image1: [''],
+      image2: [''],
+
+      amount: [500, Validators.required],
+      quantity: [4, Validators.required],
+      fixedPrice: [true, Validators.required],
+      code: ["1234", Validators.required],
+      productImage: ['trye', Validators.required],
+      publishStatus: ['PUBLISH', Validators.required],
+
+
     });
 
   }
 
-    
-    // this.authForm = this.formBuilder.group({
-    //   email: ['', [Validators.required, Validators.pattern('^.+@.+\..+$')]],
-    //   password: ['', [Validators.required]],
-    //   optionChecked: ['', [Validators.required]],
-    // });
-  
-
-
-   get formData() { return this.productForm.controls; };
-
-validateForm() { 
-
-for(let i in this.productForm.controls)
-  this.productForm.controls[i].markAsTouched();
-}
-
-showSuccess() {
-  this.toast.success({detail:"SUCCESS",summary:this.apiResponse.displayMessage ,duration:5000});
-}
-
-ngOnInit(): void {
-  this.showSuccess();
-console.log(this.formSubmitted);
-
-  
-}
-
-
-toggleShowPassword(){
-  if (this.password === 'password') {
-    this.password = 'text';
-    this.showPassword = true;
-  } else {
-    this.password = 'password';
-    this.showPassword = false;
+  get formData() {
+    return this.productForm?.controls ?? {};
   }
-}
 
-resetFormInputs() {
-  this.productForm.setValue({
-    email: '',
-    password: '',
-    optionChecked: '',
-  });
-}
+  validateForm() {
 
-onSubmit(): void {
-// console.log(this.formSubmitted);
-//   this.formSubmitted = true;
-//   if (!this.authForm.valid) {
-//     console.log({ user });
-//     this.authService.accountLogin(this.authForm.value).subscribe({
-//       next: (response) => {
-//         console.log("response =>>>>", response);
-//         this.apiResponse = response;
-//         console.log(this.apiResponse);
-//         this.resetFormInputs();
-//         this.showSuccess();
-//         this.toggleModal();
-        
-//         // this.router.navigate(['login']);
-//       },
-//       error: (error) => {
-//         console.log("sign up failed", error);
-//         this.router.navigate([]);
-//       }
-//     });
-//   } else {
-//     console.log(user);
-//     this.validateForm();
-//   }
-}
+    for (let i in this.productForm.controls)
+      this.productForm.controls[i].markAsTouched();
+  }
+
+
+  ngOnInit(): void {
+    console.log(this.formSubmitted);
+  }
+
+
+  toggleShowPassword() {
+    if (this.password === 'password') {
+      this.password = 'text';
+      this.showPassword = true;
+    } else {
+      this.password = 'password';
+      this.showPassword = false;
+    }
+  }
+
+  resetFormInputs() {
+    this.productForm.reset();
+    Object.keys(this.productForm.controls).forEach(key => {
+      this.productForm.get(key)?.setErrors(null);
+    });
+  }
+
+  showSuccessResponse(message: string, header: string, duration: number) {
+    this.toast.success({ detail: message, summary: header, duration: duration });
+  }
+  showFailureResponse(message: string, header: string, duration: number) {
+    this.toast.error({ detail: message, summary: header, duration: duration });
+  }
+
+  // onSubmit(): void {
+
+  //   console.log(this.productForm.value);
+
+  // if (this.productForm?.valid !== undefined || this.productForm?.valid) {
+  //   this.inventoryService.createProduct(this.productForm.value).subscribe({
+  //     next: (response: any) => {
+  //       this.showSuccessResponse("Sign Up ", "Sign Up Successful", 3000);
+  //       this.router.navigate(["login"]);
+
+  //     },
+  //     error: (error: any) => {
+  //       this.showFailureResponse("Sign Up Error", error.message,  3000);
+  //       console.error("entered error", error);
+  //     }
+  //   });
+  //   }else{
+  //     this.showFailureResponse("Sign Up Error", "Invalid form",  3000);
+  //   }
+  // }
+
+  onSubmit(): void {
+    console.log("first", this.productForm.value);
+    if (this.productForm?.valid) {
+      console.log("second", this.productForm.value);
+
+      this.inventoryService.createProduct(this.productForm.value).subscribe({
+        next: (response: any) => {
+          console.log("third", this.productForm.value);
+          this.showSuccessResponse("Sign Up ", "Sign Up Successful", 3000);
+        },
+        error: (error: any) => {
+          this.showFailureResponse("Sign Up Error", error.message, 3000);
+          console.error("entered error", error);
+        }
+      });
+    } else {
+      this.showFailureResponse("Sign Up Error", "Invalid form", 3000);
+    }
+  }
 
 
 

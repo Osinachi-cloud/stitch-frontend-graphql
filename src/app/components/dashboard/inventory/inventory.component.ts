@@ -20,56 +20,19 @@ export class InventoryComponent {
   constructor(private inventoryService: InventoryService,
     private router: Router,
     private toast: NgToastService,
-
-
-  ) {
-  }
-
-
-  // productOrderRequest = {
-  //   orderId: ""
-  // }
+  ) { }
 
   productRequest: Products = {
-    // productId: null,
-    // status: "",
-    // productCategory: "",
     vendorId: UtilService.getUserDetails().vendorId,
     page: 0,
     size: 10,
     productId: null,
     category: null
-
   }
 
   showSuccessResponse(message: string, header: string, duration: number) {
     this.toast.success({ detail: message, summary: header, duration: duration });
   }
-
-
-  // getProductList(){
-  //   this.inventoryService.getProductsByVendorId(this.product).subscribe({
-  //     next:(items: any)=>{
-  //         this.productList = items.data.getProductsByVendorId.data;
-  //         console.log(items);
-  //     },
-  //     error:(items:any)=>{
-
-  //     }
-  //   })
-  // }
-
-  // getProductList() {
-  //   this.inventoryService.getProductsByVendorId().subscribe({
-  //     next: (items: any) => {
-  //       this.productList = items;
-  //       console.log(items);
-  //     },
-  //     error: (items: any) => {
-
-  //     }
-  //   })
-  // }
 
   ngOnInit() {
     this.getVendorsProductInventory();
@@ -87,7 +50,6 @@ export class InventoryComponent {
         this.productList = items.data.getAllProductsBy.data;
         this.productTotal = items.data.getAllProductsBy.total;
         this.getNumberOfPages(this.productTotal);
-        // console.log(items.data.fetchCustomerOrdersBy.data);
       },
       error: (error: any) => {
         console.log(error);
@@ -99,14 +61,14 @@ export class InventoryComponent {
     console.log("productId", productId);
     this.inventoryService.togglePublishProduct(productId).subscribe({
       next: (items: any) => {
-        if(items.data.togglePublishProduct === true){
+        if (items.data.togglePublishProduct === true) {
           this.publishedMessage = "PRODUCT PUBLISHED";
-          this.showSuccessResponse("Publish Status",this.publishedMessage, 3000);
+          this.showSuccessResponse("Publish Status", this.publishedMessage, 3000);
           this.getVendorsProductInventory();
 
-        }else{
+        } else {
           this.publishedMessage = "PRODUCT UNPUBLISHED";
-          this.showSuccessResponse("Publish Status",this.publishedMessage, 3000);
+          this.showSuccessResponse("Publish Status", this.publishedMessage, 3000);
           this.getVendorsProductInventory();
         }
 

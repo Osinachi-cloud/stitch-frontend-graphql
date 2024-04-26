@@ -70,9 +70,6 @@ export interface ContactVerificationResponse {
   }
 
   export interface Products {
-    // productId: string | null;
-    // status: string | null;
-    // productCategory: string | null;
     vendorId: string | null;
     page: number;
     size: number;
@@ -87,5 +84,30 @@ export interface ContactVerificationResponse {
     failedOrdersCount:number
     completedOrdersCount:number
   }
+
+  export interface ProductRequest {
+    vendorId: string | null;
+    page: number;
+    size: number;
+    category: string | null;
+    productId: string | null;
+
+    name: String
+    code: String
+    productImage: String
+    amount: number
+    quantity: number
+    // fixedPrice: Boolean
+    // country: String
+    discount: number
+    publishStatus: String
+    shortDescription:String
+    longDescription:String
+    materialUsed:String
+    readyIn:String
+    sellingPrice:number
+  }
+
+  
 
 
