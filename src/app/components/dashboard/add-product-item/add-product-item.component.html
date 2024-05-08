@@ -12,9 +12,9 @@
                         <div class="w-full">
                             <div class=" flex justify-center">
                                 <div class="border w-full ">
-                                    <div class=" grid gap-[2rem]">
+                                    <div class="  gap-[2rem] grid grid-cols-3">
 
-                                        <form class=" grid grid-cols-3" [formGroup]="productForm" (ngSubmit)="onSubmit()"
+                                        <form class="col-span-2 " [formGroup]="productForm" (ngSubmit)="onSubmit()"
                                             action="">
 
 
@@ -127,18 +127,9 @@
                                                             placeholder="Long Description" name="longDescription"
                                                             class="outline-none bg-transparent h-[8rem] text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
 
-</textarea>
+                                                        </textarea>
                                                     </div>
                                                 </div>
-
-
-
-
-
-
-
-
-
 
                                                 <div class="w-full"
                                                     [ngClass]="{'has-error': !formData['sellingPrice'].valid && formData['sellingPrice'].touched}">
@@ -163,8 +154,6 @@
                                                     </div>
                                                 </div>
 
-
-
                                                 <div class="w-full"
                                                     [ngClass]="{'has-error': !formData['readyIn'].valid && formData['readyIn'].touched}">
                                                     <!-- <label class="" for="fname">Phone Number*</label> -->
@@ -187,7 +176,6 @@
                                                             formControlName='readyIn'>
                                                     </div>
                                                 </div>
-
 
 
                                                 <div class="w-full"
@@ -265,23 +253,17 @@
                                                         submit</button>
                                                 </div> -->
 
-
-
-
-
-
+                                                <div class="w-full">
+                                                    <button type="submit"
+                                                        class="p-[1rem] bg-[#cef6ce] rounded-[8px]">submit</button>
+                                                </div>
 
                                             </div>
+                                        </form>
 
-
-
+                                        <div class="col-span-1">
                                             <div class="col-span-1 w-full px-[2rem]">
-
                                                 <div class="w-full h-[30rem] mb-[2rem]">
-
-
-
-
                                                     <div class="w-full"
                                                         [ngClass]="{'has-error': !formData['image1'].valid && formData['image1'].touched}">
                                                         <div class="border-none "
@@ -295,7 +277,7 @@
                                                                 Phone Number is not valid
                                                             </div>
                                                         </div>
-                                                        <label for="files"
+                                                        <label for="productImage"
                                                             class="rounded-[8px] bg-[#f1f1f1] h-[32rem] px-[0.5rem] py-[1.3rem] w-full mb-[10px]">
                                                             <div class="grid  h-full">
 
@@ -324,10 +306,23 @@
                                                             </div>
 
 
-                                                            <input id="files"
+                                                            <!-- <input id="files"
                                                                 class="bg-[#f1f1f1] w-full h-full hidden  outline-none p-[1.5rem] rounded-[4px] border-none shadow-none bg-transparent"
                                                                 type="file" placeholder="mail@simmmple.com"
-                                                                name="image1" formControlName="image1">
+                                                                name="image1" formControlName="image1"> -->
+
+                                                            <!-- <form [formGroup]="profileImageForm" (ngSubmit)="onSubmitProfileImage()"> -->
+
+                                                            <!-- <label for="profileImage">Profile Image:</label> -->
+                                                            <input
+                                                                class="bg-[#f1f1f1] w-full h-full hidden  outline-none p-[1.5rem] rounded-[4px] border-none shadow-none bg-transparent"
+                                                                type="file" id="productImage"
+                                                                (change)="onFileSelected($event)"
+                                                                [(ngModel)]="productImage" required>
+
+                                                            <!-- <button type="submit">Submit</button> -->
+                                                            <!-- </form> -->
+
                                                         </label>
                                                     </div>
 
@@ -372,33 +367,27 @@
                                                             </div>
 
 
-                                                            <input id="files"
+                                                            <!-- <input id="files"
                                                                 class="bg-[#f1f1f1] w-full h-full hidden  outline-none p-[1.5rem] rounded-[4px] border-none shadow-none bg-transparent"
                                                                 type="file" placeholder="mail@simmmple.com"
-                                                                name="image2" formControlName="image2">
+                                                                name="image2" formControlName="image2"> -->
+                                                            <!-- <input
+                                                                class="bg-[#f1f1f1] w-full h-full hidden  outline-none p-[1.5rem] rounded-[4px] border-none shadow-none bg-transparent"
+                                                                type="file"
+                                                                required> -->
                                                         </label>
                                                     </div>
                                                     <input type="text" placeholder="Value"
                                                         class="bg-[#f1f1f1] h-full outline-none p-[1.5rem] rounded-[4px]">
-
                                                 </div>
-
-
                                             </div>
 
-                                            <div class="w-full">
-                                                <button type="submit" class="p-[1rem] bg-[#cef6ce] rounded-[8px]">
-                                                    submit</button>
-                                            </div>
-
-                                        </form>
-
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
             </div>

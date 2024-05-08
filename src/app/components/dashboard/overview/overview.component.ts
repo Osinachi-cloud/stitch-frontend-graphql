@@ -111,7 +111,7 @@ export class OverviewComponent {
     this.clientService.getCustomerDetails(this.emailAddress).subscribe({
       next: (response: any) => {
         this.userDetails = response.data.customerDetails;
-        this.imageSource = `data:image/png;base64, ${this.userDetails.profileImage}`
+        this.imageSource = `data:image/png;base64, ${this.userDetails.profileImage}`;
 
       },
       error: (error: any) => {

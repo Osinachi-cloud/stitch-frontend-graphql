@@ -95,6 +95,7 @@ export class InventoryService extends ApolloService {
             publishStatus
             discount
             outOfStock
+            productImage
           }
         }
       }
@@ -173,7 +174,7 @@ export class InventoryService extends ApolloService {
           quantity: productRequest.quantity,
           code: productRequest.code,
           fixedPrice: true,
-          productImage:'imageq',
+          productImage:productRequest.productImage,
           publishStatus: productRequest.publishStatus,
           shortDescription: productRequest.shortDescription,
           longDescription: productRequest.longDescription,

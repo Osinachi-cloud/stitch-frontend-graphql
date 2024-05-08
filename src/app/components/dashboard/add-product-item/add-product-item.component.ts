@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { InventoryService } from 'src/app/services/inventory.service';
+import { UtilService } from 'src/app/services/util.service';
 
 @Component({
   selector: 'app-add-product-item',
@@ -21,6 +22,9 @@ export class AddProductItemComponent {
   apiResponse: any;
   countryCode: string = "";
   countryName: string = "NIGERIA";
+  productImage = "";
+  selectedImage: File | any = null;
+  base64Char = "";
 
 
 
@@ -53,6 +57,10 @@ export class AddProductItemComponent {
       discount: [0, Validators.required],
       expiryDate: ['', Validators.required],
       materialUsed: ['', Validators.required],
+      // productImage:['', Validators.required],
+
+      productImage: new FormControl(UtilService.formatBase64(this.base64Char), [Validators.required]),
+
       image1: [''],
       image2: [''],
 
@@ -60,7 +68,7 @@ export class AddProductItemComponent {
       quantity: [4, Validators.required],
       fixedPrice: [true, Validators.required],
       code: ["1234", Validators.required],
-      productImage: ['trye', Validators.required],
+      // productImage: ['trye', Validators.required],
       publishStatus: ['PUBLISH', Validators.required],
 
 
@@ -108,27 +116,6 @@ export class AddProductItemComponent {
     this.toast.error({ detail: message, summary: header, duration: duration });
   }
 
-  // onSubmit(): void {
-
-  //   console.log(this.productForm.value);
-
-  // if (this.productForm?.valid !== undefined || this.productForm?.valid) {
-  //   this.inventoryService.createProduct(this.productForm.value).subscribe({
-  //     next: (response: any) => {
-  //       this.showSuccessResponse("Sign Up ", "Sign Up Successful", 3000);
-  //       this.router.navigate(["login"]);
-
-  //     },
-  //     error: (error: any) => {
-  //       this.showFailureResponse("Sign Up Error", error.message,  3000);
-  //       console.error("entered error", error);
-  //     }
-  //   });
-  //   }else{
-  //     this.showFailureResponse("Sign Up Error", "Invalid form",  3000);
-  //   }
-  // }
-
   onSubmit(): void {
     console.log("first", this.productForm.value);
     if (this.productForm?.valid) {
@@ -147,6 +134,29 @@ export class AddProductItemComponent {
     } else {
       this.showFailureResponse("Sign Up Error", "Invalid form", 3000);
     }
+  }
+
+  onFileSelected(event: any): void {
+    console.log("==================" + event);
+
+    this.selectedImage = event.target.files[0];
+
+    console.log("==================");
+
+    console.log(this.selectedImage);
+
+    console.log("==================");
+
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      this.productForm.patchValue({
+        
+        productImage: UtilService.formatBase64(reader.result as string)
+      });
+    };
+
+    reader.readAsDataURL(this.selectedImage);
   }
 
 
