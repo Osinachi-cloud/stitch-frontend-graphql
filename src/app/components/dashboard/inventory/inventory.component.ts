@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { InventoryService } from 'src/app/services/inventory.service';
+import { ProductService } from 'src/app/services/product.service';
 import { UtilService } from 'src/app/services/util.service';
 import { Products } from 'src/app/types/Type';
 
@@ -18,8 +19,10 @@ export class InventoryComponent {
   publishedMessage: string = "";
 
   constructor(private inventoryService: InventoryService,
+    private productService: ProductService,
     private router: Router,
     private toast: NgToastService,
+  
   ) { }
 
   productRequest: Products = {
@@ -27,7 +30,8 @@ export class InventoryComponent {
     page: 0,
     size: 10,
     productId: null,
-    category: null
+    category: null,
+    status: null
   }
 
   showSuccessResponse(message: string, header: string, duration: number) {
@@ -36,6 +40,17 @@ export class InventoryComponent {
 
   ngOnInit() {
     this.getVendorsProductInventory();
+    
+    this.productService.getProducts(this.productRequest).subscribe({
+      next: (res: any) =>{
+          console.log("hello world 1");
+          console.log(res);
+      }, error: (err: any) => {
+          console.log(err);
+      }
+    });
+    console.log("hello world 2");
+
   }
 
 

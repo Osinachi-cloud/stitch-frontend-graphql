@@ -75,6 +75,17 @@ export interface ContactVerificationResponse {
     size: number;
     category: string | null;
     productId: string | null;
+    status: string | null
+  }
+
+  export interface PageRequest {
+    page: number;
+    size: number;
+  }
+
+  export interface ProductLikeRequest {
+    page: number;
+    size: number;
   }
 
   export interface ProductOrderStatistics {

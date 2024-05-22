@@ -38,6 +38,8 @@ import { ContactVerificationComponent } from './components/auth/contact-verifica
 import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
 import { AddProductItemComponent } from './components/dashboard/add-product-item/add-product-item.component';
 import { VendorSignInComponent } from './components/auth/vendor-sign-in/vendor-sign-in.component';
+import { CartComponent } from './components/dashboard/cart/cart.component';
+import { ProductlikesComponent } from './components/dashboard/productlikes/productlikes.component';
 
 
 
@@ -61,6 +63,8 @@ import { VendorSignInComponent } from './components/auth/vendor-sign-in/vendor-s
     InventoryComponent,
     AddProductItemComponent,
     VendorSignInComponent,
+    CartComponent,
+    ProductlikesComponent,
   ],
   imports: [
     BrowserModule,

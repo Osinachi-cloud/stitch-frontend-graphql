@@ -45,6 +45,16 @@ export const navbarData: INavbarData[] = [
         label: 'Orders',
     },
     {
+        routeLink: 'likes',
+        icon: 'assets/icons/Heart.png',
+        label: 'Liked Items',
+    },
+    {
+        routeLink: 'cart',
+        icon: 'assets/icons/Stroke 1.png',
+        label: 'Cart',
+    },
+    {
         routeLink: 'inventory',
         icon: 'assets/icons/Folder.png',
         label: 'Inventory'

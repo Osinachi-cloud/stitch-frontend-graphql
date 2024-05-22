@@ -12,6 +12,8 @@ import { ContactVerificationComponent } from './components/auth/contact-verifica
 import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
 import { AddProductItemComponent } from './components/dashboard/add-product-item/add-product-item.component';
 import { VendorSignInComponent } from './components/auth/vendor-sign-in/vendor-sign-in.component';
+import { ProductlikesComponent } from './components/dashboard/productlikes/productlikes.component';
+import { CartComponent } from './components/dashboard/cart/cart.component';
 
 const routes: Routes = [
   { path: 'email-verification', component: ContactVerificationComponent },
@@ -24,6 +26,8 @@ const routes: Routes = [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
     { path: 'overview', component: OverviewComponent },
     { path: 'orders', component: OrdersComponent },
+    { path: 'likes', component: ProductlikesComponent },
+    { path: 'cart', component: CartComponent },
     { path: 'inventory', component: InventoryComponent },
     { path: 'add-product', component: AddProductItemComponent },
     { path: 'api-documentation', component: DocumentationComponent}
