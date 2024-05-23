@@ -3,7 +3,8 @@
         <div *ngFor="let productLike of productLikes" class="flex justify-between shadow-md p-[2rem] rounded-sm">
             <div class="flex gap-[2rem]">
                 <div>
-                    <img src="/assets/images/Rectangle 60.png" alt="">
+                    <!-- <img src="/assets/images/Rectangle 60.png" alt=""> -->
+                    <img [src]="'data:image/png;base64,' + productLike.productImage" alt="product image">
                 </div>
                 <div class="flex justify-between flex-col">
                     <p>{{productLike.name}}</p>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { PageRequest } from 'src/app/types/Type';
 
@@ -11,18 +12,21 @@ export class CartComponent {
 
   cart: any[] = [];
 
+  sumCartAmount: number  = 0;
+
   pageRequest: PageRequest = {
     page: 0,
     size: 30
   }
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private router: Router) {
   }
 
   count: number = 1;
 
   ngOnInit() {
     this.getAllCartItems();
+    this.sumAmountByQuantityByCustomerId();
   }
 
   getAllCartItems() {
@@ -79,6 +83,36 @@ export class CartComponent {
       },
       error: (err: any) => {
         console.error(err);
+      }
+    })
+  }
+
+  sumAmountByQuantityByCustomerId(){
+    console.log("got to the cart box");
+    this.cartService.sumAmountByQuantityByCustomerId().subscribe({
+      next : (res: any) => {
+        console.log(res)
+        this.sumCartAmount = res.data.sumAmountByQuantityByCustomerId;
+      }, 
+      error : (err: any) => {
+        console.log(err);
+      }
+
+    })
+  }
+
+  backToShopping(){
+    this.router.navigate(["/dashboard"])
+  }
+
+  clearCart(){
+    this.cartService.clearCart().subscribe({
+      next : (res: any) => {
+        window.location.reload();
+        this.getAllCartItems();
+      },
+      error : (err: any) => {
+
       }
     })
   }

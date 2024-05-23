@@ -35,6 +35,8 @@ export class CartService extends ApolloService{
             productId
             amountByQuantity
             quantity
+            productImage
+
           }
         }
       }
@@ -97,6 +99,7 @@ export class CartService extends ApolloService{
     });
   }
 
+
   addProductCart(productId: string): Observable<FetchResult<any>> {
     const mutation = gql`
       mutation addProductCart($productId: String!) {
@@ -117,6 +120,48 @@ export class CartService extends ApolloService{
       },
     });
   }
+
+  sumAmountByQuantityByCustomerId(): Observable<FetchResult<any>> {
+    const query = gql`
+      query sumAmountByQuantityByCustomerId{
+        sumAmountByQuantityByCustomerId
+      }
+    `;
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+
+    return this.apollo.query<any>({
+      query: query,
+      variables: { },
+      context: {
+        headers,
+      },
+    });
+  }
+
+  
+  clearCart(): Observable<FetchResult<any>> {
+    const mutation = gql`
+      mutation clearCart{
+        clearCart{
+            code
+            message
+        }
+      }
+    `;
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+
+    return this.apollo.mutate<any>({
+      mutation: mutation,
+      variables: { },
+      context: {
+        headers,
+      },
+    });
+  }
+
+  
 
   
   

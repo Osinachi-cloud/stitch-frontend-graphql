@@ -35,6 +35,7 @@ export class ProductlikesService extends ApolloService{
             productId
             publishStatus
             outOfStock
+            productImage
           }
         }
       }
