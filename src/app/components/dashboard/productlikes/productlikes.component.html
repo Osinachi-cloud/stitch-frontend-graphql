@@ -1,7 +1,5 @@
-<div class="w-full h-full bg-[#fff]">
-
+<div class="w-full h-fit bg-[#fff]">
     <div class="grid gap-[2rem] m-auto w-[80%] p-[2rem]">
-
         <div *ngFor="let productLike of productLikes" class="flex justify-between shadow-md p-[2rem] rounded-sm">
             <div class="flex gap-[2rem]">
                 <div>
@@ -9,11 +7,8 @@
                 </div>
                 <div class="flex justify-between flex-col">
                     <p>{{productLike.name}}</p>
-
                     <p class="font-extrabold text-[16px]">N{{productLike.amount}}</p>
-
                 </div>
-
             </div>
             <div class="grid gap-[1rem]">
                 <div *ngIf="!productLike.outOfStock" class="bg-[#666666] p-[1rem] h-[40px] text-[#fff] cursor-pointer">BUY NOW</div>
@@ -23,7 +18,7 @@
                         <img src="/assets/icons/Cart.png" alt="">
                     </div>
                     <div class="cursor-pointer">
-                        <img src="/assets/icons/Delete.png" alt="">
+                        <img (click)="removeLikes(productLike.productId)" src="/assets/icons/Delete.png" alt="">
                     </div>
                 </div>
 
@@ -33,48 +28,19 @@
 
         <div class="flex justify-end">
 
-            <div class="mt-[4rem] bg-[#fff] flex  py-[1rem] justify-end">
-                <div class="flex items-center gap-[2rem]">
-                    <div class="pl-[1rem] py-[0.5rem] flex items-center bg-[#fff] rounded-[12px]">
-                        <span class="whitespace-nowrap">Rows per page: </span>
-                        <select                                 
-                            class=" outline-none text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                            <option value=10 selected>10</option>
-                            <option value=20>20</option>
-                            <option value=30>30</option>
-                        </select>
-                    </div>
-                    <div>
-                        2 - 3 of 56
-                    </div>
-                    <div class="flex justify-end gap-[2rem] md:mr-[0rem]">
-                        <div class="p-[1rem] py-[0.5rem] rounded-[4px]">
-                            <i  class="fa fa-arrow-left" aria-hidden="true"></i>
-                        </div>
-                        <div class="p-[1rem] py-[0.5rem] rounded-[4px]">
-                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-
-            <!-- <div class="mt-[4rem] bg-[#fff] flex  p-[1rem] justify-end">
+            <div class="mt-[4rem] bg-[#fff] flex  p-[1rem] justify-end">
                 <div class="flex items-center gap-[2rem]">
                     <div class="p-[1rem] py-[0.5rem] flex items-center bg-[#fff] rounded-[12px]">
                         <span class="whitespace-nowrap">Rows per page: </span>
-                        <select (change)="getSize(productOrderRequest.size)"
-                                [(ngModel)]="productOrderRequest.size"
+                        <select (change)="getSize(pageRequest.size)"
+                                [(ngModel)]="pageRequest.size"
                             class=" outline-none text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                            <option value=10 selected>10</option>
-                            <option value=20>20</option>
-                            <option value=30>30</option>
+                            <option value=5 selected>5</option>
+                            <option value=10>10</option>
                         </select>
                     </div>
                     <div>
-                        {{productOrderRequest.page + 1}} - {{numOfPages}} of {{orderTotal}}
+                        {{pageRequest.page + 1}} - {{numOfPage()}} of {{totalNumberOfLikes}}
                     </div>
                     <div class="flex justify-end gap-[2rem] md:mr-[2rem]">
                         <div class="p-[1rem] py-[0.5rem] rounded-[4px]">
@@ -85,17 +51,7 @@
                         </div>
                     </div>
                 </div>
-
-            </div> -->
-
-
-
+            </div>
         </div>
-
-
-
     </div>
-
-
-
 </div>

@@ -1,1 +1,73 @@
-<p>cart works!</p>
+<div class=" h-fit md:p-[6rem] p-[2rem]">
+    <div class="grid grid-cols-3">
+        <div class="col-span-2 relative overflow-x-auto sm:rounded-lg border-t">
+
+            <table class="w-full text-[14px] leading-[150%]  text-[#4B5563] text-left">
+                <thead class="text-[14px] italic font-[100]  text-[#374151] uppercase">
+                    <tr class="border-b">
+                        <th scope="col" class="p-[2rem]">
+                            PRODUCT
+                        </th>
+                        <th scope="col" class="p-[2rem]">
+                            PRICE
+                        </th>
+                        <th scope="col" class="p-[2rem]">
+                            QUANTITY
+                        </th>
+                        <th scope="col" class="p-[2rem]">
+                            TOTAL
+                        </th>
+                        <th scope="col" class="p-[2rem]">
+                            ACTION
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of cart" class="p-[2rem] hover:bg-[#fff]">
+                        <td scope="row" class="p-[2rem] px-[2rem] font-medium text-gray-900 whitespace-nowrap">
+                            <div class="flex gap-[2rem]">
+                                <div>
+                                    <img src="/assets/images/Rectangle 60.png" alt="">
+                                </div>
+                                <div class="flex justify-center items-center">
+                                    <p>{{product.name}}</p>
+                                </div>
+                            </div>
+
+                        </td>
+                        <td class="px-[2rem]">
+                            <div class="flex items-center gap-[1rem]">
+                                <div>
+                                     {{product.sellingPrice}}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-[2rem]">
+                            <div class="border border-[#cfcece] bg-[#fff] flex justify-around gap-[1rem]">
+                                <div (click)="removeCount(product.productId)" class="text-[16px] p-[0.5rem] cursor-pointer flex justify-center items-center"><img src="/assets/icons/remove.png" alt=""></div>
+                                <div class="text-[16px] p-[0.5rem] text-[grey]">{{product.quantity}}</div>
+                                <div (click)="addCount(product.productId)" class="text-[16px] p-[0.5rem] cursor-pointer flex justify-center items-center"><img src="/assets/icons/add.png" alt=""></div>
+                            </div>
+                        </td>
+                        <td class="px-[2rem]">
+                            <!-- {{product.amount * count}} -->
+                            {{product.amountByQuantity}}
+                        </td>
+
+                        <td class="px-[1rem]">
+                            <div class="flex justify-around gap-[1rem]">
+                                <div  class="text-[16px] p-[0.5rem] cursor-pointer"><img src="/assets/icons/Like.png" alt=""></div>
+                                <div (click)="removeProduct(product.productId)" class="text-[16px] p-[0.5rem] cursor-pointer"><img src="/assets/icons/Close.png" alt=""></div>
+                            </div>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-span-1">
+
+        </div>
+    </div>
+</div>

@@ -83,10 +83,11 @@ export interface ContactVerificationResponse {
     size: number;
   }
 
-  export interface ProductLikeRequest {
+  export interface ProductRequest {
     page: number;
     size: number;
   }
+  
 
   export interface ProductOrderStatistics {
     allOrdersCount: number

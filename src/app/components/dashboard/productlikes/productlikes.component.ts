@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ProductlikesService } from 'src/app/services/productlikes.service';
-import { PageRequest, Products } from 'src/app/types/Type';
+import { PageRequest, ProductRequest, Products } from 'src/app/types/Type';
 
 @Component({
   selector: 'app-productlikes',
@@ -9,14 +9,18 @@ import { PageRequest, Products } from 'src/app/types/Type';
 })
 export class ProductlikesComponent {
 
-  constructor(private productLikeServices: ProductlikesService){
+  constructor(private productLikeServices: ProductlikesService,
+    private cdr: ChangeDetectorRef
+  ){
 
   }
 
   pageRequest : PageRequest = {
     page:0,
-    size:10,
+    size:5
   }
+
+  totalNumberOfLikes: number = 0;
 
   productLikes : any [] = [];
 
@@ -24,20 +28,66 @@ export class ProductlikesComponent {
   ngOnInit(){
     console.log("Hello world 45");
 
-  this.getLikedProducts(this.pageRequest);
+  this.getLikedProducts();
 
   }
-  getLikedProducts(pageRequest: PageRequest){
-    this.productLikeServices.getAllProductLikes(pageRequest).subscribe({
+  getLikedProducts(){
+    console.log("called like api");
+    this.productLikeServices.getAllProductLikes(this.pageRequest).subscribe({
       next: (res: any) => {
+      console.log("called like api 2");
+
         console.log(res.data.getAllProductLikes.data);
         this.productLikes = res.data.getAllProductLikes.data;
+        this.totalNumberOfLikes = res.data.getAllProductLikes.total;
+        this.cdr.detectChanges();
       }, 
       error: (err: any) => {
         console.error(err);
       }
     })
 
+  }
+  getSize(val : number){
+
+  }
+
+  previousPage(){
+    if(this.pageRequest.page >= 1){
+      this.pageRequest.page = this.pageRequest.page - 1;
+      this.getLikedProducts();
+    } 
+  }
+
+  numOfPage(): number{
+      return Math.ceil(this.totalNumberOfLikes / this.pageRequest.size);
+  }
+
+  nextPage(){
+    if(this.pageRequest.page <  this.numOfPage() - 1 ){
+      this.pageRequest.page = this.pageRequest.page + 1;
+      this.getLikedProducts();
+    }
+  }
+
+  removeLikes(productId: string){
+    this.productLikeServices.deleteProductLike(productId).subscribe({
+      next: (res: any) => {
+          console.log(res);
+          // this.getLikedProducts(this.pageRequest);
+          this.refreshPage();
+      },
+      error: (error: any) => {
+        console.log(error);
+      }
+    })
+
+  }
+
+  refreshPage() {
+    this.getLikedProducts(); 
+    window.location.reload();
+    this.cdr.detectChanges(); 
   }
 
 }
