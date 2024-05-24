@@ -9,6 +9,11 @@ import { OverviewComponent } from './components/dashboard/overview/overview.comp
 import { OrdersComponent } from './components/dashboard/orders/orders.component';
 import { DocumentationComponent } from './components/dashboard/documentation/documentation.component';
 import { ContactVerificationComponent } from './components/auth/contact-verification/contact-verification.component';
+import { LandingPageComponent } from './components/dashboard/landing-page/landing-page.component';
+import { NavbarComponent } from './components/dashboard/navbar/navbar.component';
+import { ProductListComponent } from './components/dashboard/product-list/product-list.component';
+import { FooterComponent } from './shared/footer/footer.component';
+
 import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
 import { AddProductItemComponent } from './components/dashboard/add-product-item/add-product-item.component';
 import { VendorSignInComponent } from './components/auth/vendor-sign-in/vendor-sign-in.component';
@@ -17,7 +22,12 @@ import { CartComponent } from './components/dashboard/cart/cart.component';
 import { AnalyticsComponent } from './components/dashboard/analytics/analytics.component';
 import { SingleproductComponent } from './components/dashboard/singleproduct/singleproduct.component';
 
+
 const routes: Routes = [
+  { path: '', component: LandingPageComponent }, 
+  { path: 'navbar', component: NavbarComponent },
+  { path: 'footer', component: FooterComponent },
+  { path: 'product-list', component: ProductListComponent },
   { path: 'email-verification', component: ContactVerificationComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: SinginComponent },
@@ -29,6 +39,10 @@ const routes: Routes = [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
     { path: 'overview', component: OverviewComponent },
     { path: 'orders', component: OrdersComponent },
+
+    { path: 'api-documentation', component: DocumentationComponent}
+  ]}
+
     { path: 'likes', component: ProductlikesComponent },
     { path: 'cart', component: CartComponent },
     { path: 'inventory', component: InventoryComponent },
@@ -40,6 +54,7 @@ const routes: Routes = [
   ]
 }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
