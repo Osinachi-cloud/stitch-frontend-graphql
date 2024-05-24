@@ -12,6 +12,9 @@ import { ApolloService } from './apollo.service';
   providedIn: 'root'
 })
 export class OrderService extends ApolloService{
+  getProducts() {
+    throw new Error('Method not implemented.');
+  }
 
   getCustomerOrders(productOrder: ProductOrder): Observable<FetchResult<any>> {
     const query = gql`

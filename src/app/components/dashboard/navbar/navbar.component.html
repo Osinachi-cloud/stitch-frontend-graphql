@@ -1,0 +1,26 @@
+<nav class="flex items-center justify-around">
+    <!-- Logo -->
+    <div class="flex items-center">
+        <img src="assets/images/Stitch.png" alt="Stitch Logo" class="h-15 w-15 mr-2">
+    </div>
+    
+    <!-- Navigation Links -->
+    <div class="flex items-center space-x-7 ml-4">
+        <a routerLink="/" class="text-gray-700 hover:text-black">Home</a>
+        <a routerLink="/about" class="text-gray-700 hover:text-black">About</a>
+        <a routerLink="/categories" class="text-gray-700 hover:text-black">Categories</a>
+        <a routerLink="/contact" class="text-gray-700 hover:text-black">Contact Us</a>
+        
+        <!-- Search Input -->
+        <div class="flex items-center">
+            <input type="text" class="w-[400px] h-[30px] bg-[#E3E5ED] border border-black rounded-l focus:outline-none focus:border-blue-500">
+            <button class="bg-black text-white w-[70px] h-[30px]  px-4 py-1 rounded">Search</button>
+        </div>
+        <a routerLink="/login" class="text-black">Log In</a>
+        <!-- User Profile and Cart Icons -->
+        <div class="flex items-center space-x-2">
+            <img src="assets/icons/person.png" alt="User Profile" class="h-8 w-8">
+            <img src="assets/icons/cart.png" alt="Shopping Cart" class="h-8 w-8">
+        </div>
+    </div>
+</nav>
