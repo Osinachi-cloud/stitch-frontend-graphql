@@ -55,6 +55,11 @@ export const navbarData: INavbarData[] = [
         label: 'Cart',
     },
     {
+        routeLink: 'analytics',
+        icon: 'assets/icons/Activity.png',
+        label: 'Analytics'
+    },
+    {
         routeLink: 'review',
         icon: 'assets/icons/Chat.png',
         label: 'Reviews',
@@ -79,12 +84,7 @@ export const navbarData: INavbarData[] = [
     //     icon: 'fal fa-camera',
     //     label: 'Refund Transactions'
     // },
-    {
-        routeLink: 'profile',
-        icon: 'assets/icons/Activity.png',
-        label: 'Analytics'
-    }
-    ,
+
     {
         routeLink: 'profile',
         icon: 'assets/icons/Setting.png',
@@ -123,14 +123,14 @@ export const navbarDataAdmin: INavbarData[] = [
         label: 'Account Overview',
     },
     {
-        routeLink: 'orders',
-        icon: 'assets/icons/Bag.png',
-        label: 'Orders',
-    },
-    {
         routeLink: 'inventory',
         icon: 'assets/icons/Folder.png',
         label: 'Inventory'
+    },
+    {
+        routeLink: 'orders',
+        icon: 'assets/icons/Bag.png',
+        label: 'Orders',
     },
 
     {
@@ -139,7 +139,7 @@ export const navbarDataAdmin: INavbarData[] = [
         label: 'Inbox'
     },
     {
-        routeLink: 'profile',
+        routeLink: 'analytics',
         icon: 'assets/icons/Activity.png',
         label: 'Analytics'
     }

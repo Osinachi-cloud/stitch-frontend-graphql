@@ -40,6 +40,7 @@ import { AddProductItemComponent } from './components/dashboard/add-product-item
 import { VendorSignInComponent } from './components/auth/vendor-sign-in/vendor-sign-in.component';
 import { CartComponent } from './components/dashboard/cart/cart.component';
 import { ProductlikesComponent } from './components/dashboard/productlikes/productlikes.component';
+import { AnalyticsComponent } from './components/dashboard/analytics/analytics.component';
 
 
 
@@ -65,6 +66,7 @@ import { ProductlikesComponent } from './components/dashboard/productlikes/produ
     VendorSignInComponent,
     CartComponent,
     ProductlikesComponent,
+    AnalyticsComponent,
   ],
   imports: [
     BrowserModule,

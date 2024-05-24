@@ -14,6 +14,7 @@ import { AddProductItemComponent } from './components/dashboard/add-product-item
 import { VendorSignInComponent } from './components/auth/vendor-sign-in/vendor-sign-in.component';
 import { ProductlikesComponent } from './components/dashboard/productlikes/productlikes.component';
 import { CartComponent } from './components/dashboard/cart/cart.component';
+import { AnalyticsComponent } from './components/dashboard/analytics/analytics.component';
 
 const routes: Routes = [
   { path: 'email-verification', component: ContactVerificationComponent },
@@ -30,7 +31,10 @@ const routes: Routes = [
     { path: 'cart', component: CartComponent },
     { path: 'inventory', component: InventoryComponent },
     { path: 'add-product', component: AddProductItemComponent },
-    { path: 'api-documentation', component: DocumentationComponent}
+    { path: 'api-documentation', component: DocumentationComponent},
+    { path: 'analytics', component: AnalyticsComponent}
+
+    
   ]
 }
 ];
