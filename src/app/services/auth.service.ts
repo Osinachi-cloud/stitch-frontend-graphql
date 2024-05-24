@@ -50,8 +50,35 @@ export class AuthService extends ApolloService{
   login(loginRequest: LoginRequest): Observable<FetchResult<LoginResponse>> {
     const mutation = gql`
       mutation {
-        login(loginRequest: { emailAddress: "${loginRequest.emailAddress}", password: "${loginRequest.password}" }) {
+        customerLogin(loginRequest: { emailAddress: "${loginRequest.emailAddress}", password: "${loginRequest.password}" }) {
           customerId
+          firstName
+          lastName
+          emailAddress
+          phoneNumber
+          hasPin
+          saveCard
+          enablePush
+          tier
+          country
+          accessToken
+          refreshToken
+          profileImage
+        }
+      }
+    `;
+
+    return this.apollo.mutate<LoginResponse>({
+      mutation,
+    });
+  }
+
+
+  vendorLogin(loginRequest: LoginRequest): Observable<FetchResult<LoginResponse>> {
+    const mutation = gql`
+      mutation {
+        vendorLogin(loginRequest: { emailAddress: "${loginRequest.emailAddress}", password: "${loginRequest.password}" }) {
+          vendorId
           firstName
           lastName
           emailAddress

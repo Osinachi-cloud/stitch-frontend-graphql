@@ -2,7 +2,7 @@ import { animate, keyframes, style, transition, trigger } from '@angular/animati
 import { Component, Output, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { fadeInOut, INavbarData } from './helper';
-import { navbarData } from './nav-data';
+import { navbarData, navbarDataAdmin } from './nav-data';
 import { UtilService } from 'src/app/services/util.service';
 
 interface SideNavToggle {
@@ -33,7 +33,17 @@ export class SidenavComponent implements OnInit {
   @Output() onToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
   collapsed = true;
   screenWidth = 0;
-  navData = navbarData;
+  
+  navData : any [] = [];
+
+  routeUserType(){
+    if(UtilService.getUserDetails().customerId){
+      this.navData = navbarData;
+    }else if(UtilService.getUserDetails().vendorId){
+      this.navData = navbarDataAdmin;
+    }
+  }
+
   multiple: boolean = false;
 
   @HostListener('window:resize', ['$event'])
@@ -52,6 +62,7 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit(): void {
       this.screenWidth = window.innerWidth;
+      this.routeUserType();
   }
 
   toggleCollapse(): void {

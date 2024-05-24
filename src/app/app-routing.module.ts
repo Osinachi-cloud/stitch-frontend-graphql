@@ -14,6 +14,15 @@ import { NavbarComponent } from './components/dashboard/navbar/navbar.component'
 import { ProductListComponent } from './components/dashboard/product-list/product-list.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
+import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
+import { AddProductItemComponent } from './components/dashboard/add-product-item/add-product-item.component';
+import { VendorSignInComponent } from './components/auth/vendor-sign-in/vendor-sign-in.component';
+import { ProductlikesComponent } from './components/dashboard/productlikes/productlikes.component';
+import { CartComponent } from './components/dashboard/cart/cart.component';
+import { AnalyticsComponent } from './components/dashboard/analytics/analytics.component';
+import { SingleproductComponent } from './components/dashboard/singleproduct/singleproduct.component';
+
+
 const routes: Routes = [
   { path: '', component: LandingPageComponent }, 
   { path: 'navbar', component: NavbarComponent },
@@ -22,14 +31,28 @@ const routes: Routes = [
   { path: 'email-verification', component: ContactVerificationComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: SinginComponent },
+  { path: 'vendor-login', component: VendorSignInComponent },
   { path: 'password-reset', component: PasswordresetComponent },
   { path: 'submit-password', component: PasswordRequestFormComponent},
+  { path: 'single-product', component: SingleproductComponent},
   { path: 'dashboard', component: DashboardComponent, children: [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
     { path: 'overview', component: OverviewComponent },
     { path: 'orders', component: OrdersComponent },
+
     { path: 'api-documentation', component: DocumentationComponent}
   ]}
+
+    { path: 'likes', component: ProductlikesComponent },
+    { path: 'cart', component: CartComponent },
+    { path: 'inventory', component: InventoryComponent },
+    { path: 'add-product', component: AddProductItemComponent },
+    { path: 'api-documentation', component: DocumentationComponent},
+    { path: 'analytics', component: AnalyticsComponent},
+
+    
+  ]
+}
 ];
 
 

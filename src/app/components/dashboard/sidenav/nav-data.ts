@@ -45,9 +45,19 @@ export const navbarData: INavbarData[] = [
         label: 'Orders',
     },
     {
-        routeLink: 'analytic',
-        icon: 'assets/icons/Folder.png',
-        label: 'Inventory'
+        routeLink: 'likes',
+        icon: 'assets/icons/Heart.png',
+        label: 'Liked Items',
+    },
+    {
+        routeLink: 'cart',
+        icon: 'assets/icons/Stroke 1.png',
+        label: 'Cart',
+    },
+    {
+        routeLink: 'analytics',
+        icon: 'assets/icons/Activity.png',
+        label: 'Analytics'
     },
     {
         routeLink: 'review',
@@ -74,12 +84,7 @@ export const navbarData: INavbarData[] = [
     //     icon: 'fal fa-camera',
     //     label: 'Refund Transactions'
     // },
-    {
-        routeLink: 'profile',
-        icon: 'assets/icons/Activity.png',
-        label: 'Analytics'
-    }
-    ,
+
     {
         routeLink: 'profile',
         icon: 'assets/icons/Setting.png',
@@ -102,4 +107,47 @@ export const navbarData: INavbarData[] = [
     //         }
     //     ]
     // },
+];
+
+
+
+
+
+
+
+export const navbarDataAdmin: INavbarData[] = [
+
+    {
+        routeLink: 'overview',
+        icon: 'assets/icons/user.png',
+        label: 'Account Overview',
+    },
+    {
+        routeLink: 'inventory',
+        icon: 'assets/icons/Folder.png',
+        label: 'Inventory'
+    },
+    {
+        routeLink: 'orders',
+        icon: 'assets/icons/Bag.png',
+        label: 'Orders',
+    },
+
+    {
+        routeLink: 'refund-transaction',
+        icon: 'assets/icons/Message.png',
+        label: 'Inbox'
+    },
+    {
+        routeLink: 'analytics',
+        icon: 'assets/icons/Activity.png',
+        label: 'Analytics'
+    }
+    ,
+    {
+        routeLink: 'profile',
+        icon: 'assets/icons/Setting.png',
+        label: 'Account Settings'
+    }
+
 ];

@@ -21,10 +21,10 @@
     "esModuleInterop": true,
     "types": ["node", "d3-shape", "d3-scale", "d3-selection"],
     "typeRoots": ["node_modules/@types"],
-
+    
     "useDefineForClassFields": false,
     "lib": [
-      "ES2022",
+      "ES2018",
       "dom"
     ]
   },

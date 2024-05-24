@@ -111,8 +111,7 @@ export class OverviewComponent {
     this.clientService.getCustomerDetails(this.emailAddress).subscribe({
       next: (response: any) => {
         this.userDetails = response.data.customerDetails;
-        this.imageSource = `data:image/png;base64, ${this.userDetails.profileImage}`
-
+        this.imageSource = `data:image/png;base64, ${this.userDetails.profileImage}`;
       },
       error: (error: any) => {
         console.error("entered error", error);
@@ -125,9 +124,9 @@ export class OverviewComponent {
     if (this.customerUpdateRequestForm.valid) {
       this.clientService.updateCustomer(this.customerUpdateRequestForm.value, this.emailAddress).subscribe({
         next: (response: any) => {
+          console.log(response.data.updateCustomer);
+          UtilService.setUserDetails(response?.data?.updateCustomer);
           window.location.reload();
-
-          console.log({ response });
         },
         error: (error: any) => {
           console.error("entered error", error);

@@ -1,0 +1,22 @@
+<div class="w-full"
+[ngClass]="{'has-error': !formData['materialUsed'].valid && formData['materialUsed'].touched}">
+<!-- <label class="" for="fname">Phone Number*</label> -->
+<div class="border-none "
+    *ngIf="formData['materialUsed'].touched && formData['materialUsed'].errors">
+    <div class="shadow-none border-none  text-[red]"
+        *ngIf="formData['materialUsed'].errors['required']">
+        materialUsed is required
+    </div>
+    <div class="shadow-none text-[red]"
+        *materialUsed="formData['materialUsed'].errors['pattern']">
+        Name is not valid
+    </div>
+</div>
+<div
+    class="rounded-[8px] bg-[#f1f1f1] px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+    <input
+        class=" border-none shadow-none bg-transparent outline-none w-[40rem] p-[0.5rem]"
+        type="text" placeholder="materialUsed" name="materialUsed"
+        formControlName="materialUsed">
+</div>
+</div>

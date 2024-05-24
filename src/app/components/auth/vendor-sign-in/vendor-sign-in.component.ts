@@ -2,23 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { Component, VERSION } from '@angular/core';
-import { NgxOtpInputConfig } from 'ngx-otp-input';
-import { AuthService } from 'src/app/services/auth.service';
 import { NgToastService } from 'ng-angular-popup';
+import { NgxOtpInputConfig } from 'ngx-otp-input';
+import { MessageService } from 'primeng/api';
+import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
 import { UtilService } from 'src/app/services/util.service';
-// import {Component} from '@angular/core';
-import { MessageService } from 'primeng/api';
-
 
 @Component({
-  selector: 'app-singin',
-  templateUrl: './singin.component.html',
-  styleUrls: ['./singin.component.scss'],
-
+  selector: 'app-vendor-sign-in',
+  templateUrl: './vendor-sign-in.component.html',
+  styleUrls: ['./vendor-sign-in.component.scss']
 })
-export class SinginComponent implements OnInit {
+export class VendorSignInComponent implements OnInit {
 
   showModal = false;
   authForm: FormGroup;
@@ -69,7 +65,7 @@ export class SinginComponent implements OnInit {
     this.authForm.setValue({
       email: '',
       password: '',
-      optionChecked: '',
+      // optionChecked: '',
     });
   }
 
@@ -82,11 +78,11 @@ export class SinginComponent implements OnInit {
 
   onSubmit() {
     if (this.authForm.valid) {
-      this.authService.login(this.authForm.value).subscribe({
+      this.authService.vendorLogin(this.authForm.value).subscribe({
         next: (response: any) => {
           this.showSuccessResponse("Login ", "Login Successful", 3000);
-          TokenService.setToken(response?.data?.customerLogin?.accessToken);
-          UtilService.setUserDetails(response?.data?.customerLogin);
+          TokenService.setToken(response?.data?.vendorLogin?.accessToken);
+          UtilService.setUserDetails(response?.data?.vendorLogin);
 
           this.router.navigate(["dashboard"]);
 
@@ -128,6 +124,4 @@ export class SinginComponent implements OnInit {
   toggleModal() {
     this.showModal = !this.showModal;
   }
-
-
 }

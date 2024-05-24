@@ -69,6 +69,26 @@ export interface ContactVerificationResponse {
     size: number;
   }
 
+  export interface Products {
+    vendorId: string | null;
+    page: number;
+    size: number;
+    category: string | null;
+    productId: string | null;
+    status: string | null
+  }
+
+  export interface PageRequest {
+    page: number;
+    size: number;
+  }
+
+  export interface ProductRequest {
+    page: number;
+    size: number;
+  }
+  
+
   export interface ProductOrderStatistics {
     allOrdersCount: number
     processingOrdersCount:number
@@ -76,5 +96,30 @@ export interface ContactVerificationResponse {
     failedOrdersCount:number
     completedOrdersCount:number
   }
+
+  export interface ProductRequest {
+    vendorId: string | null;
+    page: number;
+    size: number;
+    category: string | null;
+    productId: string | null;
+
+    name: String
+    code: String
+    productImage: String
+    amount: number
+    quantity: number
+    // fixedPrice: Boolean
+    // country: String
+    discount: number
+    publishStatus: String
+    shortDescription:String
+    longDescription:String
+    materialUsed:String
+    readyIn:String
+    sellingPrice:number
+  }
+
+  
 
 
