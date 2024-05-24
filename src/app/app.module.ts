@@ -35,6 +35,12 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ToastrModule } from 'ngx-toastr';
 import { ContactVerificationComponent } from './components/auth/contact-verification/contact-verification.component';
+import { LandingPageComponent } from './components/dashboard/landing-page/landing-page.component';
+import { NavbarComponent } from './components/dashboard/navbar/navbar.component';
+import { ProductListComponent } from './components/dashboard/product-list/product-list.component';
+import { ButtonComponent } from './shared/button/button.component';
+import { FooterComponent } from './shared/footer/footer.component';
+
 
 
 
@@ -55,6 +61,12 @@ import { ContactVerificationComponent } from './components/auth/contact-verifica
     SublevelMenuComponent,
     DocumentationComponent,
     ContactVerificationComponent,
+    LandingPageComponent,
+    NavbarComponent,
+    ProductListComponent,
+    ButtonComponent,
+    FooterComponent
+   
   ],
   imports: [
     BrowserModule,

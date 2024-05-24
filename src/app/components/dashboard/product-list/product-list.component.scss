@@ -1,0 +1,29 @@
+.product-list{
+    padding: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
+    // transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-list img:hover{
+    transform: scale(1.05);
+    transition: 0.56s ease;
+}
+
+.text{
+    font-size: 1px;
+}
+
+.animated {
+    transition: all 0.4s ease;
+    font-family:"Poppins",sans-serif;
+}
+
+.animated:hover{
+    padding-left: 8px;
+    color: #ca1313;
+}
+
+  .mb-4 {
+    margin-bottom: 0rem; /* Adjust the value as needed */
+  }

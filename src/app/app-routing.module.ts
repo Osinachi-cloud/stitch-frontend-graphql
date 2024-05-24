@@ -9,8 +9,16 @@ import { OverviewComponent } from './components/dashboard/overview/overview.comp
 import { OrdersComponent } from './components/dashboard/orders/orders.component';
 import { DocumentationComponent } from './components/dashboard/documentation/documentation.component';
 import { ContactVerificationComponent } from './components/auth/contact-verification/contact-verification.component';
+import { LandingPageComponent } from './components/dashboard/landing-page/landing-page.component';
+import { NavbarComponent } from './components/dashboard/navbar/navbar.component';
+import { ProductListComponent } from './components/dashboard/product-list/product-list.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 const routes: Routes = [
+  { path: '', component: LandingPageComponent }, 
+  { path: 'navbar', component: NavbarComponent },
+  { path: 'footer', component: FooterComponent },
+  { path: 'product-list', component: ProductListComponent },
   { path: 'email-verification', component: ContactVerificationComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: SinginComponent },
@@ -21,10 +29,9 @@ const routes: Routes = [
     { path: 'overview', component: OverviewComponent },
     { path: 'orders', component: OrdersComponent },
     { path: 'api-documentation', component: DocumentationComponent}
-
-  ]
-}
+  ]}
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
