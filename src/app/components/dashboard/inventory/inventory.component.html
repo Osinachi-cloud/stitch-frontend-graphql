@@ -189,20 +189,20 @@
                     <div class=" flex items-center ">
                         <div class="bg-[#d3fdd3] cursor-pointer rounded-[8px] border p-[1rem] py-[0.5rem]"
                             (click)="togglePublishProduct(product.productId)"
-                            *ngIf="product.publishStatus === 'UNPUBLISH' " value="read">Publish</div>
+                            *ngIf="product.publishStatus === 'UNPUBLISHED' " value="read">Publish</div>
                         <div class="bg-[#fecda8] cursor-pointer rounded-[8px] border p-[1rem] py-[0.5rem]"
                             (click)="togglePublishProduct(product.productId)"
-                            *ngIf="product.publishStatus === 'PUBLISH' " value="write">Unpublish</div>
+                            *ngIf="product.publishStatus === 'PUBLISHED' " value="write">Unpublish</div>
                     </div>
 
                 </td>
                 <td>
                     <div class="h-[30%] m-auto p-[1rem]">
-                        <div *ngIf="product.publishStatus === 'UNPUBLISH' "
+                        <div *ngIf="product.publishStatus === 'UNPUBLISHED' "
                             class="bg-[#FFF2E2] p-[1rem] py-[0.5rem] gap-[1rem] text-center rounded-[12px]">
                             <span class="text-[#000]">{{product.publishStatus}}</span>
                         </div>
-                        <div *ngIf="product.publishStatus === 'PUBLISH' "
+                        <div *ngIf="product.publishStatus === 'PUBLISHED' "
                             class="bg-[#e3e2e2] p-[1rem] py-[0.5rem] text-center  gap-[1rem] rounded-[12px]">
                             <span class="text-[#000]">{{product.publishStatus}}</span>
                         </div>
