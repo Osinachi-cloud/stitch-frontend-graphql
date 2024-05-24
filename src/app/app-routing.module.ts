@@ -15,6 +15,7 @@ import { VendorSignInComponent } from './components/auth/vendor-sign-in/vendor-s
 import { ProductlikesComponent } from './components/dashboard/productlikes/productlikes.component';
 import { CartComponent } from './components/dashboard/cart/cart.component';
 import { AnalyticsComponent } from './components/dashboard/analytics/analytics.component';
+import { SingleproductComponent } from './components/dashboard/singleproduct/singleproduct.component';
 
 const routes: Routes = [
   { path: 'email-verification', component: ContactVerificationComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'vendor-login', component: VendorSignInComponent },
   { path: 'password-reset', component: PasswordresetComponent },
   { path: 'submit-password', component: PasswordRequestFormComponent},
+  { path: 'single-product', component: SingleproductComponent},
   { path: 'dashboard', component: DashboardComponent, children: [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
     { path: 'overview', component: OverviewComponent },
@@ -32,7 +34,7 @@ const routes: Routes = [
     { path: 'inventory', component: InventoryComponent },
     { path: 'add-product', component: AddProductItemComponent },
     { path: 'api-documentation', component: DocumentationComponent},
-    { path: 'analytics', component: AnalyticsComponent}
+    { path: 'analytics', component: AnalyticsComponent},
 
     
   ]

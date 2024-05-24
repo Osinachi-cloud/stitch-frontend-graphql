@@ -41,6 +41,7 @@ import { VendorSignInComponent } from './components/auth/vendor-sign-in/vendor-s
 import { CartComponent } from './components/dashboard/cart/cart.component';
 import { ProductlikesComponent } from './components/dashboard/productlikes/productlikes.component';
 import { AnalyticsComponent } from './components/dashboard/analytics/analytics.component';
+import { SingleproductComponent } from './components/dashboard/singleproduct/singleproduct.component';
 
 
 
@@ -67,6 +68,7 @@ import { AnalyticsComponent } from './components/dashboard/analytics/analytics.c
     CartComponent,
     ProductlikesComponent,
     AnalyticsComponent,
+    SingleproductComponent,
   ],
   imports: [
     BrowserModule,
