@@ -69,7 +69,7 @@ export class AddProductItemComponent {
       fixedPrice: [true, Validators.required],
       code: ["1234", Validators.required],
       // productImage: ['trye', Validators.required],
-      publishStatus: ['PUBLISH', Validators.required],
+      publishStatus: ['PUBLISHED', Validators.required],
 
 
     });

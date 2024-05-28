@@ -63,7 +63,7 @@
 
                         <td class="px-[1rem]">
                             <div class="flex justify-around gap-[1rem]">
-                                <div class="text-[16px] p-[0.5rem] cursor-pointer"><img src="/assets/icons/Like.png"
+                                <div (click)="addProductLikes(product.productId)" class="text-[16px] p-[0.5rem] cursor-pointer"><img src="/assets/icons/Like.png"
                                         alt=""></div>
                                 <div (click)="removeProduct(product.productId)"
                                     class="text-[16px] p-[0.5rem] cursor-pointer"><img src="/assets/icons/Close.png"

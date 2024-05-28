@@ -16,7 +16,7 @@
                 <div *ngIf="productLike.outOfStock" class="bg-[#666666] p-[1rem] h-[40px] text-[#fff] cursor-pointer">Out Of Stock</div>
                 <div class="flex gap-[2rem]">
                     <div class="cursor-pointer">
-                        <img src="/assets/icons/Cart.png" alt="">
+                        <img (click)="addCount(productLike.productId)" src="/assets/icons/Cart.png" alt="cart">
                     </div>
                     <div class="cursor-pointer">
                         <img (click)="removeLikes(productLike.productId)" src="/assets/icons/Delete.png" alt="">

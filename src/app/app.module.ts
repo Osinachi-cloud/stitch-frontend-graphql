@@ -40,13 +40,14 @@ import { NavbarComponent } from './components/dashboard/navbar/navbar.component'
 import { ProductListComponent } from './components/dashboard/product-list/product-list.component';
 import { ButtonComponent } from './shared/button/button.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
+// import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
 import { AddProductItemComponent } from './components/dashboard/add-product-item/add-product-item.component';
 import { VendorSignInComponent } from './components/auth/vendor-sign-in/vendor-sign-in.component';
 import { CartComponent } from './components/dashboard/cart/cart.component';
 import { ProductlikesComponent } from './components/dashboard/productlikes/productlikes.component';
 import { AnalyticsComponent } from './components/dashboard/analytics/analytics.component';
 import { SingleproductComponent } from './components/dashboard/singleproduct/singleproduct.component';
+import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
 
 
 
@@ -71,7 +72,7 @@ import { SingleproductComponent } from './components/dashboard/singleproduct/sin
     NavbarComponent,
     ProductListComponent,
     ButtonComponent,
-    FooterComponent
+    FooterComponent,
     InventoryComponent,
     AddProductItemComponent,
     VendorSignInComponent,

@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductlikesService } from 'src/app/services/productlikes.service';
 import { PageRequest, ProductRequest, Products } from 'src/app/types/Type';
 
@@ -10,6 +11,7 @@ import { PageRequest, ProductRequest, Products } from 'src/app/types/Type';
 export class ProductlikesComponent {
 
   constructor(private productLikeServices: ProductlikesService,
+    private cartService: CartService,
     private cdr: ChangeDetectorRef
   ){
 
@@ -51,6 +53,20 @@ export class ProductlikesComponent {
   getSize(val : number){
 
   }
+
+  addCount(productId: string) {
+    this.cartService.addProductCart(productId).subscribe({
+      next: (res: any) => {
+        console.log("called endpoint api 2");
+        console.log(res);
+      },
+      error: (err: any) => {
+        console.error(err);
+      }
+    })
+  }
+
+
 
   previousPage(){
     if(this.pageRequest.page >= 1){

@@ -75,8 +75,8 @@ export class InventoryService extends ApolloService {
 
   getProductsBy(productRequest: Products): Observable<FetchResult<any>> {
     const query = gql`
-      query getAllProductsBy($productId: String, $category: String, $page: Int!, $size: Int!) {
-        getAllProductsBy(productFilterRequest: {
+      query getVendorProductsBy($productId: String, $category: String, $page: Int!, $size: Int!) {
+        getVendorProductsBy(productFilterRequest: {
           page:$page,
           size:$size,
           productId:$productId
