@@ -97,7 +97,7 @@ import { InventoryComponent } from './components/dashboard/inventory/inventory.c
     MenuModule,
     ToastModule,
     ToastrModule,
-    HttpClientModule,
+    HttpClientModule
     // HttpLinkModule
     
 
