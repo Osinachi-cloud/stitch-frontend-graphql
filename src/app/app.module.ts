@@ -51,8 +51,6 @@ import { InventoryComponent } from './components/dashboard/inventory/inventory.c
 
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
