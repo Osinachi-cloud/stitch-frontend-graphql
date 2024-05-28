@@ -78,6 +78,15 @@ export interface ContactVerificationResponse {
     status: string | null
   }
 
+  export interface ProductList {
+    vendorId: string | null;
+    page: number;
+    size: number;
+    category: string | null;
+    productId: string | null;
+    // status: string | null
+  }
+
   export interface PageRequest {
     page: number;
     size: number;

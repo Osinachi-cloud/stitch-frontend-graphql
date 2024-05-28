@@ -62,8 +62,8 @@ export class InventoryComponent {
     console.log("called general method");
     this.inventoryService.getProductsBy(this.productRequest).subscribe({
       next: (items: any) => {
-        this.productList = items.data.getAllProductsBy.data;
-        this.productTotal = items.data.getAllProductsBy.total;
+        this.productList = items.data.getVendorProductsBy.data;
+        this.productTotal = items.data.getVendorProductsBy.total;
         this.getNumberOfPages(this.productTotal);
       },
       error: (error: any) => {
@@ -71,6 +71,7 @@ export class InventoryComponent {
       }
     })
   }
+  
 
   togglePublishProduct(productId: string): void {
     console.log("productId", productId);

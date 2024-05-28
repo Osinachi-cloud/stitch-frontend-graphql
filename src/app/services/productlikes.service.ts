@@ -76,5 +76,27 @@ export class ProductlikesService extends ApolloService{
       },
     });
   }
+
+
+  addProductLikes(productId: string): Observable<FetchResult<any>> {
+    const mutation = gql`
+      mutation addProductLikes($productId: String!) {
+        addProductLikes(productId: $productId){
+            code
+            message
+        }
+      }
+    `;
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+
+    return this.apollo.mutate<any>({
+      mutation: mutation,
+      variables: { productId },
+      context: {
+        headers,
+      },
+    });
+  }
   
 }

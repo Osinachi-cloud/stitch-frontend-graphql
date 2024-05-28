@@ -27,7 +27,8 @@ const routes: Routes = [
   { path: '', component: LandingPageComponent }, 
   { path: 'navbar', component: NavbarComponent },
   { path: 'footer', component: FooterComponent },
-  { path: 'product-list', component: ProductListComponent },
+  { path: 'products', component: ProductListComponent },
+  { path: 'products/:productId', component: SingleproductComponent }, 
   { path: 'email-verification', component: ContactVerificationComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: SinginComponent },
@@ -35,14 +36,13 @@ const routes: Routes = [
   { path: 'password-reset', component: PasswordresetComponent },
   { path: 'submit-password', component: PasswordRequestFormComponent},
   { path: 'single-product', component: SingleproductComponent},
+  { path: 'products', component: LandingPageComponent},
+
   { path: 'dashboard', component: DashboardComponent, children: [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
     { path: 'overview', component: OverviewComponent },
     { path: 'orders', component: OrdersComponent },
-
-    { path: 'api-documentation', component: DocumentationComponent}
-  ]}
-
+    { path: 'api-documentation', component: DocumentationComponent},
     { path: 'likes', component: ProductlikesComponent },
     { path: 'cart', component: CartComponent },
     { path: 'inventory', component: InventoryComponent },

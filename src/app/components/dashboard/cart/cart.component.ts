@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { ProductlikesService } from 'src/app/services/productlikes.service';
 import { PageRequest } from 'src/app/types/Type';
 
 @Component({
@@ -19,7 +20,7 @@ export class CartComponent {
     size: 30
   }
 
-  constructor(private cartService: CartService, private router: Router) {
+  constructor(private cartService: CartService, private router: Router, private productLikeService: ProductlikesService) {
   }
 
   count: number = 1;
@@ -71,6 +72,18 @@ export class CartComponent {
       error: (err: any) => {
         console.error(err);
       }
+    })
+  }
+
+  addProductLikes(productId: string){ 
+    this.productLikeService.addProductLikes(productId).subscribe({
+      next : (res: any) => {
+          console.log(res);
+      },
+      error : (err: any) => {
+        console.error(err);
+      }
+
     })
   }
 
