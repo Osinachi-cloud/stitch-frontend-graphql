@@ -12,6 +12,7 @@ import { baseUrl, singupUrl } from './utils';
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService extends ApolloService{
 
   emailVerification(request: EmailVerificationRequest): Observable<FetchResult<ContactVerificationResponse>> {
