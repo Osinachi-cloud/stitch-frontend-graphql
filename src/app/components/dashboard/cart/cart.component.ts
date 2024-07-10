@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { PaymentService } from 'src/app/services/payment.service';
 import { ProductlikesService } from 'src/app/services/productlikes.service';
-import { PageRequest } from 'src/app/types/Type';
+import { InitializeTransactionResponse, PageRequest, PaymentRequest } from 'src/app/types/Type';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
+
 export class CartComponent {
 
   cart: any[] = [];
+  cartSingleProduct : any;
 
   sumCartAmount: number  = 0;
 
@@ -19,9 +22,13 @@ export class CartComponent {
     page: 0,
     size: 30
   }
+  selectedChannel: string;
+  paymentRequest: PaymentRequest;
+  initializeTransactionResponse: InitializeTransactionResponse;
 
-  constructor(private cartService: CartService, private router: Router, private productLikeService: ProductlikesService) {
+  constructor(private paymentService: PaymentService, private cartService: CartService, private router: Router, private productLikeService: ProductlikesService) {
   }
+
 
   count: number = 1;
 
@@ -38,6 +45,7 @@ export class CartComponent {
 
         console.log(res.data.getCart.data);
         this.cart = res.data.getCart.data;
+        this.cartSingleProduct = this.cart[0];
       },
       error: (err: any) => {
         console.error(err);
@@ -129,5 +137,33 @@ export class CartComponent {
       }
     })
   }
+
+  goToOrderPage(){
+    const paymentRequest: PaymentRequest = {
+      amount: this.sumCartAmount,
+      channel: [this.selectedChannel],
+      quantity: this.cartSingleProduct?.quantity,
+      productId: this.cartSingleProduct?.productId,
+      vendorId: this.cartSingleProduct?.vendorId,
+      narration: "Great Product",
+      productCategoryName: this.cartSingleProduct?.category,
+      
+
+      
+    };
+
+    this.paymentService.initializePayment(paymentRequest).subscribe({
+      next: (res: any) => {
+        this.initializeTransactionResponse = res;
+        console.log({res});
+        window.location.href = res?.data?.initializePayment?.data?.authorizationUrl;
+      }, error: (err: any) => {
+
+      }
+    });
+    
+  }
+
+
 
 }

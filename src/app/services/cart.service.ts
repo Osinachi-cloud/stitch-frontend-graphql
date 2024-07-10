@@ -36,6 +36,8 @@ export class CartService extends ApolloService{
             amountByQuantity
             quantity
             productImage
+            vendorId
+            category
 
           }
         }

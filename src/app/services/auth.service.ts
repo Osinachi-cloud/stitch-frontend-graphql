@@ -62,6 +62,7 @@ export class AuthService extends ApolloService{
           enablePush
           tier
           country
+          role
           accessToken
           refreshToken
           profileImage

@@ -37,9 +37,9 @@ export class SidenavComponent implements OnInit {
   navData : any [] = [];
 
   routeUserType(){
-    if(UtilService.getUserDetails().customerId){
+    if(UtilService.getUserDetails().role === 'CUSTOMER'){
       this.navData = navbarData;
-    }else if(UtilService.getUserDetails().vendorId){
+    }else if(UtilService.getUserDetails().role === 'VENDOR'){
       this.navData = navbarDataAdmin;
     }
   }

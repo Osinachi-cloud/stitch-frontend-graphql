@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^16.2.12",
     "@angular/router": "^16.0.0",
     "@apollo/client": "^3.8.9",
+    "@paystack/inline-js": "^2.19.1",
     "@swimlane/ngx-charts": "^20.4.1",
     "apollo-angular": "^5.0.0",
     "apollo-angular-link-http": "^1.11.0",

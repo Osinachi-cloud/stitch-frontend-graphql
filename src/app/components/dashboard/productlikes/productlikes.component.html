@@ -2,7 +2,7 @@
     <div class="grid gap-[2rem] m-auto w-[80%] p-[2rem]">
         <div *ngFor="let productLike of productLikes" class="flex justify-between shadow-md p-[2rem] rounded-sm">
             <div class="flex gap-[2rem]">
-                <div>
+                <div class="w-[100px]">
                     <!-- <img src="/assets/images/Rectangle 60.png" alt=""> -->
                     <img [src]="'data:image/png;base64,' + productLike.productImage" alt="product image">
                 </div>

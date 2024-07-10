@@ -48,6 +48,7 @@ import { ProductlikesComponent } from './components/dashboard/productlikes/produ
 import { AnalyticsComponent } from './components/dashboard/analytics/analytics.component';
 import { SingleproductComponent } from './components/dashboard/singleproduct/singleproduct.component';
 import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
+import { InitiateOrderComponent } from './components/dashboard/initiate-order/initiate-order.component';
 
 
 
@@ -78,6 +79,7 @@ import { InventoryComponent } from './components/dashboard/inventory/inventory.c
     ProductlikesComponent,
     AnalyticsComponent,
     SingleproductComponent,
+    InitiateOrderComponent,
   ],
   imports: [
     BrowserModule,

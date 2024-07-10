@@ -97,7 +97,6 @@ export interface ContactVerificationResponse {
     size: number;
   }
   
-
   export interface ProductOrderStatistics {
     allOrdersCount: number
     processingOrdersCount:number
@@ -112,7 +111,6 @@ export interface ContactVerificationResponse {
     size: number;
     category: string | null;
     productId: string | null;
-
     name: String
     code: String
     productImage: String
@@ -129,6 +127,30 @@ export interface ContactVerificationResponse {
     sellingPrice:number
   }
 
+  export interface PaymentRequest{
+    amount: number
+    channel: string[]
+    // reference: String
+    productId:String
+    productCategoryName: String
+    vendorId: String
+    narration: String
+    quantity: number
+    // orderId: String
+    // customerId: String
+  }
+
+  export interface InitializeTransactionResponse {
+    status: Boolean
+    message: String
+    data: InitializeTransactionData
+}
+
+export interface InitializeTransactionData {
+    authorizationUrl: String
+    accessCode: String
+    reference: String
+}
   
 
 
