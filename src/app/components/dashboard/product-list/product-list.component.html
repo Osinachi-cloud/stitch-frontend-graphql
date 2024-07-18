@@ -78,38 +78,52 @@
 
 
 
+<div #scrollContainer class="scroll-container">
+  <!-- your content here -->
 
 
+  <div class="p-[30px]">
 
-<div class="p-[30px]">
 
+    <div class="flex justify-between">
+      <p class="text-2xl font-bold">See what's trending</p>
+      <p class="text-lg flex-grow text-right">Browse all categories</p>
+    </div>
 
-<div class="flex justify-between">
-  <p class="text-2xl font-bold">See what's trending</p>
-  <p class="text-lg flex-grow text-right">Browse all categories</p>
-</div>
-
-<div class="product-list grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-4 mt-8">
-  <div *ngFor="let product of productList" class="bg-[#EFF2F9] rounded-lg p-4 shadow-md relative">
-    <div class="absolute top-[10px] right-[1px]"><img (click)="addProductLikes(product.productId)" src="assets/icons/Like.png" alt=""></div>
-    <img [src]="'data:image/png;base64,' + product.productImage" alt="Product Image" class="w-full h-auto" />
-    <div class="mt-4">
-      <p class="text-[15px] mb-4  font-bold animated">{{ product.name }}</p>
-      <p class="text-[12px] text-gray-600 font animated">
-        {{ product.longDescription }}
-      </p>
-      <div class="flex justify-between items-center mt-2">
-        <p class="text-[20px] font-semibold animated">₦{{ product.amount }}</p>
-        <div (click)="showProductDetails(product.productId)" class="text-grey-500">View Details</div>
+    <div *ngIf="productList.length > 0; else elseBlock"
+      class="product-list grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-4 mt-8">
+      <div *ngFor="let product of productList" class="bg-[#EFF2F9] rounded-lg p-4 shadow-md relative">
+        <div class="absolute top-[10px] right-[1px]"><img (click)="addProductLikes(product.productId)"
+            src="assets/icons/Like.png" alt=""></div>
+        <img [src]="'data:image/png;base64,' + product.productImage" alt="Product Image" class="w-full h-auto" />
+        <div class="mt-4">
+          <p class="text-[15px] mb-4  font-bold animated">{{ product.name }}</p>
+          <p class="text-[12px] text-gray-600 font animated">
+            {{ product.longDescription }}
+          </p>
+          <div class="flex justify-between items-center mt-2">
+            <p class="text-[20px] font-semibold animated">₦{{ product.amount }}</p>
+            <div (click)="showProductDetails(product.productId)" class="text-grey-500">View Details</div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="flex justify-between">
+    <ng-template #elseBlock>
+      <div *ngIf="loading" class="skeleton-loader">
+        <div class="skeleton-item" *ngFor="let item of skeletonItems">
+          <!-- your skeleton item template here -->
+            <app-product-display-loader></app-product-display-loader>
+
+        </div>
+      </div>
+    </ng-template>
+
+
+    <!-- <div class="flex justify-between">
   <div (click)="previousPage()" class="border border-[grey] p-[1rem] cursor-pointer">Previous</div>
   <div (click)="nextPage()" class="border border-[grey] p-[1rem] cursor-pointer">Next</div>
-</div>
+</div> -->
 
 
 
@@ -117,57 +131,56 @@
 
 
 
-<div class="flex justify-between">
-  <p class="text-2xl font-bold">Styles</p>
-  <Button>Browse All</Button>
-</div>
-<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-5 mt-8 justify-between">
-  <div *ngFor="let style of styles" class="mb-4 bg-[#EFF2F9] rounded-lg p-[20px] shadow-md">
-    <img [src]="style.imageUrl" alt="Product Image" class="w-full h-auto" />
-    <div class="text-center">
-      <p class="text-3xl font-bold">{{ style.name }}</p>
-      <div class="flex justify-center">
-        <button class="bg-black text-white px-4 py-1 rounded w-[180px] h-[40px]">View More</button>
+    <div class="flex justify-between">
+      <p class="text-2xl font-bold">Styles</p>
+      <Button>Browse All</Button>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-5 mt-8 justify-between">
+      <div *ngFor="let style of styles" class="mb-4 bg-[#EFF2F9] rounded-lg p-[20px] shadow-md">
+        <img [src]="style.imageUrl" alt="Product Image" class="w-full h-auto" />
+        <div class="text-center">
+          <p class="text-3xl font-bold">{{ style.name }}</p>
+          <div class="flex justify-center">
+            <button class="bg-black text-white px-4 py-1 rounded w-[180px] h-[40px]">View More</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!--  CATEGORIES -->
-<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-5 mt-8 justify-between">
-  <div *ngFor="let category of categories" class="mb-4 bg-[#EFF2F9]  rounded-lg p-4 shadow-md">
-    <img [src]="category?.imageUrl" alt="Category Image" class="w-full h-auto">
-    <p class="text-center mt-2">{{ category?.name }}</p>
-  </div>
-</div>
-<!--  TAILORS -->
-<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-5 mt-8 justify-between">
-  <div *ngFor="let tailor of tailors" class="mb-4 bg-[#EFF2F9] rounded-lg p-4 shadow-md">
-    <img [src]="tailor.imageUrl" alt="Tailors Image" class="w-full h-auto">
-    <div class="text-center">
-      <p class="text-3xl font-bold">{{ tailor.name }}</p>
-      <p class="text-[14px] text-gray-600 font-semibold mt-4 text-center">
-        {{ tailor.description }}
-      </p>
+    <!--  CATEGORIES -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-5 mt-8 justify-between">
+      <div *ngFor="let category of categories" class="mb-4 bg-[#EFF2F9]  rounded-lg p-4 shadow-md">
+        <img [src]="category?.imageUrl" alt="Category Image" class="w-full h-auto">
+        <p class="text-center mt-2">{{ category?.name }}</p>
+      </div>
     </div>
-    <div class="flex justify-center">
-      <button class="bg-black text-white px-4 py-1 rounded w-[180px] h-[40px]">View Profile</button>
-    </div>
-  </div>
-  <!-- Blogs -->
-  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-4 mt-8">
-    <div *ngFor="let blog of blogs" class="bg-white rounded-lg p-4 shadow-md">
-      <img [src]="blog.imageUrl" alt="Blog Image" class="w-full h-auto">
-      <div class="mt-4">
-        <h2 class="text-lg font-semibold">{{ blog.name }}</h2>
-        <p class="text-sm text-gray-600">{{ blog.description }}</p>
-        <div class="flex justify-between items-center mt-2">
-          <p class="text-sm text-gray-600">07/09/2023</p>
-          <button class="bg-black text-white px-4 py-1 rounded w-[180px] h-[40px]">Read More</button>
+    <!--  TAILORS -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-5 mt-8 justify-between">
+      <div *ngFor="let tailor of tailors" class="mb-4 bg-[#EFF2F9] rounded-lg p-4 shadow-md">
+        <img [src]="tailor.imageUrl" alt="Tailors Image" class="w-full h-auto">
+        <div class="text-center">
+          <p class="text-3xl font-bold">{{ tailor.name }}</p>
+          <p class="text-[14px] text-gray-600 font-semibold mt-4 text-center">
+            {{ tailor.description }}
+          </p>
+        </div>
+        <div class="flex justify-center">
+          <button class="bg-black text-white px-4 py-1 rounded w-[180px] h-[40px]">View Profile</button>
+        </div>
+      </div>
+      <!-- Blogs -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-1 gap-4 mt-8">
+        <div *ngFor="let blog of blogs" class="bg-white rounded-lg p-4 shadow-md">
+          <img [src]="blog.imageUrl" alt="Blog Image" class="w-full h-auto">
+          <div class="mt-4">
+            <h2 class="text-lg font-semibold">{{ blog.name }}</h2>
+            <p class="text-sm text-gray-600">{{ blog.description }}</p>
+            <div class="flex justify-between items-center mt-2">
+              <p class="text-sm text-gray-600">07/09/2023</p>
+              <button class="bg-black text-white px-4 py-1 rounded w-[180px] h-[40px]">Read More</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-
-</div>

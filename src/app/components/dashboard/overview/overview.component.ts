@@ -22,6 +22,7 @@ export class OverviewComponent {
   emailAddress: string = "";
   imageSource: any;
   userDetails: any = {};
+  isLoading = false;
   customerUpdateRequestForm: FormGroup;
 
   constructor(private http: HttpClient,
@@ -108,13 +109,16 @@ export class OverviewComponent {
   }
 
   getCustomerDetails(): void {
+    this.isLoading = false;
     this.clientService.getCustomerDetails(this.emailAddress).subscribe({
       next: (response: any) => {
         this.userDetails = response.data.customerDetails;
         this.imageSource = `data:image/png;base64, ${this.userDetails.profileImage}`;
+        this.isLoading = true;
       },
       error: (error: any) => {
         console.error("entered error", error);
+        this.isLoading = true;
       }
     });
   }

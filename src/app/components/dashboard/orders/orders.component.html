@@ -431,7 +431,7 @@
 
         <div class="relative overflow-x-auto sm:rounded-lg border-t">
 
-            <table class="w-full text-[14px] leading-[150%]  text-[#4B5563] text-left">
+            <table *ngIf="isLoading; else elseBlock" class="w-full text-[14px] leading-[150%]  text-[#4B5563] text-left">
                 <thead class="text-[14px] italic font-[100]  text-[#374151] uppercase bg-[#fff]">
                     <tr class="border-b">
                         <th scope="col" class="p-[2rem]">
@@ -461,7 +461,7 @@
                         </th> -->
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     <tr *ngFor="let order of customersOrder" class="text-[#6E7079] bg-[#fff] border-b hover:bg-gray-50">
                         <td class="w-4 p-[2rem]">
                             <div class="flex items-center">
@@ -519,7 +519,11 @@
 
                     </tr>
                 </tbody>
+
             </table>
+            <ng-template #elseBlock>
+                <app-table-loader></app-table-loader>
+            </ng-template> 
             <div class="mt-[4rem] bg-[#fff] flex  p-[1rem] justify-end">
                 <div class="flex items-center gap-[2rem]">
                     <div class="p-[1rem] py-[0.5rem] flex items-center bg-[#fff] rounded-[12px]">

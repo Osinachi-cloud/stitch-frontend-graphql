@@ -49,6 +49,12 @@ import { AnalyticsComponent } from './components/dashboard/analytics/analytics.c
 import { SingleproductComponent } from './components/dashboard/singleproduct/singleproduct.component';
 import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
 import { InitiateOrderComponent } from './components/dashboard/initiate-order/initiate-order.component';
+import { TableLoaderComponent } from './components/loaders/table-loader/table-loader.component';
+import { SpinLoaderComponent } from './components/loaders/spin-loader/spin-loader.component';
+import { Col3LoaderComponent } from './components/loaders/col-3-loader/col-3-loader.component';
+import { CartLoaderComponent } from './components/loaders/cart-loader/cart-loader.component';
+import { ProductLikeLoaderComponent } from './components/loaders/product-like-loader/product-like-loader.component';
+import { ProductDisplayLoaderComponent } from './components/loaders/product-display-loader/product-display-loader.component';
 
 
 
@@ -80,6 +86,12 @@ import { InitiateOrderComponent } from './components/dashboard/initiate-order/in
     AnalyticsComponent,
     SingleproductComponent,
     InitiateOrderComponent,
+    TableLoaderComponent,
+    SpinLoaderComponent,
+    Col3LoaderComponent,
+    CartLoaderComponent,
+    ProductLikeLoaderComponent,
+    ProductDisplayLoaderComponent,
   ],
   imports: [
     BrowserModule,

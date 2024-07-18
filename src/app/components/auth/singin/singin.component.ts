@@ -26,6 +26,7 @@ export class SinginComponent implements OnInit {
   password: string = "password";
   formSubmitted: boolean = false;
   apiResponse: any;
+  isLoading: boolean = false;
 
   constructor(private http: HttpClient,
     private formBuilder: FormBuilder,
@@ -81,9 +82,11 @@ export class SinginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isLoading = true;
     if (this.authForm.valid) {
       this.authService.login(this.authForm.value).subscribe({
         next: (response: any) => {
+          this.isLoading = false;
           this.showSuccessResponse("Login ", "Login Successful", 3000);
           TokenService.setToken(response?.data?.customerLogin?.accessToken);
           UtilService.setUserDetails(response?.data?.customerLogin);
@@ -93,6 +96,7 @@ export class SinginComponent implements OnInit {
           console.log({ response });
         },
         error: (error: any) => {
+          this.isLoading = false;
           this.showFailureResponse("Login Error", error.message, 3000);
           console.error("entered error", error);
         }

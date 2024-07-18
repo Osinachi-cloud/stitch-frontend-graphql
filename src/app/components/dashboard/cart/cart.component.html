@@ -1,6 +1,6 @@
 <div class="text-[48px] text-center font-[700] p-[2rem] mt-[3rem] text-[#000]">Shopping Cart</div>
 
-<div class=" h-fit md:p-[6rem] p-[2rem]">
+<div *ngIf="!isLoading; else elseBlock" class=" h-fit md:p-[6rem] p-[2rem]">
     <div class="grid md:grid-cols-3 grid-cols-1 gap-[4rem]">
         <div class="col-span-2 relative overflow-x-auto sm:rounded-lg border-t">
 
@@ -183,10 +183,19 @@
                     </div>
                 </div>
 
-                <button (click)="goToOrderPage()" class="bg-[#000] p-[1rem] text-[#fff]">proceed to checkout</button>
+                <button [disabled]="isLoadingOrder" (click)="goToOrderPage()" class="flex justify-center gap-6 bg-[#000] p-[1rem] text-[#fff]">
+                    <span>Proceed to checkout</span>
+                    <span *ngIf="isLoadingOrder" class="spinner"></span>
+                </button>
+
+
+         
 
             </div>
 
         </div>
     </div>
 </div>
+<ng-template #elseBlock>
+    <app-cart-loader></app-cart-loader>
+</ng-template> 

@@ -15,7 +15,8 @@ export class CartComponent {
 
   cart: any[] = [];
   cartSingleProduct : any;
-
+  isLoading: boolean = false;
+  isLoadingOrder: boolean = false;
   sumCartAmount: number  = 0;
 
   pageRequest: PageRequest = {
@@ -39,15 +40,18 @@ export class CartComponent {
 
   getAllCartItems() {
     console.log("called cart endpoint");
+    this.isLoading = true;
     this.cartService.getCart(this.pageRequest).subscribe({
       next: (res: any) => {
+        this.isLoading = false;
         console.log("called endpoint api 2");
-
         console.log(res.data.getCart.data);
         this.cart = res.data.getCart.data;
         this.cartSingleProduct = this.cart[0];
+
       },
       error: (err: any) => {
+        this.isLoading = false;
         console.error(err);
       }
     })
@@ -139,6 +143,7 @@ export class CartComponent {
   }
 
   goToOrderPage(){
+    this.isLoadingOrder = true;
     const paymentRequest: PaymentRequest = {
       amount: this.sumCartAmount,
       channel: [this.selectedChannel],
@@ -155,9 +160,12 @@ export class CartComponent {
     this.paymentService.initializePayment(paymentRequest).subscribe({
       next: (res: any) => {
         this.initializeTransactionResponse = res;
+        this.isLoadingOrder = false;
         console.log({res});
         window.location.href = res?.data?.initializePayment?.data?.authorizationUrl;
+        this.clearCart();
       }, error: (err: any) => {
+        this.isLoadingOrder = false;
 
       }
     });

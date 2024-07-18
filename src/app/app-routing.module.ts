@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'password-reset', component: PasswordresetComponent },
   { path: 'submit-password', component: PasswordRequestFormComponent},
   { path: 'single-product', component: SingleproductComponent},
-  { path: 'products', component: LandingPageComponent},
+  // { path: 'products', component: LandingPageComponent},
 
   { path: 'dashboard', component: DashboardComponent, children: [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },

@@ -13,6 +13,7 @@ export class OrdersComponent {
   customersOrder: any[] = []
   orderTotal: number = 0;
   numOfPages: number = 0;
+  isLoading = false;
 
   productOrderRequest: ProductOrder = {
     productId: null,
@@ -78,14 +79,18 @@ export class OrdersComponent {
   }
 
   getCustomerOrders(): void {
+    this.isLoading = false;
     this.orderService.getCustomerOrders(this.productOrderRequest).subscribe({
       next: (items: any) => {
         this.customersOrder = items.data.fetchCustomerOrdersBy.data;
         this.orderTotal = items.data.fetchCustomerOrdersBy.total;
         this.getNumberOfPages(this.orderTotal);
         console.log(items.data.fetchCustomerOrdersBy.data);
+        this.isLoading = true;
+
       },
       error: (error: any) => {
+        this.isLoading = true;
         console.log(error);
       }
     })

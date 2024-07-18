@@ -1,16 +1,21 @@
-<div class="h-[100vh] flex justify-center items-center bg-no-repeat bg-cover">
+<div  class="h-[100vh] flex justify-center items-center bg-no-repeat bg-cover">
     <div class="grid bg-white relative rounded-[32px] p-[1rem]">
         <div class="py-[1rem] p-[1rem] md:px-[2rem] w-full flex justify-center">
             <div class="flex justify-between flex-col items-center">
                 <div class="m-auto">
-                    <div class="font-[DM Sans] text-center font-[700] text-[35px] tracking-[0.2rem] text-[#000] leading-[40px]">Login</div>
-                    <p class="text-[16px] font-[DM Sans] text-center text-[#A3AED0] mx-0 mt-[10px] mb-[90px] leading-[35px]">Login to continue using the site</p>
+                    <div
+                        class="font-[DM Sans] text-center font-[700] text-[35px] tracking-[0.2rem] text-[#000] leading-[40px]">
+                        Login</div>
+                    <p
+                        class="text-[16px] font-[DM Sans] text-center text-[#A3AED0] mx-0 mt-[10px] mb-[90px] leading-[35px]">
+                        Login to continue using the site</p>
 
                     <form class="text-[#2B3674]" [formGroup]="authForm" (ngSubmit)="onSubmit()">
                         <div class="w-full"
                             [ngClass]="{'has-error': !formData['emailAddress'].valid && formData['emailAddress'].touched}">
                             <label class="" for="fname">Email*</label>
-                            <div class="border-none " *ngIf="formData['emailAddress'].touched && formData['emailAddress'].errors">
+                            <div class="border-none "
+                                *ngIf="formData['emailAddress'].touched && formData['emailAddress'].errors">
                                 <div class="shadow-none border-none  text-[red] text-[12px]"
                                     *ngIf="formData['emailAddress'].errors['required']">
                                     The Email is required
@@ -33,8 +38,7 @@
                                     *ngIf=" formData['password'].errors['required']">
                                     The Password is required
                                 </div>
-                                <div class="shadow-none text-[red]"
-                                    *ngIf=" formData['password'].errors['pattern']">
+                                <div class="shadow-none text-[red]" *ngIf=" formData['password'].errors['pattern']">
                                     The Password is not valid
                                 </div>
                             </div>
@@ -64,9 +68,13 @@
                             <a href="#" class="text-[blue] text-right">Forget password?</a>
 
                         </div>
-                        <button type="submit"
-                            class="w-full gap-2.5 text-white mx-0 my-4 pl-2 pr-[8px,] py-[10px,] p-[1.5rem] rounded-[8px] border-[none] bg-[#000]">Sign
-                            In</button>
+                        <button type="submit" [disabled]="isLoading"
+                            class="w-full flex justify-center gap-6 text-white mx-0 my-4 pl-2 pr-[8px,] py-[10px,] p-[1.5rem] rounded-[8px] border-[none] bg-[#000]">
+                            <span>Sign In</span>
+                            <span *ngIf="isLoading" class="spinner"></span>
+                        </button>
+                        
+
 
                     </form>
                 </div>
@@ -77,6 +85,7 @@
     </div>
 
 </div>
+
 
 
 

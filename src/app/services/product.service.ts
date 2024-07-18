@@ -78,7 +78,7 @@ export class ProductService extends ApolloService{
       }
     `;
     
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
     
     return this.apollo.query<any>({
       query: query,
@@ -89,7 +89,7 @@ export class ProductService extends ApolloService{
 
       },
       context: {
-        headers,
+        // headers,
       },
     });
   }

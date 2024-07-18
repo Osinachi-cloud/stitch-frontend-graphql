@@ -45,10 +45,10 @@
 </div> -->
 
 
-<div class=" w-[90%] h-fit rounded-[8px] p-[2rem] m-auto bg-[#fff]">
+<div *ngIf="isLoading; else elseBlock" class=" w-[90%] h-fit rounded-[8px] p-[2rem] m-auto bg-[#fff]">
     <h1 class="py-[2rem] ">Account Overview</h1>
 
-    <div class=" grid md:grid-cols-10 grid-cols-1 gap-[2rem]">
+    <div  class=" grid md:grid-cols-10 grid-cols-1 gap-[2rem]">
 
         <div class="col-span-2">
             <div>
@@ -110,14 +110,14 @@
                     <div class="px-[1rem] rounded-[8px] bg-[#E6F1FA]">Edit Address</div>
                 </div>
             </div>
-
-
         </div>
-    
-    
     </div>
-
 </div>
+<ng-template #elseBlock>
+    <app-col-3-loader></app-col-3-loader>
+</ng-template> 
+
+
 
 
 

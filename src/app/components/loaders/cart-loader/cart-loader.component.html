@@ -1,0 +1,103 @@
+<!-- <div class="text-[48px] text-center font-[700] p-[2rem] mt-[3rem] text-[#000] skeleton h-12 w-1-3 mx-auto"></div> -->
+
+<div class="h-fit md:p-[6rem] p-[2rem]">
+    <div class="grid md:grid-cols-3 grid-cols-1 gap-[4rem]">
+        <div class="col-span-2 relative overflow-x-auto sm:rounded-lg border-t">
+            <div class="grid grid-cols-5 gap-4 p-[2rem] border-b">
+                <div class="col-span-1 skeleton h-6 w-full"></div>
+                <div class="col-span-1 skeleton h-6 w-full"></div>
+                <div class="col-span-1 skeleton h-6 w-full"></div>
+                <div class="col-span-1 skeleton h-6 w-full"></div>
+                <div class="col-span-1 skeleton h-6 w-full"></div>
+            </div>
+            <div *ngFor="let i of [1, 2, 3, 4]" class="grid grid-cols-5 gap-4 p-[2rem] hover:bg-[#fff] border-b">
+                <div class="col-span-1 flex gap-[2rem]">
+                    <div class="w-[100px] skeleton h-24 w-24"></div>
+                    <div class="flex justify-center items-center skeleton h-6 w-full"></div>
+                </div>
+                <div class="col-span-1 skeleton h-6 w-full"></div>
+                <div class="col-span-1">
+                    <div class="border border-[#cfcece] bg-[#fff] flex justify-around gap-[1rem]">
+                        <div class="text-[16px] p-[0.5rem] cursor-pointer flex justify-center items-center skeleton h-6 w-6"></div>
+                        <div class="text-[16px] p-[0.5rem] text-[grey] skeleton h-6 w-6"></div>
+                        <div class="text-[16px] p-[0.5rem] cursor-pointer flex justify-center items-center skeleton h-6 w-6"></div>
+                    </div>
+                </div>
+                <div class="col-span-1 skeleton h-6 w-full"></div>
+                <div class="col-span-1 skeleton h-6 w-full"></div>
+            </div>
+            <div class="border-t p-[2rem] mt-[2rem] flex justify-between">
+                <div class="bg-[#F0F2F2] p-[1rem] border border-[lightgrey] text-[#82848B] uppercase font-[500] cursor-pointer skeleton h-8 w-1-3"></div>
+                <div class="bg-[#F0F2F2] p-[1rem] border border-[lightgrey] text-[#82848B] uppercase font-[500] cursor-pointer skeleton h-8 w-1-3"></div>
+            </div>
+        </div>
+
+        <div class="col-span-1 grid gap-[2rem]">
+            <div class="border border-[lightgrey] p-[2rem] grid gap-[2rem] bg-[#EAEBF4]">
+                <p class="text-[26px] font-[600] skeleton h-8 w-full"></p>
+                <div>
+                    <input class="w-[100%] p-[1rem] border-[lightgrey] outline-none skeleton h-10 w-full" type="text">
+                </div>
+                <div>
+                    <p class="text-[20px] font-[600] skeleton h-6 w-full"></p>
+                    <p class="text-[12px] text-[grey] skeleton h-4 w-full"></p>
+                </div>
+
+                <div class="grid gap-[2rem]">
+                    <div class="flex">
+                        <div class="w-[35%] flex gap-[1rem]">
+                            <label for="" class="skeleton h-6 w-full"></label>
+                        </div>
+                        <div class="w-[65%] bg-[#fff] border border-grey py-[0.8rem] skeleton h-10 w-full"></div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-[35%] flex gap-[1rem]">
+                            <label for="" class="skeleton h-6 w-full"></label>
+                        </div>
+                        <div class="w-[65%] bg-[#fff] border border-grey py-[0.8rem] skeleton h-10 w-full"></div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-[35%] flex gap-[1rem]">
+                            <label for="" class="skeleton h-6 w-full"></label>
+                        </div>
+                        <div class="w-[65%] bg-[#fff] border border-grey py-[0.8rem] skeleton h-10 w-full"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border border-[lightgrey] grid gap-[2rem] bg-[#EAEBF4]">
+                <div class="grid gap-[1rem] p-[2rem] pb-[0rem]">
+                    <div class="flex justify-between text-[18px] font-[600]">
+                        <p class="skeleton h-6 w-1-3"></p>
+                        <p class="skeleton h-6 w-1-3"></p>
+                    </div>
+                    <div class="flex justify-between text-[grey]">
+                        <p class="skeleton h-6 w-1-3"></p>
+                        <p class="skeleton h-6 w-1-3"></p>
+                    </div>
+                    <div class="flex justify-between text-[18px] font-[600]">
+                        <p class="skeleton h-6 w-1-3"></p>
+                        <p class="skeleton h-6 w-1-3"></p>
+                    </div>
+                    <form class="w-full flex gap-[3rem]">
+                        <div class="flex gap-[0.5rem] items-center">
+                            <input type="radio" id="card" name="channel" value="card" class="skeleton h-4 w-4">
+                            <label for="card" class="skeleton h-4 w-16"></label>
+                        </div>
+                        <div class="flex gap-[0.5rem] items-center">
+                            <input type="radio" id="ussd" name="channel" value="ussd" class="skeleton h-4 w-4">
+                            <label for="ussd" class="skeleton h-4 w-16"></label>
+                        </div>
+                        <div class="flex gap-[0.5rem] items-center">
+                            <input type="radio" id="transfer" name="channel" value="transfer" class="skeleton h-4 w-4">
+                            <label for="transfer" class="skeleton h-4 w-16"></label>
+                        </div>
+                    </form>
+                    <div class="border-t-[lightgrey] border pt-[1rem] text-center text-[#82848B] text-[10px] uppercase skeleton h-4 w-full"></div>
+                </div>
+                <button class="bg-[#000] p-[1rem] text-[#fff] skeleton h-10 w-full"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
