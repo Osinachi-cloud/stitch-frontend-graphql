@@ -60,15 +60,16 @@
 
                         <div class="form-check flex justify-between py-[1rem] gap-[4rem]">
                             <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input" name="optionChecked"
-                                    formControlName="optionChecked">
-                                <span class="ml-[1rem] font-[200]">Remember me?</span>
+                                <!-- <input type="checkbox" class="form-check-input" name="optionChecked"
+                                    formControlName="optionChecked"> -->
+                                <a href="/email-verification" class="ml-[0rem] font-[200]">Sign up</a>
 
                             </label>
                             <a href="#" class="text-[blue] text-right">Forget password?</a>
 
                         </div>
                         <button type="submit" [disabled]="isLoading"
+                            [ngClass]="{'opacity-[50%]': !authForm.valid }"
                             class="w-full flex justify-center gap-6 text-white mx-0 my-4 pl-2 pr-[8px,] py-[10px,] p-[1.5rem] rounded-[8px] border-[none] bg-[#000]">
                             <span>Sign In</span>
                             <span *ngIf="isLoading" class="spinner"></span>

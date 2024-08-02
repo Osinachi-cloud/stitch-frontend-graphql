@@ -13,6 +13,9 @@ import { UtilService } from './util.service';
 })
 export class ProductlikesService extends ApolloService{
 
+  token = TokenService.getToken();
+  userAuthenticated = this.token && !TokenService.isTokenExpired(this.token);
+
   getAllProductLikes(pageRequest: PageRequest): Observable<FetchResult<any>> {
     const query = gql`
       query getAllProductLikes(
@@ -88,7 +91,31 @@ export class ProductlikesService extends ApolloService{
       }
     `;
 
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+    let headers = new HttpHeaders();
+
+    const token = TokenService.getToken();
+
+
+    if(!token || token?.length > 0){
+      
+     headers = new HttpHeaders({
+      'Authorization': `Bearer ${TokenService.getToken()}`,
+      'Content-Type': 'application/json'
+    }); 
+  }
+    
+
+
+    // const token = TokenService.getToken();
+
+    // if (!token || token.length === 0) {
+    //   throw new Error('User is not authenticated');
+    // }
+  
+    // const headers = new HttpHeaders({
+    //   'Authorization': `Bearer ${token}`,
+    //   'Content-Type': 'application/json'
+    // });
 
     return this.apollo.mutate<any>({
       mutation: mutation,

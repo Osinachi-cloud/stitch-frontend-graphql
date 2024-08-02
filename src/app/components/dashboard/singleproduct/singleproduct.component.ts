@@ -11,50 +11,48 @@ import { Products } from 'src/app/types/Type';
 })
 export class SingleproductComponent {
 
-  constructor(private cartService : CartService, private route: ActivatedRoute, private productService: ProductService, private router: Router){
+  constructor(private cartService: CartService, private route: ActivatedRoute, private productService: ProductService, private router: Router) {
 
   }
 
   productId = this.route.snapshot.params['productId'];
+  showLoginOptionModal = false;
 
-  product: Products  = {
+
+  product: Products = {
     productId: this.productId,
-    page:0,
-    size:1,
-    vendorId:null,
+    page: 0,
+    size: 1,
+    vendorId: null,
     category: null,
     status: null
-
   }
-  singleProduct : any = {};
+  singleProduct: any = {};
   count: number = 1;
-  totalAmount : number = 0;
+  totalAmount: number = 0;
 
-
-
-  ngOnInit(){
+  ngOnInit() {
     this.getSingleProduct();
     this.totalAmount = this.count * this.singleProduct.amount;
-
   }
 
-  getSingleProduct(){
+  getSingleProduct() {
     this.productService.getProducts(this.product).subscribe({
-      next: (res:any) => {
-          this.singleProduct = res.data.getAllProductsBy.data[0];
+      next: (res: any) => {
+        this.singleProduct = res.data.getAllProductsBy.data[0];
       },
       error: (err: any) => {
         console.log(err);
       }
     })
   }
- 
+
   addCount() {
     this.cartService.addProductCart(this.productId).subscribe({
       next: (res: any) => {
         console.log("called endpoint api 2");
         console.log(res);
-        if(this.count < this.singleProduct.quantity){
+        if (this.count < this.singleProduct.quantity) {
           this.count = this.count + 1;
           this.totalAmount = this.count * this.singleProduct.amount;
 
@@ -66,18 +64,28 @@ export class SingleproductComponent {
     })
   }
 
-  addToCart(){
-    this.addCount();
-    this.router.navigate(["dashboard/cart"])
-    console.log("hello world");
+  addToCart() {
+    console.log(this.cartService.userAuthenticated);
+    if (this.cartService.userAuthenticated) {
+      this.addCount();
+      this.router.navigate(["dashboard/cart"])
+      console.log("hello world");
+    }else{
+      this.toggleTerminalFormModal();
+      console.log("entered exception")
+    }
   }
+
+  toggleTerminalFormModal(){
+    this.showLoginOptionModal = !this.showLoginOptionModal;
+  };
 
   removeCount() {
     this.cartService.deleteProductCart(this.productId).subscribe({
       next: (res: any) => {
         console.log("called endpoint api 2");
         console.log(res);
-        if(this.count > 1){
+        if (this.count > 1) {
           this.count = this.count - 1;
           this.totalAmount = this.count * this.singleProduct.amount;
         }

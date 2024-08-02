@@ -41,12 +41,11 @@ export class ProductlikesComponent {
     this.productLikeServices.getAllProductLikes(this.pageRequest).subscribe({
       next: (res: any) => {
       console.log("called like api 2");
-
+        this.isLoading = false;
         console.log(res.data.getAllProductLikes.data);
         this.productLikes = res.data.getAllProductLikes.data;
         this.totalNumberOfLikes = res.data.getAllProductLikes.total;
         this.cdr.detectChanges();
-        this.isLoading = false;
 
       }, 
       error: (err: any) => {

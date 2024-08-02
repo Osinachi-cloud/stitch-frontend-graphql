@@ -94,4 +94,50 @@ export class ProductService extends ApolloService{
     });
   }
 
+
+  getAllProductsByAuth(product: Products): Observable<FetchResult<any>> {
+    const query = gql`
+      query getAllProductsByAuth($page: Int!, $size: Int!) {
+        getAllProductsByAuth(productFilterRequest:{
+          page: $page,
+          size: $size
+        }
+        ) {
+          page
+          size
+          total
+          data {
+            name
+            category
+            productId
+            amount
+            quantity
+            publishStatus
+            discount
+            outOfStock
+            productImage
+            longDescription
+            shortDescription
+            liked
+          }
+        }
+      }
+    `;
+    
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+    
+    return this.apollo.query<any>({
+      query: query,
+      variables: {
+        page: product.page,
+        size: product.size,
+        vendorId: product.vendorId,
+
+      },
+      context: {
+        headers,
+      },
+    });
+  }
+
 }

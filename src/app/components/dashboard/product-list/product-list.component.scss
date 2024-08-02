@@ -27,3 +27,15 @@
   .mb-4 {
     margin-bottom: 0rem; /* Adjust the value as needed */
   }
+
+  .object-cover{
+    object-fit: contain;
+  }
+
+  .liked-color {
+    color: #ff00ae;
+  }
+  
+  .default-color {
+    color: grey;
+  }

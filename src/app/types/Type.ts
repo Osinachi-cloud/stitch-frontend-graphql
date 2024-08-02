@@ -41,6 +41,7 @@ export interface ContactVerificationResponse {
     lastName: String
     phoneNumber: String
     country: String
+    roleName: String
   }
 
   export interface CustomerSignUpResponse {

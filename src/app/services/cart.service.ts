@@ -13,6 +13,9 @@ import { UtilService } from './util.service';
 })
 export class CartService extends ApolloService{
 
+  token = TokenService.getToken();
+  userAuthenticated = this.token || this.token?.length > 0;
+
   getCart(pageRequest: PageRequest): Observable<FetchResult<any>> {
     const query = gql`
       query getCart(
@@ -112,7 +115,19 @@ export class CartService extends ApolloService{
       }
     `;
 
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+    let headers = new HttpHeaders();
+
+    const token = TokenService.getToken();
+
+    if(!token || token?.length > 0){
+      
+     headers = new HttpHeaders({
+      'Authorization': `Bearer ${TokenService.getToken()}`,
+      'Content-Type': 'application/json'
+    }); 
+  }
+
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
 
     return this.apollo.mutate<any>({
       mutation: mutation,

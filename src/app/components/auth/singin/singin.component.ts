@@ -82,6 +82,7 @@ export class SinginComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("hello world2");
     this.isLoading = true;
     if (this.authForm.valid) {
       this.authService.login(this.authForm.value).subscribe({
@@ -91,7 +92,8 @@ export class SinginComponent implements OnInit {
           TokenService.setToken(response?.data?.customerLogin?.accessToken);
           UtilService.setUserDetails(response?.data?.customerLogin);
 
-          this.router.navigate(["dashboard"]);
+          // this.router.navigate([""]);
+          this.router.navigate([''], { fragment: 'products' });
 
           console.log({ response });
         },

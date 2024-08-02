@@ -1,4 +1,4 @@
-<div *ngIf="isLoading; else elseBlock" class="w-full h-fit bg-[#fff]">
+<div *ngIf="productLikes?.length > 0; else elseBlock" class="w-full h-fit bg-[#fff]">
     <div class="grid gap-[2rem] m-auto w-[80%] p-[2rem]">
         <div *ngFor="let productLike of productLikes" class="flex justify-between shadow-md p-[2rem] rounded-sm">
             <div class="flex gap-[2rem]">
@@ -16,14 +16,14 @@
                 <div *ngIf="productLike.outOfStock" class="bg-[#666666] p-[1rem] h-[40px] text-[#fff] cursor-pointer">Out Of Stock</div>
                 <div class="flex gap-[2rem]">
                     <div class="cursor-pointer">
-                        <img (click)="addCount(productLike.productId)" src="/assets/icons/Cart.png" alt="cart">
+                        <!-- <img (click)="addCount(productLike.productId)" src="/assets/icons/Cart.png" alt="cart"> -->
+                        <i (click)="addCount(productLike.productId)" class="fa fa-shopping-cart text-[30px]"></i>
                     </div>
                     <div class="cursor-pointer">
-                        <img (click)="removeLikes(productLike.productId)" src="/assets/icons/Delete.png" alt="">
+                        <!-- <img (click)="removeLikes(productLike.productId)" src="/assets/icons/Delete.png" alt=""> -->
+                        <i (click)="removeLikes(productLike.productId)" class="fa fa-trash text-[30px]"></i>
                     </div>
                 </div>
-
-
             </div>
         </div>
 
