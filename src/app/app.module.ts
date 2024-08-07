@@ -55,6 +55,7 @@ import { Col3LoaderComponent } from './components/loaders/col-3-loader/col-3-loa
 import { CartLoaderComponent } from './components/loaders/cart-loader/cart-loader.component';
 import { ProductLikeLoaderComponent } from './components/loaders/product-like-loader/product-like-loader.component';
 import { ProductDisplayLoaderComponent } from './components/loaders/product-display-loader/product-display-loader.component';
+import { VendorsOrdersComponent } from './components/dashboard/vendors-orders/vendors-orders.component';
 
 
 
@@ -92,6 +93,7 @@ import { ProductDisplayLoaderComponent } from './components/loaders/product-disp
     CartLoaderComponent,
     ProductLikeLoaderComponent,
     ProductDisplayLoaderComponent,
+    VendorsOrdersComponent
   ],
   imports: [
     BrowserModule,

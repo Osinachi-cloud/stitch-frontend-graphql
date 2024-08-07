@@ -128,7 +128,7 @@ export const navbarDataAdmin: INavbarData[] = [
         label: 'Inventory'
     },
     {
-        routeLink: 'orders',
+        routeLink: 'vendor-orders',
         icon: 'assets/icons/Bag.png',
         label: 'Orders',
     },

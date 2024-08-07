@@ -95,6 +95,8 @@ export class SidenavComponent implements OnInit {
   }
   
   logOut():void {
-    UtilService.logout();
+    // UtilService.logout();
+    this.router.navigate([""]);
+    return localStorage.clear();
   }
 }

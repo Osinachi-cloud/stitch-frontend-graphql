@@ -26,9 +26,9 @@ export class ProductListComponent {
     status: null,
     category: null
   }
+
   likedColor: string = 'liked-color';
   defaultColor: string = 'default-color';
-
   productList: any[] = [];
 
   constructor(private productService: ProductService,

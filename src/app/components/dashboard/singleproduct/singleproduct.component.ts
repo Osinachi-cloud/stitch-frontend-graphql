@@ -32,14 +32,15 @@ export class SingleproductComponent {
   totalAmount: number = 0;
 
   ngOnInit() {
+    console.log(this.productId);
     this.getSingleProduct();
     this.totalAmount = this.count * this.singleProduct.amount;
   }
 
   getSingleProduct() {
-    this.productService.getProducts(this.product).subscribe({
+    this.productService.getProductByProductId(this.productId).subscribe({
       next: (res: any) => {
-        this.singleProduct = res.data.getAllProductsBy.data[0];
+        this.singleProduct = res.data.getProductByProductId;
       },
       error: (err: any) => {
         console.log(err);
@@ -48,20 +49,24 @@ export class SingleproductComponent {
   }
 
   addCount() {
-    this.cartService.addProductCart(this.productId).subscribe({
-      next: (res: any) => {
-        console.log("called endpoint api 2");
-        console.log(res);
-        if (this.count < this.singleProduct.quantity) {
-          this.count = this.count + 1;
-          this.totalAmount = this.count * this.singleProduct.amount;
-
+    if (this.cartService.userAuthenticated) {
+      this.cartService.addProductCart(this.productId).subscribe({
+        next: (res: any) => {
+          console.log("called endpoint api 2");
+          console.log(res);
+          if (this.count < this.singleProduct.quantity) {
+            this.count = this.count + 1;
+            this.totalAmount = this.count * this.singleProduct.amount;
+          }
+        },
+        error: (err: any) => {
+          console.error(err);
         }
-      },
-      error: (err: any) => {
-        console.error(err);
-      }
-    })
+      })
+    }else{
+      this.toggleTerminalFormModal();
+      console.log("entered exception");
+    }
   }
 
   addToCart() {
@@ -89,7 +94,6 @@ export class SingleproductComponent {
           this.count = this.count - 1;
           this.totalAmount = this.count * this.singleProduct.amount;
         }
-
       },
       error: (err: any) => {
         console.error(err);

@@ -315,7 +315,7 @@
             <div>
                 <div class="text-[grey] text-[16px] leading-[24px]">All Orders</div>
                 <div class="flex items-center gap-[0.3rem]">
-                    <span class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.allOrdersCount}}</span>
+                    <span class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics?.allOrdersCount}}</span>
                 </div>
             </div>
             <div>
@@ -332,7 +332,7 @@
                 <div class="text-[grey] text-[16px] leading-[24px]">In-Progress</div>
                 <div class="flex items-center gap-[0.3rem]">
                     <span
-                        class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.processingOrdersCount}}</span>
+                        class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics?.processingOrdersCount}}</span>
                 </div>
             </div>
             <div>
@@ -350,7 +350,7 @@
                 <div class="text-[grey] text-[16px] leading-[24px]">Cancelled</div>
                 <div class="flex items-center gap-[0.3rem]">
                     <span
-                        class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.cancelledOrdersCount}}</span>
+                        class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics?.cancelledOrdersCount}}</span>
                 </div>
             </div>
             <div>
@@ -367,7 +367,7 @@
                 <div class="text-[grey] text-[16px] leading-[24px]">Failed</div>
                 <div class="flex items-center gap-[0.3rem]">
                     <span
-                        class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.failedOrdersCount}}</span>
+                        class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics?.failedOrdersCount}}</span>
                 </div>
             </div>
             <div>
@@ -384,7 +384,7 @@
                 <div class="text-[grey] text-[16px] leading-[24px]">Delivered</div>
                 <div class="flex items-center gap-[0.3rem]">
                     <span
-                        class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.completedOrdersCount}}</span>
+                        class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics?.completedOrdersCount}}</span>
                 </div>
             </div>
             <div>
@@ -414,7 +414,7 @@
                         <div
                             class="bg-[#FBFBFB] border rounded-[12px] gap-[1rem] flex p-[1rem] py-[0.5rem] w-[70%] md:mt-[0] mt-[1rem]">
                             <div class="flex justify-center items-center">
-                                <img (click)="getCustomerOrders()" src="/assets/images/inputSearch.png" alt="">
+                                <img (click)="fetchVendorOrdersBy()" src="/assets/images/inputSearch.png" alt="">
                             </div>
 
 
@@ -467,7 +467,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let order of customersOrder" class="text-[#6E7079] bg-[#fff] border-b hover:bg-gray-50">
+                    <tr *ngFor="let order of vendorsOrder" class="text-[#6E7079] bg-[#fff] border-b hover:bg-gray-50">
                         <td class="w-4 p-[2rem]">
                             <div class="flex items-center">
                                 <input id="checkbox-table-search-3" type="checkbox"
@@ -534,6 +534,24 @@
                             </div>
                         </td>
 
+
+                        <td class="p-[1rem] flex gap-[3rem]">
+                            <!-- <img (click)="toggleReceiptModal()" class="cursor-pointer" src="/assets/images/Vector.png" alt="">
+                            <i (click)="toggleInvoiceModal()"  class="fa fa-user"></i> -->
+    
+                            <div ngbDropdown container="body">
+                                <button type="button" class="" ngbDropdownToggle>
+                                    Actions
+                                </button>
+                                <div class="rounded-[8px]" ngbDropdownMenu>
+                                    <button class="text-[12px] leading-[2rem]" (click)="toggleReceiptModal(order.orderId)"
+                                        ngbDropdownItem>Download Receipt</button>
+                                    <!-- <button class="text-[12px] leading-[2rem]" (click)="toggleInvoiceModal(receipt.receiptRef)" -->
+                                        <!-- ngbDropdownItem>Download Invoice</button> -->
+                                </div>
+                            </div>
+                        </td>
+
                     </tr>
                 </tbody>
 
@@ -569,6 +587,112 @@
         </div>
     </div>
 </div>
+
+
+
+
+<div *ngIf="showOrderModal && isLoading"
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+    <div class="relative w-full my-6 mx-auto">
+        <div class="border-0 rounded-[8px] shadow-lg relative flex flex-col w-full  outline-none focus:outline-none">
+            <div class="grid place-items-center items-center p-[4rem] w-full">
+                <div class="flex justify-end w-full">
+                    <span class="cursor-pointer" (click)="toggleReceiptModal(orderRef)"><img class="h-[20px]"
+                            src="/assets/images/x.png" alt=""></span>
+                </div>
+
+                <div class="grid gap-[1rem] mt-[2rem] items-center place-items-center">
+
+                    <div class="bg-[#fff] rounded-[20px]  flex justify-center">
+                        <div class="min-w-[50rem]">
+
+
+                            <div class=" p-[4rem] grid gap-[2rem]">
+
+                                <div *ngIf="orderDetail.status == 'PAYMENT_COMPLETED'" class="flex justify-center"><img src="/assets/images/tick-circle.png" alt=""></div>
+                                <div *ngIf="orderDetail.status == 'DECLINED'" class="flex justify-center"><img src="/assets/images/failed.png" alt="declined"></div>
+
+                                <div *ngIf="orderDetail.status == 'PAYMENT_COMPLETED'" class="text-center font-[NUNITO] text-[18px]">Transaction Successful</div>
+                                <div *ngIf="orderDetail.status == 'DECLINED'" class="text-center font-[NUNITO] text-[18px]">Transaction Declined</div>
+
+
+                                <div class="text-[#3D3D3D] grid gap-[1rem]">
+
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
+                                        <div>Transfer to bank</div>
+                                        <div>N {{orderDetail.amount}}.00</div>
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
+                                        <div>Charges</div>
+                                        <div>2.00</div>
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
+                                        <div>Date</div>
+                                        <div>{{orderDetail?.dateCreated?.slice(0,10)}} {{orderDetail?.dateCreated?.slice(11,16)}}</div>
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
+                                        <div>Time</div>
+                                        <div>{{orderDetail?.dateCreated?.slice(11,16)}}</div>
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
+                                        <div>Status</div>
+                                        <div>{{orderDetail?.transactionStatus}}</div>
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
+                                        <div>Bank Name</div>
+                                        <div>Opay</div>
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
+                                        <div>Account Number</div>
+                                        <div>7556367629</div>
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
+                                        <div>Account Name</div>
+                                        <div>{{orderDetail?.customerName}}</div>
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
+                                        <div>Paid with</div>
+                                        <div>{{orderDetail?.paymentMethod}}</div>
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] py-[2rem] pr-[1rem]">
+                                        <div>Transaction ID</div>
+                                        <div>{{orderDetail?.receiptRef}}</div>
+                                    </div>
+                                </div>
+                                <!-- <div (click)="downloadReceipt(receiptRef)"
+                                    class="bg-[#7535FD] mx-auto text-[#fff] text-[18px] py-[2rem] px-[3rem] w-fit rounded-[5px] font-[NUNITO-LIGHT] mt-[2rem] cursor-pointer">
+                                    Download Receipt
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-end p-6 rounded-b">
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="showOrderModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
 
 
 

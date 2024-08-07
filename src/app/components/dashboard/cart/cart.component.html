@@ -164,16 +164,16 @@
                     </div>
                     <form class="w-full flex gap-[3rem]">
                         <div class="flex gap-[0.5rem] items-center">
-                          <input type="radio" id="card" name="channel" value="card" [(ngModel)]="selectedChannel">
-                          <label for="card">CARD</label>
+                          <input  type="radio" id="card" name="channel" value="card" [(ngModel)]="selectedChannel">
+                          <label class="mt-[1rem]" for="card">CARD</label>
                         </div>
                         <div class="flex gap-[0.5rem] items-center">
                           <input type="radio" id="ussd" name="channel" value="ussd" [(ngModel)]="selectedChannel">
-                          <label for="ussd">USSD</label>
+                          <label class="mt-[1rem]" for="ussd">USSD</label>
                         </div>
                         <div class="flex gap-[0.5rem] items-center">
                           <input type="radio" id="transfer" name="channel" value="transfer" [(ngModel)]="selectedChannel">
-                          <label for="transfer">Transfer</label>
+                          <label class="mt-[1rem]" for="transfer">Transfer</label>
                         </div>
                       </form>
                       
@@ -199,3 +199,4 @@
 <ng-template #elseBlock>
     <app-cart-loader></app-cart-loader>
 </ng-template> 
+

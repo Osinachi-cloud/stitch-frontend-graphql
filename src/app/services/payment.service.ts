@@ -14,6 +14,7 @@ export class PaymentService extends ApolloService{
 
   initializePayment(paymentRequest: PaymentRequest): Observable<FetchResult<InitializeTransactionResponse>>{
 
+    console.log({paymentRequest});
     const mutation = gql`
     mutation{
       initializePayment(paymentRequest: {
@@ -23,7 +24,7 @@ export class PaymentService extends ApolloService{
         productId: "${paymentRequest.productId}",
         vendorId:  "${paymentRequest.vendorId}",
         narration: "${paymentRequest.narration}",
-        productCategoryName: "${paymentRequest.productCategoryName}"        
+        productCategoryName: "${paymentRequest.productCategoryName}" 
       }){
       status
       message

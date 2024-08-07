@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { CartService } from 'src/app/services/cart.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { ProductlikesService } from 'src/app/services/productlikes.service';
-import { InitializeTransactionResponse, PageRequest, PaymentRequest } from 'src/app/types/Type';
+import { InitializeTransactionResponse, PageRequest, PaymentRequest, Products } from 'src/app/types/Type';
 
 @Component({
   selector: 'app-cart',
@@ -14,10 +15,11 @@ import { InitializeTransactionResponse, PageRequest, PaymentRequest } from 'src/
 export class CartComponent {
 
   cart: any[] = [];
-  cartSingleProduct : any;
+  cartSingleProduct: any;
   isLoading: boolean = false;
   isLoadingOrder: boolean = false;
-  sumCartAmount: number  = 0;
+  sumCartAmount: number = 0;
+  arrProductIds: string[] = [];
 
   pageRequest: PageRequest = {
     page: 0,
@@ -27,7 +29,20 @@ export class CartComponent {
   paymentRequest: PaymentRequest;
   initializeTransactionResponse: InitializeTransactionResponse;
 
-  constructor(private paymentService: PaymentService, private cartService: CartService, private router: Router, private productLikeService: ProductlikesService) {
+  constructor(private paymentService: PaymentService,
+    private cartService: CartService,
+    private router: Router,
+    private productLikeService: ProductlikesService,
+    private toast: NgToastService,
+
+  ) {
+  }
+
+  showSuccessResponse(message: string, header: string, duration: number) {
+    this.toast.success({ detail: message, summary: header, duration: duration });
+  }
+  showFailureResponse(message: string, header: string, duration: number) {
+    this.toast.error({ detail: message, summary: header, duration: duration });
   }
 
 
@@ -36,6 +51,7 @@ export class CartComponent {
   ngOnInit() {
     this.getAllCartItems();
     this.sumAmountByQuantityByCustomerId();
+
   }
 
   getAllCartItems() {
@@ -44,10 +60,12 @@ export class CartComponent {
     this.cartService.getCart(this.pageRequest).subscribe({
       next: (res: any) => {
         this.isLoading = false;
-        console.log("called endpoint api 2");
-        console.log(res.data.getCart.data);
+  
         this.cart = res.data.getCart.data;
         this.cartSingleProduct = this.cart[0];
+        // window.location.reload();
+        // this.getProductsIds(res.data.getCart.data);
+
 
       },
       error: (err: any) => {
@@ -56,6 +74,13 @@ export class CartComponent {
       }
     })
 
+  }
+
+  getProductsIds(carts: Products[]): string [] {
+    carts.map((cart) => {
+      this.arrProductIds.push(cart.productId);
+    });
+    return this.arrProductIds;
   }
 
   addCount(productId: string) {
@@ -87,12 +112,12 @@ export class CartComponent {
     })
   }
 
-  addProductLikes(productId: string){ 
+  addProductLikes(productId: string) {
     this.productLikeService.addProductLikes(productId).subscribe({
-      next : (res: any) => {
-          console.log(res);
+      next: (res: any) => {
+        console.log(res);
       },
-      error : (err: any) => {
+      error: (err: any) => {
         console.error(err);
       }
 
@@ -112,37 +137,37 @@ export class CartComponent {
     })
   }
 
-  sumAmountByQuantityByCustomerId(){
+  sumAmountByQuantityByCustomerId() {
     console.log("got to the cart box");
     this.cartService.sumAmountByQuantityByCustomerId().subscribe({
-      next : (res: any) => {
+      next: (res: any) => {
         console.log(res)
         this.sumCartAmount = res.data.sumAmountByQuantityByCustomerId;
-      }, 
-      error : (err: any) => {
+      },
+      error: (err: any) => {
         console.log(err);
       }
 
     })
   }
 
-  backToShopping(){
-    this.router.navigate(["/dashboard"])
+  backToShopping() {
+    this.router.navigate([""])
   }
 
-  clearCart(){
+  clearCart() {
     this.cartService.clearCart().subscribe({
-      next : (res: any) => {
+      next: (res: any) => {
         window.location.reload();
         this.getAllCartItems();
       },
-      error : (err: any) => {
+      error: (err: any) => {
 
       }
     })
   }
 
-  goToOrderPage(){
+  goToOrderPage() {
     this.isLoadingOrder = true;
     const paymentRequest: PaymentRequest = {
       amount: this.sumCartAmount,
@@ -152,24 +177,25 @@ export class CartComponent {
       vendorId: this.cartSingleProduct?.vendorId,
       narration: "Great Product",
       productCategoryName: this.cartSingleProduct?.category,
-      
-
-      
+     
     };
-
-    this.paymentService.initializePayment(paymentRequest).subscribe({
-      next: (res: any) => {
-        this.initializeTransactionResponse = res;
-        this.isLoadingOrder = false;
-        console.log({res});
-        window.location.href = res?.data?.initializePayment?.data?.authorizationUrl;
-        this.clearCart();
-      }, error: (err: any) => {
-        this.isLoadingOrder = false;
-
-      }
-    });
-    
+    console.log("selectedChannel", this.selectedChannel);
+    if (!this.selectedChannel || this.selectedChannel == "") {
+      this.isLoadingOrder = false;
+      this.showFailureResponse("Login Error", "You have not selected any payment channel", 3000);
+    } else {
+      this.paymentService.initializePayment(paymentRequest).subscribe({
+        next: (res: any) => {
+          this.initializeTransactionResponse = res;
+          this.isLoadingOrder = false;
+          console.log({ res });
+          window.location.href = res?.data?.initializePayment?.data?.authorizationUrl;
+          // this.clearCart();
+        }, error: (err: any) => {
+          this.isLoadingOrder = false;
+        }
+      });
+    }
   }
 
 

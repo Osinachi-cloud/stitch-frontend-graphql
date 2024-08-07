@@ -13,8 +13,11 @@ import { UtilService } from './util.service';
 })
 export class CartService extends ApolloService{
 
+  // token = TokenService.getToken();
+  // userAuthenticated = this.token || this.token?.length > 0;
+
   token = TokenService.getToken();
-  userAuthenticated = this.token || this.token?.length > 0;
+  userAuthenticated = this.token && !TokenService.isTokenExpired(this.token);
 
   getCart(pageRequest: PageRequest): Observable<FetchResult<any>> {
     const query = gql`
@@ -119,7 +122,7 @@ export class CartService extends ApolloService{
 
     const token = TokenService.getToken();
 
-    if(!token || token?.length > 0){
+    if(this.userAuthenticated){
       
      headers = new HttpHeaders({
       'Authorization': `Bearer ${TokenService.getToken()}`,

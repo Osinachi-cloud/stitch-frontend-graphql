@@ -22,6 +22,7 @@ import { CartComponent } from './components/dashboard/cart/cart.component';
 import { AnalyticsComponent } from './components/dashboard/analytics/analytics.component';
 import { SingleproductComponent } from './components/dashboard/singleproduct/singleproduct.component';
 import { InitiateOrderComponent } from './components/dashboard/initiate-order/initiate-order.component';
+import { VendorsOrdersComponent } from './components/dashboard/vendors-orders/vendors-orders.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
     { path: 'overview', component: OverviewComponent },
     { path: 'orders', component: OrdersComponent },
+    { path: 'vendor-orders', component: VendorsOrdersComponent },
     { path: 'order', component: InitiateOrderComponent },
     { path: 'api-documentation', component: DocumentationComponent},
     { path: 'likes', component: ProductlikesComponent },

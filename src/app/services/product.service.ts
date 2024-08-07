@@ -11,7 +11,7 @@ import { UtilService } from './util.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService extends ApolloService{
+export class ProductService extends ApolloService {
 
   // getProducts(product: Products): Observable<FetchResult<any>> {
   //   const query = gql`
@@ -32,9 +32,9 @@ export class ProductService extends ApolloService{
   //       }
   //     }
   //   `;
-  
+
   //   const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
-  
+
   //   return this.apollo.query<any>({
   //     query: query,
   //     variables: {
@@ -77,9 +77,9 @@ export class ProductService extends ApolloService{
         }
       }
     `;
-    
+
     // const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
-    
+
     return this.apollo.query<any>({
       query: query,
       variables: {
@@ -87,6 +87,38 @@ export class ProductService extends ApolloService{
         size: product.size,
         vendorId: product.vendorId,
 
+      },
+      context: {
+        // headers,
+      },
+    });
+  }
+
+  getProductByProductId(productId: string): Observable<FetchResult<any>> {
+    const query = gql`
+      query{
+        getProductByProductId(productId: "${productId}"){
+          name
+          code
+          productImage
+          amount
+          quantity
+          outOfStock
+          category
+          provider
+          fixedPrice
+          country
+          vendor
+        }
+      }
+    `;
+
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+
+    return this.apollo.query<any>({
+      query: query,
+      variables: {
+        productId: productId,
       },
       context: {
         // headers,
@@ -123,9 +155,9 @@ export class ProductService extends ApolloService{
         }
       }
     `;
-    
+
     const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
-    
+
     return this.apollo.query<any>({
       query: query,
       variables: {
