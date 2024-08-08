@@ -315,7 +315,8 @@
             <div>
                 <div class="text-[grey] text-[16px] leading-[24px]">All Orders</div>
                 <div class="flex items-center gap-[0.3rem]">
-                    <span class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics?.allOrdersCount}}</span>
+                    <span
+                        class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics?.allOrdersCount}}</span>
                 </div>
             </div>
             <div>
@@ -525,8 +526,8 @@
                                 <span class="text-[orange]">PAID</span>
                             </div>
                             <div *ngIf="order.status === 'VENDOR_PROCESSING_START' "
-                                class="bg-[#fcbbb2] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
-                                <span class="text-[#fc897a]">{{order.status}}</span>
+                                class="bg-[#d6fcd3] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
+                                <span class="text-[#36d761]">STARTED</span>
                             </div>
                             <div *ngIf="order.status === 'VENDOR_PROCESSING_COMPLETED' "
                                 class="bg-[#fcb2f7] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
@@ -538,20 +539,36 @@
                         <td class="p-[1rem] flex gap-[3rem]">
                             <!-- <img (click)="toggleReceiptModal()" class="cursor-pointer" src="/assets/images/Vector.png" alt="">
                             <i (click)="toggleInvoiceModal()"  class="fa fa-user"></i> -->
-    
+
                             <div ngbDropdown container="body">
                                 <button type="button" class="" ngbDropdownToggle>
                                     Actions
                                 </button>
                                 <div class="rounded-[8px]" ngbDropdownMenu>
-                                    <button class="text-[12px] leading-[2rem]" (click)="toggleReceiptModal(order.orderId)"
-                                        ngbDropdownItem>Download Receipt</button>
-                                    <!-- <button class="text-[12px] leading-[2rem]" (click)="toggleInvoiceModal(receipt.receiptRef)" -->
-                                        <!-- ngbDropdownItem>Download Invoice</button> -->
+                                    <button class="text-[12px] leading-[2rem]"
+                                        (click)="toggleReceiptModal(order.orderId)" ngbDropdownItem>View Order</button>
+                                </div>
+                                <div class="rounded-[8px]" ngbDropdownMenu>
+                                    <button class="text-[12px] leading-[2rem]"
+                                        (click)="toggleBodyMeasurementModal(order.orderId)" ngbDropdownItem>View
+                                        Measurement</button>
                                 </div>
                             </div>
-                        </td>
 
+
+                            <!-- <div ngbDropdown class="d-inline-block">
+                                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle
+                                    dropdown</button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                    <button ngbDropdownItem>Action - 1</button>
+                                    <button ngbDropdownItem>Another Action</button>
+                                    <button ngbDropdownItem [disabled]="true">this
+                                        should be disabled</button>
+                                </div>
+                            </div> -->
+
+
+                        </td>
                     </tr>
                 </tbody>
 
@@ -588,8 +605,203 @@
     </div>
 </div>
 
+<div *ngIf="showBodyMeasurementModal && isLoading"
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+    <div class="relative w-full my-6 mx-auto">
+        <div class="border-0 rounded-[8px] shadow-lg relative flex flex-col w-full  outline-none focus:outline-none">
+            <div class="grid place-items-center items-center p-[4rem] w-full">
+                <div class="flex justify-end w-full">
+                    <span class="cursor-pointer" (click)="toggleBodyMeasurementModal(orderRef)"><img class="h-[20px]"
+                            src="/assets/images/x.png" alt=""></span>
+                </div>
+
+                <div class="grid gap-[1rem] mt-[2rem] items-center place-items-center">
+
+                    <div class="bg-[#fff] rounded-[20px]  flex justify-center">
+                        <div class="min-w-[50rem]">
 
 
+                            <div class=" p-[4rem] grid gap-[2rem]">
+
+                                <div *ngIf="orderDetail.status == 'COMPLETED'" class="flex justify-center"><img
+                                        src="/assets/images/tick-circle.png" alt=""></div>
+                                <div *ngIf="orderDetail.status == 'PAYMENT_COMPLETED'" class="flex justify-center"><i
+                                        class="fa fa-dollar text-[white] text-[22px] h-[50px] w-[50px] text-center flex items-center justify-center rounded-full bg-[#5cd1f8]"></i>
+
+                                </div>
+                                <div *ngIf="orderDetail.status == 'VENDOR_PROCESSING_START'"
+                                    class="flex justify-center"><i
+                                        class="fa fa-dollar text-[white] text-[22px] h-[50px] w-[50px] text-center flex items-center justify-center rounded-full bg-[#5cd1f8]"></i>
+                                </div>
+
+                                <div *ngIf="orderDetail.status == 'DECLINED'" class="flex justify-center"><img
+                                        src="/assets/images/failed.png" alt="declined"></div>
+
+
+                                <div *ngIf="orderDetail.status == 'PAYMENT_COMPLETED'"
+                                    class="text-center font-[NUNITO] text-[18px]">Payment Completed</div>
+                                <div *ngIf="orderDetail.status == 'COMPLETED'"
+                                    class="text-center font-[NUNITO] text-[18px]">Transaction Successful</div>
+                                <div *ngIf="orderDetail.status == 'DECLINED'"
+                                    class="text-center font-[NUNITO] text-[18px]">Transaction Declined</div>
+                                <div *ngIf="orderDetail.status == 'VENDOR_PROCESSING_START'"
+                                    class="text-center font-[NUNITO] text-[18px]">Started</div>
+
+
+                                <div class="grid gap-[0.5rem]">
+                                    <h3>TOP (CM)</h3>
+
+                                    <div class="grid grid-cols-2 gap-x-[2rem]">
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Neck: </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.neck}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Shoulder: </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.shoulder}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Tummy: </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.tummy}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Short Sleeve: </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.shortSleeveAtBiceps}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Hip Width: : </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.hipWidth}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class=" text-[grey]">Mid Sleeve (Byceps): </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.midSleeveAtElbow}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Mid Sleeve (Byceps): </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.neck}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Chest: </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.chest}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Length (Neck to Hip): </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.neckToHipLength}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Long Sleeve (at wrist): </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.longSleeveAtWrist}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="grid gap-[0.5rem]">
+                                    <h3>Trouser (CM)</h3>
+
+                                    <div class="grid grid-cols-2 gap-x-[2rem]">
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Waist: </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.waist}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Knee: </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.neck}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Ankle: : </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.ankle}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class=" text-[grey]">Thigh: </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.thigh}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Knee Length (waist to knee): </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.knee}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1">
+                                            <div class="h-[3rem]">
+                                                <span class="text-[grey]">Trouser Length: </span>
+                                                <span>{{orderDetail.bodyMeasurementDto.trouserLength}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                                <div class="flex mx-auto justify-center w-[70%]">
+                                    <div (click)="toggleBodyMeasurementModal(orderRef)"
+                                        class="bg-[#000]  text-[#fff] text-[18px] py-[1rem] px-[3rem] w-fit rounded-[5px] font-[NUNITO-LIGHT] mt-[2rem] cursor-pointer">
+                                        Cancel
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-end p-6 rounded-b">
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="showBodyMeasurementModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
+
+
+
+<!-- reserverd for single order -->
 
 <div *ngIf="showOrderModal && isLoading"
     class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
@@ -609,19 +821,42 @@
 
                             <div class=" p-[4rem] grid gap-[2rem]">
 
-                                <div *ngIf="orderDetail.status == 'PAYMENT_COMPLETED'" class="flex justify-center"><img src="/assets/images/tick-circle.png" alt=""></div>
-                                <div *ngIf="orderDetail.status == 'DECLINED'" class="flex justify-center"><img src="/assets/images/failed.png" alt="declined"></div>
+                                <div *ngIf="orderDetail.status == 'COMPLETED'" class="flex justify-center"><img
+                                        src="/assets/images/tick-circle.png" alt=""></div>
+                                <div *ngIf="orderDetail.status == 'PAYMENT_COMPLETED'" class="flex justify-center"><i
+                                        class="fa fa-dollar text-[white] text-[22px] h-[50px] w-[50px] text-center flex items-center justify-center rounded-full bg-[#5cd1f8]"></i>
 
-                                <div *ngIf="orderDetail.status == 'PAYMENT_COMPLETED'" class="text-center font-[NUNITO] text-[18px]">Transaction Successful</div>
-                                <div *ngIf="orderDetail.status == 'DECLINED'" class="text-center font-[NUNITO] text-[18px]">Transaction Declined</div>
+                                </div>
+                                <div *ngIf="orderDetail.status == 'VENDOR_PROCESSING_START'"
+                                    class="flex justify-center"><i
+                                        class="fa fa-cut text-[white] text-[22px] h-[50px] w-[50px] text-center flex items-center justify-center rounded-full bg-[#5cd1f8]"></i>
+                                </div>
 
+                                <div *ngIf="orderDetail.status == 'DECLINED'" class="flex justify-center"><img
+                                        src="/assets/images/failed.png" alt="declined"></div>
+
+
+                                <div *ngIf="orderDetail.status == 'PAYMENT_COMPLETED'"
+                                    class="text-center font-[NUNITO] text-[18px]">Payment Completed</div>
+                                <div *ngIf="orderDetail.status == 'COMPLETED'"
+                                    class="text-center font-[NUNITO] text-[18px]">Transaction Successful</div>
+                                <div *ngIf="orderDetail.status == 'DECLINED'"
+                                    class="text-center font-[NUNITO] text-[18px]">Transaction Declined</div>
+                                <div *ngIf="orderDetail.status == 'VENDOR_PROCESSING_START'"
+                                    class="text-center font-[NUNITO] text-[18px]">Started</div>
 
                                 <div class="text-[#3D3D3D] grid gap-[1rem]">
 
                                     <div
                                         class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
-                                        <div>Transfer to bank</div>
+                                        <div>Amount Paid</div>
                                         <div>N {{orderDetail.amount}}.00</div>
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
+                                        <div>Quantity</div>
+                                        <div>{{orderDetail.quantity}}</div>
                                     </div>
 
                                     <div
@@ -633,55 +868,34 @@
                                     <div
                                         class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
                                         <div>Date</div>
-                                        <div>{{orderDetail?.dateCreated?.slice(0,10)}} {{orderDetail?.dateCreated?.slice(11,16)}}</div>
+                                        <div>{{orderDetail?.dateCreated?.slice(0,10)}}
+                                            {{orderDetail?.dateCreated?.slice(11,16)}}</div>
                                     </div>
 
                                     <div
                                         class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
-                                        <div>Time</div>
-                                        <div>{{orderDetail?.dateCreated?.slice(11,16)}}</div>
+                                        <div>Order Reference</div>
+                                        <div>{{orderDetail?.orderId}}</div>
                                     </div>
 
                                     <div
                                         class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
                                         <div>Status</div>
-                                        <div>{{orderDetail?.transactionStatus}}</div>
+                                        <div>{{orderDetail?.status?.replace("_", " ").toLowerCase()}}</div>
                                     </div>
 
-                                    <div
-                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
-                                        <div>Bank Name</div>
-                                        <div>Opay</div>
-                                    </div>
+                                </div>
 
-                                    <div
-                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
-                                        <div>Account Number</div>
-                                        <div>7556367629</div>
+                                <div class="flex mx-auto justify-between w-[70%]">
+                                    <div (click)="toggleReceiptModal(orderRef)"
+                                        class="bg-[#000]  text-[#fff] text-[18px] py-[1rem] px-[3rem] w-fit rounded-[5px] font-[NUNITO-LIGHT] mt-[2rem] cursor-pointer">
+                                        Cancel
                                     </div>
-
-                                    <div
-                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
-                                        <div>Account Name</div>
-                                        <div>{{orderDetail?.customerName}}</div>
-                                    </div>
-
-                                    <div
-                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
-                                        <div>Paid with</div>
-                                        <div>{{orderDetail?.paymentMethod}}</div>
-                                    </div>
-
-                                    <div
-                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] py-[2rem] pr-[1rem]">
-                                        <div>Transaction ID</div>
-                                        <div>{{orderDetail?.receiptRef}}</div>
+                                    <div (click)="updateProductOrder(orderRef)"
+                                        class="bg-[#5cd1f8] text-[#fff] text-[18px] py-[1rem] px-[3rem] w-fit rounded-[5px] font-[NUNITO-LIGHT] mt-[2rem] cursor-pointer">
+                                        Accept Order
                                     </div>
                                 </div>
-                                <!-- <div (click)="downloadReceipt(receiptRef)"
-                                    class="bg-[#7535FD] mx-auto text-[#fff] text-[18px] py-[2rem] px-[3rem] w-fit rounded-[5px] font-[NUNITO-LIGHT] mt-[2rem] cursor-pointer">
-                                    Download Receipt
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -693,6 +907,16 @@
     </div>
 </div>
 <div *ngIf="showOrderModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
+
+
+
+
+
+
+
+
+
 
 
 

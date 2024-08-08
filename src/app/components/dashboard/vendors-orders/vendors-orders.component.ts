@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ClientsService } from '../../../services/clients.service';
-import { ProductOrder, ProductOrderStatistics } from 'src/app/types/Type';
+import { ProductOrder, ProductOrderRequest, ProductOrderStatistics } from 'src/app/types/Type';
 import { OrderService } from 'src/app/services/order.service';
 import { UtilService } from 'src/app/services/util.service';
 
@@ -17,6 +17,7 @@ export class VendorsOrdersComponent {
   showOrderModal = false;
   orderRef:string = "";
   orderDetail: any = {};
+  showBodyMeasurementModal: boolean = false;
 
   productOrderRequest: ProductOrder = {
     productId: null,
@@ -140,16 +141,43 @@ export class VendorsOrdersComponent {
     // this.isLoading = false;
     this.orderService.getOrderByOrderId(this.orderRef).subscribe({
       next:(response: any) => {
-        console.log(response);
+        // console.log(response);
         // this.isLoading = true;
           this.orderDetail = response?.data.getOrderByOrderId;
-        console.log(this.orderDetail);
+        // console.log(this.orderDetail);
       },
       error:(items:any)=>{
         // this.isLoading = true;
       }
     })
   }
+
+
+
+  toggleBodyMeasurementModal(orderId:string){
+    this.orderRef = orderId;
+    console.log("order id : " +this.orderRef);
+    this.getOrderById();
+    this.showBodyMeasurementModal = !this.showBodyMeasurementModal;
+  }
+
+  updateProductOrder(orderId: string){
+    console.log("res", orderId);
+    let productOrderRequest: ProductOrderRequest = {
+      status:"VENDOR_PROCESSING_START",
+      orderId:orderId
+    }
+    this.orderService.updateProductOrder(productOrderRequest).subscribe({
+      next: (res: any) => {
+        console.log({res});
+        // window.location.reload();
+      },
+      error: (err: any) => {
+        console.log({err});
+      }
+    });
+  }
+
 
 
 

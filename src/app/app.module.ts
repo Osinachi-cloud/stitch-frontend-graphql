@@ -111,7 +111,8 @@ import { VendorsOrdersComponent } from './components/dashboard/vendors-orders/ve
     MenuModule,
     ToastModule,
     ToastrModule,
-    HttpClientModule
+    HttpClientModule,
+    // NgbModule
     // HttpLinkModule
     
 
@@ -122,3 +123,8 @@ import { VendorsOrdersComponent } from './components/dashboard/vendors-orders/ve
 
 })
 export class AppModule { }
+
+// imports: [BrowserModule, NgbModule],
+// declarations: [NgbdDropdownBasic],
+// exports: [NgbdDropdownBasic],
+// bootstrap: [NgbdDropdownBasic]

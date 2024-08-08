@@ -70,6 +70,11 @@ export interface ContactVerificationResponse {
     size: number;
   }
 
+  export interface ProductOrderRequest{
+    status: string | null;
+    orderId: string | null;
+  }
+
   export interface Products {
     vendorId: string | null;
     page: number;

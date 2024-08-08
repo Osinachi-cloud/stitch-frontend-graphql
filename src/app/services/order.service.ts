@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FetchResult } from '@apollo/client/core';
 import { gql } from 'apollo-angular';
-import { ProductOrder } from '../types/Type';
+import { ProductOrder, ProductOrderRequest } from '../types/Type';
 import { UtilService } from './util.service';
 import { ApolloService } from './apollo.service';
 
@@ -40,6 +40,7 @@ export class OrderService extends ApolloService{
             dateCreated
             currency
             customerId
+            quantity
           }
         }
       }
@@ -88,6 +89,8 @@ export class OrderService extends ApolloService{
             dateCreated
             currency
             customerId
+            quantity
+            bodyMeasurementId
           }
         }
       }
@@ -112,9 +115,6 @@ export class OrderService extends ApolloService{
       },
     });
   }
-
-  
-
 
   getOrderStats(): Observable<FetchResult<any>>{
     const query = gql`
@@ -176,10 +176,27 @@ export class OrderService extends ApolloService{
           dateCreated
           currency
           customerId
+          quantity
+          bodyMeasurementId
+          bodyMeasurementDto {
+                neck
+                shoulder
+                chest
+                tummy
+                hipWidth
+                neckToHipLength
+                shortSleeveAtBiceps
+                midSleeveAtElbow
+                longSleeveAtWrist
+                waist
+                thigh
+                knee
+                ankle
+                trouserLength
+          }
       }
     }
     `;
-
 
     const headers = new HttpHeaders()
     .set('Authorization', `Bearer ${TokenService.getToken()}`)
@@ -192,5 +209,39 @@ export class OrderService extends ApolloService{
     });
   }
   
+
+  updateProductOrder(productOrderRequest: ProductOrderRequest): Observable<FetchResult<ProductOrder>>{
+    console.log("================");
+    console.log({productOrderRequest});
+    console.log("================");
+
+    const mutation = gql`
+        mutation{
+          updateProductOrder(productOrderRequest: {
+            status:"${productOrderRequest.status}"
+            orderId:"${productOrderRequest.orderId}"
+          }){
+            status
+            paymentId
+            productCategoryName
+            amount
+            customerId
+            email
+            orderId
+            bodyMeasurementId
+          }
+        }
+    `;
+
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${TokenService.getToken()}`)
+
+    return this.apollo.mutate<ProductOrder>({
+      mutation,
+      context: {
+        headers
+      }
+    });
+  }
 
 }
