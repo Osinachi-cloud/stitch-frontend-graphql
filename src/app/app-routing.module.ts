@@ -21,6 +21,7 @@ import { ProductlikesComponent } from './components/dashboard/productlikes/produ
 import { CartComponent } from './components/dashboard/cart/cart.component';
 import { AnalyticsComponent } from './components/dashboard/analytics/analytics.component';
 import { SingleproductComponent } from './components/dashboard/singleproduct/singleproduct.component';
+import { MeasurementComponent } from './components/dashboard/measurement/measurement.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,9 @@ const routes: Routes = [
   { path: 'submit-password', component: PasswordRequestFormComponent},
   { path: 'single-product', component: SingleproductComponent},
   { path: 'products', component: LandingPageComponent},
+  { path:  'measurement', component: MeasurementComponent},
+
+
 
   { path: 'dashboard', component: DashboardComponent, children: [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },

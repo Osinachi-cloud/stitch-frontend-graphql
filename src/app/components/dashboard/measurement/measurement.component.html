@@ -1,0 +1,132 @@
+<div class="h-screen flex">
+  <div class="w-[339px] bg-[#F5F8FF]"></div>
+  <div class="flex-grow p-[50px] bg-[#F5F8FF] overflow-y-scroll">
+    <form (submit)="submiting()" class="bg-white py-10 ">
+      <div class="flex px-[40px] items-center justify-between mb-4">
+        <h1 style="font-size: 30px; font-family: 800" class="text-[30px]">
+          Body Measurement
+        </h1>
+        <button
+          type="submit"
+          class="px-4 magic py-2 bg-[#373636] text-white rounded-[4px] w-[113px] h-[44px]"
+        >
+          Save
+        </button>
+      </div>
+      <h2 class="text-xl px-[40px] font-bold mt-8 mb-4">Top</h2>
+      <div class="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 px-[40px] gap-[30px] pb-[50px]">
+        <div *ngFor="let neck of topBodyForm" class="flex flex-col">
+          <label
+            [for]="neck.value"
+            style="
+              font-family: Poppins;
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 24px;
+              text-align: left;
+            "
+          >
+            {{ neck.name }}
+          </label>
+          <input
+            class="p-5 border rounded"
+            style="
+              width: 100%;
+              padding: 8px;
+              border-radius: 5px;
+              height: 52px;
+              background-color: #f6f6f6;
+              border: 1px solid #d4d4d6;
+            "
+            class="border border"
+            [placeholder]="neck.name"
+            type="text"
+            id="neck.value"
+            [name]="neck.value"
+            [(ngModel)]="testForm[neck.value]"
+            (change)="validateNumber($event)"
+            (keyup)="validateNumber($event)"
+          />
+        </div>
+      </div>
+      <hr style="border-top: 1px solid #d4d4d6; margin-top: 10px" />
+      <h2 class="text-xl pt-[30px] px-[40px] font-bold mb-4">Hand</h2>
+      <div class="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 px-[40px] gap-[30px] pb-[50px]">
+        <div *ngFor="let neck of handBodyForm" class="flex flex-col">
+          <label
+            style="
+              font-family: Poppins;
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 24px;
+              text-align: left;
+            "
+          >
+            {{ neck.name }}
+          </label>
+          <input
+            class="p-5 border rounded"
+            style="
+              width: 100%;
+              padding: 8px;
+              border-radius: 5px;
+              height: 52px;
+              background-color: #f6f6f6;
+              border: 1px solid #d4d4d6;
+            "
+            class="border border"
+            [placeholder]="neck.name"
+            type="text"
+            id="neck.value"
+            [name]="neck.value"
+            [(ngModel)]="testForm[neck.value]"
+            (change)="validateNumber($event)"
+            (keyup)="validateNumber($event)"
+          />
+        </div>
+      </div>
+      <hr style="border-top: 1px solid #d4d4d6; margin-top: 10px" />
+      <h2 class="text-xl pt-[30px] px-[40px] font-bold mb-4">Lower Body</h2>
+      <div class="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 px-[40px] gap-[30px]">
+        <div *ngFor="let neck of lowerBodyForm" class="flex flex-col">
+          <label
+            style="
+              font-family: Poppins;
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 24px;
+              text-align: left;
+            "
+          >
+            {{ neck.name }}
+          </label>
+          <input
+            class="p-5 border rounded"
+            style="
+              width: 100%;
+              padding: 8px;
+              border-radius: 5px;
+              height: 52px;
+              background-color: #f6f6f6;
+              border: 1px solid #d4d4d6;
+            "
+            class="border border"
+            [placeholder]="neck.name"
+            type="text"
+            id="neck.value"
+            [name]="neck.value"
+            [(ngModel)]="testForm[neck.value]"
+            (change)="validateNumber($event)"
+            (keyup)="validateNumber($event)"
+          />
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="px-4 lg:hidden mt-5 w-full py-2 bg-[#373636] text-white rounded-[4px] h-[44px]"
+      >
+        Save
+      </button>
+    </form>
+  </div>
+</div>

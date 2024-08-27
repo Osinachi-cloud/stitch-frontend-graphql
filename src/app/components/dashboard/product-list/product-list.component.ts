@@ -127,7 +127,7 @@ export class ProductListComponent {
 
   showProductDetails(productId: any): void {
     console.log(productId);
-    this.router.navigate(['products', productId]); 
+    this.router.navigate(['/products', productId]); 
   }
 
 }
