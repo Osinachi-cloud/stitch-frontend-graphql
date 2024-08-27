@@ -51,8 +51,6 @@ import { InventoryComponent } from './components/dashboard/inventory/inventory.c
 import { MeasurementComponent } from './components/dashboard/measurement/measurement.component';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

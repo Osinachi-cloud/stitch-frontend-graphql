@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Grace John",
+        "project": "My Project",
+        "transactionValue": 110,
+        "image":"X-image.png",
+        "transactionAggregate": 240,
+        "progress": 78,
+        "activeHours": "20:23"
+    },
+    {
+        "name": "Grace John",
+        "project": "My Project",
+        "transactionValue": 110,
+        "image":"X-image.png",
+        "transactionAggregate": 240,
+        "progress": 68,
+        "activeHours": "20:23"
+    },
+    {
+        "name": "Grace John",
+        "project": "My Project",
+        "transactionValue": 110,
+        "image":"X-image.png",
+        "transactionAggregate": 240,
+        "progress": 58,
+        "activeHours": "20:23"
+    },
+    {
+        "name": "Grace John",
+        "project": "My Project",
+        "transactionValue": 110,
+        "image":"X-image.png",
+        "transactionAggregate": 240,
+        "progress": 48,
+        "activeHours": "20:23"
+    },
+    {
+        "name": "Grace John",
+        "project": "My Project",
+        "transactionValue": 110,
+        "image":"X-image.png",
+        "transactionAggregate": 240,
+        "progress": 38,
+        "activeHours": "20:23"
+    },
+    {
+        "name": "Grace John",
+        "project": "My Project",
+        "transactionValue": 110,
+        "image":"X-image.png",
+        "transactionAggregate": 240,
+        "progress": 28,
+        "activeHours": "20:23"
+    }
+]

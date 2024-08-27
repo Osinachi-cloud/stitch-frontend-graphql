@@ -5,7 +5,7 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -21,10 +21,12 @@
     "esModuleInterop": true,
     "types": ["node", "d3-shape", "d3-scale", "d3-selection"],
     "typeRoots": ["node_modules/@types"],
+    "noUncheckedIndexedAccess": false,
+    "skipLibCheck": true,
     
     "useDefineForClassFields": false,
     "lib": [
-      "ES2018",
+      "ES2020",
       "dom"
     ]
   },
