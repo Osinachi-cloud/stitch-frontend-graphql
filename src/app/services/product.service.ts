@@ -73,6 +73,19 @@ export class ProductService extends ApolloService {
             productImage
             longDescription
             shortDescription
+            productVariation {
+              color
+              sleeveStyle
+            }
+            vendor{
+                customerId
+                firstName
+                lastName
+                emailAddress
+                username
+                phoneNumber
+
+            }
           }
         }
       }
@@ -108,7 +121,19 @@ export class ProductService extends ApolloService {
           provider
           fixedPrice
           country
-          vendor
+          productVariation {
+              color
+              sleeveStyle
+          }
+          vendor{
+                customerId
+                firstName
+                lastName
+                emailAddress
+                username
+                phoneNumber
+
+          }
         }
       }
     `;
@@ -151,6 +176,19 @@ export class ProductService extends ApolloService {
             longDescription
             shortDescription
             liked
+            productVariation {
+              color
+              sleeveStyle
+            }
+            vendor{
+                customerId
+                firstName
+                lastName
+                emailAddress
+                username
+                phoneNumber
+   
+            }
           }
         }
       }

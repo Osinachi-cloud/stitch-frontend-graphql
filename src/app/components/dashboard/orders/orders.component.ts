@@ -32,15 +32,21 @@ export class OrdersComponent {
     cancelledOrdersCount:0,
     failedOrdersCount:0,
     completedOrdersCount:0,
+    inTransitOrdersCount: 0,
+    paymentCompletedCount: 0
 }
 
-  status = {
-    failed: "FAILED",
-    completed: "COMPLETED",
-    processing: "PROCESSING",
-    rejected: "REJECTED",
-    all: null
-  }
+status = {
+  failed: "FAILED",
+  // completed: "COMPLETED",
+  processing: "PROCESSING",
+  rejected: "REJECTED",
+  inTransit: "IN_TRANSIT",
+  paid: "PAYMENT_COMPLETED",
+  started: "VENDOR_PROCESSING_START",
+  completed: "VENDOR_PROCESSING_COMPLETED",
+  all: null
+}
 
   constructor(private orderService: OrderService) { }
 

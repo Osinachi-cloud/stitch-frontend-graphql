@@ -57,6 +57,8 @@ export class AddProductItemComponent {
       discount: [0, Validators.required],
       expiryDate: ['', Validators.required],
       materialUsed: ['', Validators.required],
+      color:['', Validators.required],
+      sleeveStyle:['', Validators.required],
       // productImage:['', Validators.required],
 
       productImage: new FormControl(UtilService.formatBase64(this.base64Char), [Validators.required]),

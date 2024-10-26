@@ -309,7 +309,7 @@
         </div>
     </div>
 
-    <div class="grid md:grid-cols-5 grid-cols-1 gap-[1rem]">
+    <div class="grid md:grid-cols-6 grid-cols-1 gap-[1rem]">
         <div (click)="filterByStatus(status.all)"
             class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem] hover:bg-[#dddfdf]">
             <div>
@@ -326,13 +326,13 @@
             </div>
         </div>
 
-        <div (click)="filterByStatus(status.processing)"
+        <div (click)="filterByStatus(status.inTransit)"
             class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem] hover:bg-[#dddfdf]">
             <div>
-                <div class="text-[grey] text-[16px] leading-[24px]">In-Progress</div>
+                <div class="text-[grey] text-[16px] leading-[24px]">In Transit</div>
                 <div class="flex items-center gap-[0.3rem]">
                     <span
-                        class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.processingOrdersCount}}</span>
+                        class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.inTransitOrdersCount}}</span>
                 </div>
             </div>
             <div>
@@ -343,6 +343,26 @@
 
             </div>
         </div>
+
+        <div (click)="filterByStatus(status.paid)"
+            class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem] hover:bg-[#dddfdf]">
+            <div>
+                <div class="text-[grey] text-[16px] leading-[24px]">Paid</div>
+                <div class="flex items-center gap-[0.3rem]">
+                    <span
+                        class="text-[20px] font-[500] leading-[32px]">{{productOrderStatistics.paymentCompletedCount}}</span>
+                </div>
+            </div>
+            <div>
+                <div class="bg-[grey] w-[50px] h-[50px] flex justify-center items-center rounded-[50%]">
+                    <i class="fa fa-clock text-[20px] text-[#fff]"></i>
+
+                </div>
+
+            </div>
+        </div>
+
+
 
         <div (click)="filterByStatus(status.rejected)"
             class="cursor-pointer flex justify-between bg-[#fff] rounded-[12px] p-[2rem] gap-[2rem] hover:bg-[#dddfdf]">
@@ -514,14 +534,14 @@
                             </div>
                             <div *ngIf="order.status === 'IN_TRANSIT' "
                                 class="bg-[#E4E7FD] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
-                                <span class="text-[#5570F1]">{{order.status}}</span>
+                                <span class="text-[#5570F1]">{{order.status.replace("_", " ")}}</span>
                             </div>
                             <div *ngIf="order.status === 'COMPLETED' "
                                 class="bg-[#DEEEE7] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
                                 <span class="text-[#32936F]">{{order.status}}</span>
                             </div>
                             <div *ngIf="order.status === 'PAYMENT_COMPLETED' "
-                                class="bg-[#ffecca] text-nowrap p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
+                                class="bg-[#fef2dc] text-nowrap p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
                                 <span class="text-[orange]">PAID</span>
                             </div>
                             <div *ngIf="order.status === 'VENDOR_PROCESSING_START' "
@@ -529,8 +549,8 @@
                                 <span class="text-[#30a532]"> STARTED</span>
                             </div>
                             <div *ngIf="order.status === 'VENDOR_PROCESSING_COMPLETED' "
-                                class="bg-[#fcb2f7] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
-                                <span class="text-[#fd38f0]">{{order.status}}</span>
+                                class="bg-[#d4e1f9] p-[1rem] py-[0.5rem] flex items-center justify-center w-[120px] gap-[1rem] rounded-[4px]">
+                                <span class="text-[#387dfd]">COMPLETED</span>
                             </div>
                         </td>
 

@@ -56,6 +56,8 @@ import { CartLoaderComponent } from './components/loaders/cart-loader/cart-loade
 import { ProductLikeLoaderComponent } from './components/loaders/product-like-loader/product-like-loader.component';
 import { ProductDisplayLoaderComponent } from './components/loaders/product-display-loader/product-display-loader.component';
 import { VendorsOrdersComponent } from './components/dashboard/vendors-orders/vendors-orders.component';
+import { BodyMeasurementComponent } from './components/dashboard/body-measurement/body-measurement.component';
+import { CheckoutComponent } from './components/dashboard/checkout/checkout.component';
 
 
 
@@ -93,7 +95,9 @@ import { VendorsOrdersComponent } from './components/dashboard/vendors-orders/ve
     CartLoaderComponent,
     ProductLikeLoaderComponent,
     ProductDisplayLoaderComponent,
-    VendorsOrdersComponent
+    VendorsOrdersComponent,
+    BodyMeasurementComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

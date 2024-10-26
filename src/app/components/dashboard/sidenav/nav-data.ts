@@ -55,6 +55,11 @@ export const navbarData: INavbarData[] = [
         label: 'Cart',
     },
     {
+        routeLink: 'body-measurement',
+        icon: 'assets/icons/Stroke 1.png',
+        label: 'Body Measurements',
+    },
+    {
         routeLink: 'analytics',
         icon: 'assets/icons/Activity.png',
         label: 'Analytics'

@@ -3,6 +3,7 @@ import { ClientsService } from '../../../services/clients.service';
 import { ProductOrder, ProductOrderRequest, ProductOrderStatistics } from 'src/app/types/Type';
 import { OrderService } from 'src/app/services/order.service';
 import { UtilService } from 'src/app/services/util.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-vendors-orders',
@@ -14,10 +15,12 @@ export class VendorsOrdersComponent {
   orderTotal: number = 0;
   numOfPages: number = 0;
   isLoading = false;
+  updateLoading = false;
   showOrderModal = false;
-  orderRef:string = "";
+  orderRef: string = "";
   orderDetail: any = {};
   showBodyMeasurementModal: boolean = false;
+  updateOrderBtnText = "";
 
   productOrderRequest: ProductOrder = {
     productId: null,
@@ -30,23 +33,39 @@ export class VendorsOrdersComponent {
     size: 10
   }
 
-  productOrderStatistics : ProductOrderStatistics ={
+  productOrderStatistics: ProductOrderStatistics = {
     allOrdersCount: 0,
-    processingOrdersCount:0,
-    cancelledOrdersCount:0,
-    failedOrdersCount:0,
-    completedOrdersCount:0,
-}
+    processingOrdersCount: 0,
+    cancelledOrdersCount: 0,
+    failedOrdersCount: 0,
+    completedOrdersCount: 0,
+    inTransitOrdersCount:0,
+    paymentCompletedCount: 0
+  }
 
   status = {
     failed: "FAILED",
-    completed: "COMPLETED",
+    // completed: "COMPLETED",
     processing: "PROCESSING",
     rejected: "REJECTED",
+    inTransit: "IN_TRANSIT",
+    paid: "PAYMENT_COMPLETED",
+    started: "VENDOR_PROCESSING_START",
+    completed: "VENDOR_PROCESSING_COMPLETED",
     all: null
   }
 
-  constructor(private orderService: OrderService) { }
+  showSuccessResponse(message: string, header: string, duration: number) {
+    this.toast.success({ detail: message, summary: header, duration: duration });
+  }
+  showFailureResponse(message: string, header: string, duration: number) {
+    this.toast.error({ detail: message, summary: header, duration: duration });
+  }
+
+  constructor(private orderService: OrderService, 
+    private toast: NgToastService,
+
+  ) { }
 
   ngOnInit(): void {
     this.getVendorOrderStats();
@@ -68,7 +87,6 @@ export class VendorsOrdersComponent {
     this.productOrderRequest.status = status;
     this.productOrderRequest.orderId = null;
     this.fetchVendorOrdersBy();
-
   }
 
   getVendorOrderStats(): void {
@@ -128,52 +146,77 @@ export class VendorsOrdersComponent {
     return ratings;
   }
 
-  toggleReceiptModal(id: string): void {
-    // this.showModal = !this.showModal;
-    this.orderRef = id;
-    console.log("order id : " +this.orderRef);
-    this.getOrderById();
-    this.showOrderModal = !this.showOrderModal;
-
-  }
-
-  getOrderById(){
+  getOrderById() {
     // this.isLoading = false;
     this.orderService.getOrderByOrderId(this.orderRef).subscribe({
-      next:(response: any) => {
+      next: (response: any) => {
         // console.log(response);
         // this.isLoading = true;
-          this.orderDetail = response?.data.getOrderByOrderId;
+        this.orderDetail = response?.data.getOrderByOrderId;
         // console.log(this.orderDetail);
       },
-      error:(items:any)=>{
+      error: (items: any) => {
         // this.isLoading = true;
       }
     })
   }
 
+  toggleOrderModal(id: string): void {
+    // this.showModal = !this.showModal;
+    this.orderRef = id;
+    console.log("order id : " + this.orderRef);
+    this.getOrderById();
+    this.showOrderModal = !this.showOrderModal;
+  }
 
-
-  toggleBodyMeasurementModal(orderId:string){
+  toggleBodyMeasurementModal(orderId: string) {
     this.orderRef = orderId;
-    console.log("order id : " +this.orderRef);
+    console.log("order id : " + this.orderRef);
     this.getOrderById();
     this.showBodyMeasurementModal = !this.showBodyMeasurementModal;
   }
 
-  updateProductOrder(orderId: string){
+  updateProductOrder(orderId: string) {
+    this.updateLoading = true;
+    let orderStatus = "";
     console.log("res", orderId);
+
+    switch (this.orderDetail?.status) {
+      case 'PAYMENT_COMPLETED':
+        orderStatus = 'VENDOR_PROCESSING_START';
+        this.updateOrderBtnText = "Accept Order";
+        break;
+      case 'VENDOR_PROCESSING_START':
+        orderStatus = 'VENDOR_PROCESSING_COMPLETED';
+        this.updateOrderBtnText = "Order Ready";
+        break;
+      case 'VENDOR_PROCESSING_COMPLETED':
+        orderStatus = 'IN_TRANSIT';
+        break;
+      case 'IN_TRANSIT':
+        orderStatus = 'PAYMENT_COMPLETED';
+        break;
+      default:
+        console.log('Sorry, we are out of ' + ' ');
+        this.updateOrderBtnText = "Next";
+
+    }
+
     let productOrderRequest: ProductOrderRequest = {
-      status:"VENDOR_PROCESSING_START",
-      orderId:orderId
+      status: orderStatus,
+      orderId: orderId
     }
     this.orderService.updateProductOrder(productOrderRequest).subscribe({
       next: (res: any) => {
-        console.log({res});
-        // window.location.reload();
+        this.updateLoading = false;
+        this.showSuccessResponse("Update Order", "order successfully updated", 3000)
+
+        console.log({ res });
+
+        window.location.reload();
       },
       error: (err: any) => {
-        console.log({err});
+        console.log({ err });
       }
     });
   }

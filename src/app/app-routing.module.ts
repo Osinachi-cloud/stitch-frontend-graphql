@@ -23,6 +23,8 @@ import { AnalyticsComponent } from './components/dashboard/analytics/analytics.c
 import { SingleproductComponent } from './components/dashboard/singleproduct/singleproduct.component';
 import { InitiateOrderComponent } from './components/dashboard/initiate-order/initiate-order.component';
 import { VendorsOrdersComponent } from './components/dashboard/vendors-orders/vendors-orders.component';
+import { BodyMeasurementComponent } from './components/dashboard/body-measurement/body-measurement.component';
+import { CheckoutComponent } from './components/dashboard/checkout/checkout.component';
 
 
 const routes: Routes = [
@@ -53,6 +55,11 @@ const routes: Routes = [
     { path: 'add-product', component: AddProductItemComponent },
     { path: 'api-documentation', component: DocumentationComponent},
     { path: 'analytics', component: AnalyticsComponent},
+    { path: 'body-measurement', component: BodyMeasurementComponent},
+    { path: 'checkout', component: CheckoutComponent},
+
+
+
 
     
   ]

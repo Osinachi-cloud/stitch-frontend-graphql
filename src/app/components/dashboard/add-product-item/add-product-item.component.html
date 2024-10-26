@@ -94,8 +94,7 @@
 
 
                                                         <select id="countries" formControlName="category"
-                                                            name="category"
-                                                            placeholder="Category"
+                                                            name="category" placeholder="Category"
                                                             class="outline-none bg-transparent text-[#4B5563] text-[14px] leading-[150%] text-[ #4B5563] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                                             <option selected>Category 1</option>
                                                             <option value="MEN">Men's wear</option>
@@ -150,8 +149,8 @@
                                                         class="rounded-[8px] bg-[#f1f1f1] px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
                                                         <input
                                                             class=" border-none shadow-none bg-transparent outline-none w-[40rem] p-[0.5rem]"
-                                                            type="number" placeholder="Selling Price" name='sellingPrice'
-                                                            formControlName='sellingPrice'>
+                                                            type="number" placeholder="Selling Price"
+                                                            name='sellingPrice' formControlName='sellingPrice'>
                                                     </div>
                                                 </div>
 
@@ -249,6 +248,55 @@
                                                             formControlName="materialUsed">
                                                     </div>
                                                 </div>
+
+
+
+                                                <div class="w-full"
+                                                    [ngClass]="{'has-error': !formData['color'].valid && formData['color'].touched}">
+                                                    <!-- <label class="" for="fname">Phone Number*</label> -->
+                                                    <div class="border-none "
+                                                        *ngIf="formData['color'].touched && formData['color'].errors">
+                                                        <div class="shadow-none border-none  text-[red]"
+                                                            *ngIf="formData['color'].errors['required']">
+                                                            color is required
+                                                        </div>
+                                                        <div class="shadow-none text-[red]"
+                                                            *color="formData['color'].errors['pattern']">
+                                                            Name is not valid
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="rounded-[8px] bg-[#f1f1f1] px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+                                                        <input
+                                                            class=" border-none shadow-none bg-transparent outline-none w-[40rem] p-[0.5rem]"
+                                                            type="text" placeholder="Color" name="color"
+                                                            formControlName="color">
+                                                    </div>
+                                                </div>
+
+                                                <div class="w-full"
+                                                    [ngClass]="{'has-error': !formData['sleeveStyle'].valid && formData['sleeveStyle'].touched}">
+                                                    <!-- <label class="" for="fname">Phone Number*</label> -->
+                                                    <div class="border-none "
+                                                        *ngIf="formData['sleeveStyle'].touched && formData['sleeveStyle'].errors">
+                                                        <div class="shadow-none border-none  text-[red]"
+                                                            *ngIf="formData['sleeveStyle'].errors['required']">
+                                                            sleeveStyle is required
+                                                        </div>
+                                                        <div class="shadow-none text-[red]"
+                                                            *sleeveStyle="formData['sleeveStyle'].errors['pattern']">
+                                                            Name is not valid
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="rounded-[8px] bg-[#f1f1f1] px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
+                                                        <input
+                                                            class=" border-none shadow-none bg-transparent outline-none w-[40rem] p-[0.5rem]"
+                                                            type="text" placeholder="Sleeve Style" name="sleeveStyle"
+                                                            formControlName="sleeveStyle">
+                                                    </div>
+                                                </div>
+
                                                 <!-- <div class="w-full">
                                                     <button type="button" class="p-[1rem] bg-[#cef6ce] rounded-[8px]">
                                                         submit</button>

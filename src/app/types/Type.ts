@@ -109,6 +109,8 @@ export interface ContactVerificationResponse {
     cancelledOrdersCount:number
     failedOrdersCount:number
     completedOrdersCount:number
+    inTransitOrdersCount: number
+    paymentCompletedCount: number
   }
 
   export interface ProductRequest {
@@ -157,6 +159,61 @@ export interface InitializeTransactionData {
     accessCode: String
     reference: String
 }
-  
+
+export interface BodyMeasurementRequest {
+  shoulder?: number;
+  midSleeveAtElbow?: number;
+  longSleeveAtWrist?: number;
+  thigh?: number;
+  knee?: number;
+  ankle?: number;
+  trouserLength?: number;
+  shortSleeveAtBiceps?: number;
+  neck?: number;
+  chest?: number;
+  tummy?: number;
+  hipWidth?: number;
+  neckToHipLength?: number;
+  bicepWidth?: number;
+  elbowWidth?: number;
+  wristWidth?: number;
+  shortSleeveLength?: number;
+  elbowLength?: number;
+  longSleeveLength?: number;
+  waist?: number;
+  lowerHipWidth?: number;
+  thighWidth?: number;
+  kneeWidth?: number;
+  ankleWidth?: number;
+  kneeLength?: number;
+  ankleLength?: number;
+}
+
+export interface CreateBodyMeasurementResponse {
+  neck: number;
+  chest: number;
+  tummy: number;
+  hipWidth: number;
+  neckToHipLength: number;
+  bicepWidth: number;
+  elbowWidth: number;
+  wristWidth: number;
+  shortSleeveLength: number;
+  elbowLength: number;
+  longSleeveLength: number;
+  waist: number;
+  lowerHipWidth: number;
+  thighWidth: number;
+  kneeWidth: number;
+  ankleWidth: number;
+  kneeLength: number;
+  ankleLength: number;
+}
+
+export interface BodyMeasurementObj {
+  id: number;
+  name: string;
+  value: string
+}
 
 

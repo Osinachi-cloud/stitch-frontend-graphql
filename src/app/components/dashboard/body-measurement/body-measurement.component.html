@@ -1,0 +1,41 @@
+<div class="h-screen">
+    <div class="flex-grow p-[50px] bg-[#F5F8FF]">
+        <form (submit)="submiting()">
+            <div class="flex px-[40px] items-center justify-between mb-4">
+                <h1 style="font-size: 30px; font-family: 800" class="text-[30px]">
+                    Body Measurement
+                </h1>
+                <button type="submit" class="px-4 magic py-2 bg-[#373636] text-white rounded-[4px] w-[113px] h-[44px]">
+                    Save
+                </button>
+            </div>
+            <h2 class="text-xl px-[40px] font-bold mt-8 mb-4">Top</h2>
+            <div class="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 px-[40px] gap-[30px] pb-[50px]">
+                <div *ngFor="let measure of topBodyForm" class="flex flex-col">
+                    <label [for]="measure.id.toString()" class="font-[Poppins] text-[16px] font-[400] leading-[24px] text-start">
+                        {{ measure.name }}
+                    </label>
+                    <input class="p-5 border w-full rounded-[5px] h-[52px] bg-[#f6f6f6] border-[#d4d4d6]"
+                        [placeholder]="measure.name" [name]="measure.id.toString()" [(ngModel)]="bodyMeasurementForm[measure.value]"
+                        (change)="validateNumber($event)" (keyup)="validateNumber($event)" />
+                </div>
+            </div>
+            <h2 class="text-xl pt-[30px] px-[40px] font-bold mb-4">Lower Body</h2>
+            <div class="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 px-[40px] gap-[30px]">
+                <div *ngFor="let measure of lowerBodyForm" class="flex flex-col">
+                    <label [for]="measure.id.toString()" class="font-[Poppins] text-[16px] font-[400] leading-[24px] text-start">
+                        {{ measure.name }}
+                    </label>
+                    <input class="p-5 border w-full rounded-[5px] h-[52px] bg-[#f6f6f6] border-[#d4d4d6]"
+                        [placeholder]="measure.name" [name]="measure.id.toString()" [(ngModel)]="bodyMeasurementForm[measure.value]"
+                        (change)="validateNumber($event)" (keyup)="validateNumber($event)" />
+                
+                </div>
+            </div>
+            <button type="submit"
+                class="px-4 lg:hidden mt-5 w-full py-2 bg-[#373636] text-white rounded-[4px] h-[44px]">
+                Save
+            </button>
+        </form>
+    </div>
+</div>

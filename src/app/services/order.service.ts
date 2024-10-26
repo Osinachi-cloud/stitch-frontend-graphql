@@ -119,12 +119,14 @@ export class OrderService extends ApolloService{
   getOrderStats(): Observable<FetchResult<any>>{
     const query = gql`
     query{
-      getProductOrderStatsByCustomer(emailAddress: "${UtilService.getUserDetails().emailAddress}"){
+      getProductOrderStatsByCustomer{
         allOrdersCount
         processingOrdersCount
         cancelledOrdersCount
         failedOrdersCount
         completedOrdersCount
+        inTransitOrdersCount
+        paymentCompletedCount
       }
     }
     `;
@@ -149,6 +151,9 @@ export class OrderService extends ApolloService{
         cancelledOrdersCount
         failedOrdersCount
         completedOrdersCount
+        inTransitOrdersCount
+        paymentCompletedCount
+
       }
     }
     `;
