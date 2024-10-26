@@ -25,9 +25,12 @@
                             </div>
                         </div>
 
-                        <button type="submit"
-                            class="w-full gap-2.5 text-white mx-0 my-4 pl-2 pr-[8px,] py-[10px,] p-[1.5rem] rounded-[8px] border-[none] bg-[#000]">Sign
-                            In</button>
+                        <button type="submit" [disabled]="isLoading"
+                        [ngClass]="{'opacity-[50%]': !verificationForm.valid }"
+                            class="w-full flex justify-center gap-6 text-white mx-0 my-4 pl-2 pr-[8px,] py-[10px,] p-[1.5rem] rounded-[8px] border-[none] bg-[#000]">
+                            <span>Verify</span>
+                            <span *ngIf="isLoading" class="spinner"></span>
+                        </button>
 
                     </form>
                 </div>

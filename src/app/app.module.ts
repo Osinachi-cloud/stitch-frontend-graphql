@@ -48,6 +48,16 @@ import { ProductlikesComponent } from './components/dashboard/productlikes/produ
 import { AnalyticsComponent } from './components/dashboard/analytics/analytics.component';
 import { SingleproductComponent } from './components/dashboard/singleproduct/singleproduct.component';
 import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
+import { InitiateOrderComponent } from './components/dashboard/initiate-order/initiate-order.component';
+import { TableLoaderComponent } from './components/loaders/table-loader/table-loader.component';
+import { SpinLoaderComponent } from './components/loaders/spin-loader/spin-loader.component';
+import { Col3LoaderComponent } from './components/loaders/col-3-loader/col-3-loader.component';
+import { CartLoaderComponent } from './components/loaders/cart-loader/cart-loader.component';
+import { ProductLikeLoaderComponent } from './components/loaders/product-like-loader/product-like-loader.component';
+import { ProductDisplayLoaderComponent } from './components/loaders/product-display-loader/product-display-loader.component';
+import { VendorsOrdersComponent } from './components/dashboard/vendors-orders/vendors-orders.component';
+import { BodyMeasurementComponent } from './components/dashboard/body-measurement/body-measurement.component';
+import { CheckoutComponent } from './components/dashboard/checkout/checkout.component';
 
 
 
@@ -78,6 +88,16 @@ import { InventoryComponent } from './components/dashboard/inventory/inventory.c
     ProductlikesComponent,
     AnalyticsComponent,
     SingleproductComponent,
+    InitiateOrderComponent,
+    TableLoaderComponent,
+    SpinLoaderComponent,
+    Col3LoaderComponent,
+    CartLoaderComponent,
+    ProductLikeLoaderComponent,
+    ProductDisplayLoaderComponent,
+    VendorsOrdersComponent,
+    BodyMeasurementComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +115,8 @@ import { InventoryComponent } from './components/dashboard/inventory/inventory.c
     MenuModule,
     ToastModule,
     ToastrModule,
-    HttpClientModule
+    HttpClientModule,
+    // NgbModule
     // HttpLinkModule
     
 
@@ -106,3 +127,8 @@ import { InventoryComponent } from './components/dashboard/inventory/inventory.c
 
 })
 export class AppModule { }
+
+// imports: [BrowserModule, NgbModule],
+// declarations: [NgbdDropdownBasic],
+// exports: [NgbdDropdownBasic],
+// bootstrap: [NgbdDropdownBasic]

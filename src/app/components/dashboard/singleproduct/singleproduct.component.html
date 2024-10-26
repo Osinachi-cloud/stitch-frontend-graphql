@@ -59,7 +59,7 @@
 
                 <div class="grid grid-cols-3">
                     <div class="col-span-1">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">Quantity</div>
+                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">Quantity Left in Stock</div>
                     </div>
                     <div class="col-span-2">
                         <div class="border border-[grey] h-[3rem] m-auto  flex items-center">{{singleProduct.outOfStock ? "Out of stock" : singleProduct.quantity}}</div>
@@ -73,7 +73,6 @@
                     </div>
                     <div class="col-span-2">
                         <div class="border border-[grey] h-[3rem] m-auto  flex items-center">{{singleProduct.amount}}</div>
-
                     </div>
                 </div>
 
@@ -83,7 +82,6 @@
                     </div>
                     <div class="col-span-2">
                         <div class="border border-[grey] h-[3rem] m-auto  flex items-center">Style</div>
-
                     </div>
                 </div>
             </div>
@@ -104,7 +102,7 @@
 
                 <div class="flex justify-center items-center flex-col">
                     <p class="uppercase">price total</p>
-                    <p class="text-[30px] font-[600] p-[0.5rem]">N {{totalAmount}}</p>
+                    <p class="text-[30px] font-[600] p-[0.5rem]">N {{count * singleProduct.amount}}</p>
                 </div>
             </div>
 
@@ -135,3 +133,33 @@
 
     </div>
 </div>
+
+
+
+
+<div *ngIf="showLoginOptionModal"
+class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+<div class="relative w-full my-6 mx-auto max-w-3xl ">
+  <div
+    class="border-0 rounded-[20px] shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+    <div class="grid place-items-center items-center p-[4rem] w-full">
+      <div class="py-[2rem] grid gap-[1rem]">
+        <div class="text-center text-[16px] font-[500] leading-[30px]">You have to login to like a product</div>
+      </div>
+      <div class="flex gap-[1rem] mt-[2rem] items-center place-items-center">
+        <a href="/login"
+          class="bg-[black] no-underline text-[#fff] p-[1rem] px-[2rem] rounded-[8px] hover:no-underline hover:text-[#a5f4a5]">Login</a>
+        <div (click)="toggleTerminalFormModal()"
+          class="bg-[#f9f9f9] text-[#000]  p-[1rem] px-[2rem] border border-[#000] rounded-[8px] cursor-pointer">
+          Continue shopping</div>
+      </div>
+
+    </div>
+    <div class="flex items-center justify-end p-6 rounded-b">
+    </div>
+  </div>
+</div>
+</div>
+<div *ngIf="showLoginOptionModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
+<ng-toast></ng-toast>

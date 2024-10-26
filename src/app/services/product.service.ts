@@ -11,7 +11,7 @@ import { UtilService } from './util.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService extends ApolloService{
+export class ProductService extends ApolloService {
 
   // getProducts(product: Products): Observable<FetchResult<any>> {
   //   const query = gql`
@@ -32,9 +32,9 @@ export class ProductService extends ApolloService{
   //       }
   //     }
   //   `;
-  
+
   //   const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
-  
+
   //   return this.apollo.query<any>({
   //     query: query,
   //     variables: {
@@ -73,13 +73,129 @@ export class ProductService extends ApolloService{
             productImage
             longDescription
             shortDescription
+            productVariation {
+              color
+              sleeveStyle
+            }
+            vendor{
+                customerId
+                firstName
+                lastName
+                emailAddress
+                username
+                phoneNumber
+
+            }
           }
         }
       }
     `;
-    
+
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+
+    return this.apollo.query<any>({
+      query: query,
+      variables: {
+        page: product.page,
+        size: product.size,
+        vendorId: product.vendorId,
+
+      },
+      context: {
+        // headers,
+      },
+    });
+  }
+
+  getProductByProductId(productId: string): Observable<FetchResult<any>> {
+    const query = gql`
+      query{
+        getProductByProductId(productId: "${productId}"){
+          name
+          code
+          productImage
+          amount
+          quantity
+          outOfStock
+          category
+          provider
+          fixedPrice
+          country
+          productVariation {
+              color
+              sleeveStyle
+          }
+          vendor{
+                customerId
+                firstName
+                lastName
+                emailAddress
+                username
+                phoneNumber
+
+          }
+        }
+      }
+    `;
+
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+
+    return this.apollo.query<any>({
+      query: query,
+      variables: {
+        productId: productId,
+      },
+      context: {
+        // headers,
+      },
+    });
+  }
+
+
+  getAllProductsByAuth(product: Products): Observable<FetchResult<any>> {
+    const query = gql`
+      query getAllProductsByAuth($page: Int!, $size: Int!) {
+        getAllProductsByAuth(productFilterRequest:{
+          page: $page,
+          size: $size
+        }
+        ) {
+          page
+          size
+          total
+          data {
+            name
+            category
+            productId
+            amount
+            quantity
+            publishStatus
+            discount
+            outOfStock
+            productImage
+            longDescription
+            shortDescription
+            liked
+            productVariation {
+              color
+              sleeveStyle
+            }
+            vendor{
+                customerId
+                firstName
+                lastName
+                emailAddress
+                username
+                phoneNumber
+   
+            }
+          }
+        }
+      }
+    `;
+
     const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
-    
+
     return this.apollo.query<any>({
       query: query,
       variables: {

@@ -62,6 +62,7 @@ export class AuthService extends ApolloService{
           enablePush
           tier
           country
+          role
           accessToken
           refreshToken
           profileImage
@@ -112,7 +113,7 @@ export class AuthService extends ApolloService{
         firstName:"${customerSignUpRequest.firstName}",
         lastName:"${customerSignUpRequest.lastName}",
         phoneNumber:"${customerSignUpRequest.phoneNumber}",
-        country:"${customerSignUpRequest.country}",
+        roleName:"${customerSignUpRequest.roleName}",
         
       }){
         customerId
@@ -121,7 +122,6 @@ export class AuthService extends ApolloService{
         emailAddress
         phoneNumber
         tier
-        country
         hasPin
         enablePush
       }

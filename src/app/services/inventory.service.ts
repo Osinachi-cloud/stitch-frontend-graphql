@@ -157,7 +157,10 @@ export class InventoryService extends ApolloService {
           readyIn
           amount
           discount
-
+          productVariation {
+            color
+            sleeveStyle
+          }
         }
       }
     `;

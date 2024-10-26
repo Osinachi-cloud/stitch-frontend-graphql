@@ -182,6 +182,21 @@
 
                         </div>
 
+                        <div class="w-full">
+                            <label>Select Role *</label>
+                            <div class="flex gap-[2rem]">
+                                <div class="flex items-center mb-[10px]">
+                                    <input type="radio" id="vendor" name="roleName" formControlName="roleName"
+                                        value="VENDOR">
+                                    <label for="vendor" class="ml-[10px]">Vendor</label>
+                                </div>
+                                <div class="flex items-center mb-[10px]">
+                                    <input type="radio" id="customer" name="roleName" formControlName="roleName"
+                                        value="CUSTOMER">
+                                    <label for="customer" class="ml-[10px]">Customer</label>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="grid items-center place-items-center">
 
@@ -196,15 +211,18 @@
                             </div> -->
 
                             <button type="submit"
-                                class="md:w-[40rem] w-full gap-2.5 text-white mx-0 my-4 pl-2 pr-[8px,] py-[1.3rem,] p-[1.2rem] rounded-[8px] border-[none] bg-[#000]">Sign
-                                Up</button>
+                                [ngClass]="{'opacity-[50%]': !authForm.valid }"
+                                class="w-full flex justify-center gap-6 text-white mx-0 my-4 pl-2 pr-[8px,] py-[10px,] p-[1.5rem] rounded-[8px] border-[none] bg-[#000]">
+                                <span>Sign up</span>
+                                <span *ngIf="isLoading" class="spinner"></span>
+                            </button>
                         </div>
 
                     </form>
                     <div
                         class="form-check flex justify-center items-center py-[1rem] text-[16px] leading-[24px] font-[500]">
                         <span class="ml-[1rem] font-[200]">I already have an account? </span>
-                        <a href="#" class="text-[#4318FF] text-right"> Login</a>
+                        <a href="/login" class="text-[#4318FF] text-right"> Login</a>
                     </div>
                 </div>
             </div>

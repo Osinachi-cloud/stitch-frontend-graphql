@@ -22,6 +22,7 @@ export class SignupComponent {
   apiResponse: any;
   countryCode: string = "";
   countryName: string = "NIGERIA";
+  isLoading: boolean = false;
 
 
   constructor(private http: HttpClient,
@@ -37,9 +38,11 @@ export class SignupComponent {
       lastName: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required]),
       emailAddress: new FormControl('', [Validators.required, Validators.pattern('^.+@.+\..+$')]),
-      country: new FormControl(this.countryName),
+      // country: new FormControl(this.countryName),
       phoneNumber: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
+      roleName: new FormControl('', [Validators.required]),
+
       // optionChecked: new FormControl('', [Validators.required]),
 
     });
@@ -117,20 +120,24 @@ export class SignupComponent {
   }
 
   onSubmit() {
+    this.isLoading = true;
     // this.getCountryName(this.getCountryCode());
     if (this.authForm.valid) {
     this.authService.signup(this.authForm.value).subscribe({
       next: (response: any) => {
+      this.isLoading = false;
         this.showSuccessResponse("Sign Up ", "Sign Up Successful", 3000);
         this.router.navigate(["login"]);
 
       },
       error: (error: any) => {
+      this.isLoading = false;
         this.showFailureResponse("Sign Up Error", error.message,  3000);
         console.error("entered error", error);
       }
     });
     }else{
+      this.isLoading = false;
       this.showFailureResponse("Sign Up Error", "Invalid form",  3000);
     }
   }

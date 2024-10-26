@@ -37,9 +37,9 @@ export class SidenavComponent implements OnInit {
   navData : any [] = [];
 
   routeUserType(){
-    if(UtilService.getUserDetails().customerId){
+    if(UtilService.getUserDetails().role === 'CUSTOMER'){
       this.navData = navbarData;
-    }else if(UtilService.getUserDetails().vendorId){
+    }else if(UtilService.getUserDetails().role === 'VENDOR'){
       this.navData = navbarDataAdmin;
     }
   }
@@ -95,7 +95,8 @@ export class SidenavComponent implements OnInit {
   }
   
   logOut():void {
-    UtilService.clearStorage();
-    this.router.navigate(["login"]);
+    // UtilService.logout();
+    this.router.navigate([""]);
+    return localStorage.clear();
   }
 }

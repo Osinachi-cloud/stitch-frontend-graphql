@@ -20,6 +20,8 @@ export class ContactVerificationComponent {
   verificationCode: string = "";
   otpForm: FormGroup;
   showModal = false;
+  isLoading: boolean = false;
+
 
   constructor(private http: HttpClient,
     private formBuilder: FormBuilder,
@@ -54,14 +56,17 @@ export class ContactVerificationComponent {
   }
 
   onSubmit() {
+    this.isLoading = true;
     if (this.verificationForm.valid) {
       this.authService.emailVerification(this.verificationForm.value).subscribe({
         next: (response: any) => {
+          this.isLoading = false;
           this.showSuccessResponse("Login ", response.data.verifyEmail.message, 3000);
           UtilService.setEmailAddress(this.verificationForm.value.emailAddress);
           this.toggleModal();
         },
         error: (error: any) => {
+          this.isLoading = false;
           this.showFailureResponse("Login Error", error.message, 3000);
           console.error("entered error", error);
         }

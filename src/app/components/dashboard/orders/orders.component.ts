@@ -13,6 +13,7 @@ export class OrdersComponent {
   customersOrder: any[] = []
   orderTotal: number = 0;
   numOfPages: number = 0;
+  isLoading = false;
 
   productOrderRequest: ProductOrder = {
     productId: null,
@@ -31,15 +32,21 @@ export class OrdersComponent {
     cancelledOrdersCount:0,
     failedOrdersCount:0,
     completedOrdersCount:0,
+    inTransitOrdersCount: 0,
+    paymentCompletedCount: 0
 }
 
-  status = {
-    failed: "FAILED",
-    completed: "COMPLETED",
-    processing: "PROCESSING",
-    rejected: "REJECTED",
-    all: null
-  }
+status = {
+  failed: "FAILED",
+  // completed: "COMPLETED",
+  processing: "PROCESSING",
+  rejected: "REJECTED",
+  inTransit: "IN_TRANSIT",
+  paid: "PAYMENT_COMPLETED",
+  started: "VENDOR_PROCESSING_START",
+  completed: "VENDOR_PROCESSING_COMPLETED",
+  all: null
+}
 
   constructor(private orderService: OrderService) { }
 
@@ -78,14 +85,18 @@ export class OrdersComponent {
   }
 
   getCustomerOrders(): void {
+    this.isLoading = false;
     this.orderService.getCustomerOrders(this.productOrderRequest).subscribe({
       next: (items: any) => {
         this.customersOrder = items.data.fetchCustomerOrdersBy.data;
         this.orderTotal = items.data.fetchCustomerOrdersBy.total;
         this.getNumberOfPages(this.orderTotal);
         console.log(items.data.fetchCustomerOrdersBy.data);
+        this.isLoading = true;
+
       },
       error: (error: any) => {
+        this.isLoading = true;
         console.log(error);
       }
     })

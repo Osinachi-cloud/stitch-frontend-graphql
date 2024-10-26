@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 export class UtilService {
+  static router: Router;
 
     
-    constructor() { }
-
 
   static setUserDetails(value: string): void | null {
     return localStorage.setItem('userDetails', JSON.stringify(value));
@@ -38,6 +38,13 @@ export class UtilService {
 
   static clearStorage(): void{
     return localStorage.clear();
+  }
+
+  static logout(): void{
+    // UtilService.clearStorage();
+    this.router.navigate([""]);
+    return localStorage.clear();
+     
   }
 
 }

@@ -1,49 +1,86 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { CartService } from 'src/app/services/cart.service';
+import { PaymentService } from 'src/app/services/payment.service';
 import { ProductlikesService } from 'src/app/services/productlikes.service';
-import { PageRequest } from 'src/app/types/Type';
+import { InitializeTransactionResponse, PageRequest, PaymentRequest, Products } from 'src/app/types/Type';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
+
 export class CartComponent {
 
   cart: any[] = [];
-
-  sumCartAmount: number  = 0;
+  cartSingleProduct: any;
+  isLoading: boolean = false;
+  isLoadingOrder: boolean = false;
+  sumCartAmount: number = 0;
+  arrProductIds: string[] = [];
 
   pageRequest: PageRequest = {
     page: 0,
     size: 30
   }
+  selectedChannel: string;
+  paymentRequest: PaymentRequest;
+  initializeTransactionResponse: InitializeTransactionResponse;
 
-  constructor(private cartService: CartService, private router: Router, private productLikeService: ProductlikesService) {
+  constructor(private paymentService: PaymentService,
+    private cartService: CartService,
+    private router: Router,
+    private productLikeService: ProductlikesService,
+    private toast: NgToastService,
+
+  ) {
   }
+
+  showSuccessResponse(message: string, header: string, duration: number) {
+    this.toast.success({ detail: message, summary: header, duration: duration });
+  }
+  showFailureResponse(message: string, header: string, duration: number) {
+    this.toast.error({ detail: message, summary: header, duration: duration });
+  }
+
 
   count: number = 1;
 
   ngOnInit() {
     this.getAllCartItems();
     this.sumAmountByQuantityByCustomerId();
+
   }
 
   getAllCartItems() {
     console.log("called cart endpoint");
+    this.isLoading = true;
     this.cartService.getCart(this.pageRequest).subscribe({
       next: (res: any) => {
-        console.log("called endpoint api 2");
-
-        console.log(res.data.getCart.data);
+        this.isLoading = false;
+  
         this.cart = res.data.getCart.data;
+        this.cartSingleProduct = this.cart[0];
+        // window.location.reload();
+        // this.getProductsIds(res.data.getCart.data);
+
+
       },
       error: (err: any) => {
+        this.isLoading = false;
         console.error(err);
       }
     })
 
+  }
+
+  getProductsIds(carts: Products[]): string [] {
+    carts.map((cart) => {
+      this.arrProductIds.push(cart.productId);
+    });
+    return this.arrProductIds;
   }
 
   addCount(productId: string) {
@@ -75,12 +112,12 @@ export class CartComponent {
     })
   }
 
-  addProductLikes(productId: string){ 
+  addProductLikes(productId: string) {
     this.productLikeService.addProductLikes(productId).subscribe({
-      next : (res: any) => {
-          console.log(res);
+      next: (res: any) => {
+        console.log(res);
       },
-      error : (err: any) => {
+      error: (err: any) => {
         console.error(err);
       }
 
@@ -100,34 +137,67 @@ export class CartComponent {
     })
   }
 
-  sumAmountByQuantityByCustomerId(){
+  sumAmountByQuantityByCustomerId() {
     console.log("got to the cart box");
     this.cartService.sumAmountByQuantityByCustomerId().subscribe({
-      next : (res: any) => {
+      next: (res: any) => {
         console.log(res)
         this.sumCartAmount = res.data.sumAmountByQuantityByCustomerId;
-      }, 
-      error : (err: any) => {
+      },
+      error: (err: any) => {
         console.log(err);
       }
 
     })
   }
 
-  backToShopping(){
-    this.router.navigate(["/dashboard"])
+  backToShopping() {
+    this.router.navigate([""])
   }
 
-  clearCart(){
+  clearCart() {
     this.cartService.clearCart().subscribe({
-      next : (res: any) => {
+      next: (res: any) => {
         window.location.reload();
         this.getAllCartItems();
       },
-      error : (err: any) => {
+      error: (err: any) => {
 
       }
     })
   }
+
+  goToOrderPage() {
+    this.isLoadingOrder = true;
+    const paymentRequest: PaymentRequest = {
+      amount: this.sumCartAmount,
+      channel: [this.selectedChannel],
+      quantity: this.cartSingleProduct?.quantity,
+      productId: this.cartSingleProduct?.productId,
+      vendorId: this.cartSingleProduct?.vendorId,
+      narration: "Great Product",
+      productCategoryName: this.cartSingleProduct?.category,
+     
+    };
+    console.log("selectedChannel", this.selectedChannel);
+    if (!this.selectedChannel || this.selectedChannel == "") {
+      this.isLoadingOrder = false;
+      this.showFailureResponse("Login Error", "You have not selected any payment channel", 3000);
+    } else {
+      this.paymentService.initializePayment(paymentRequest).subscribe({
+        next: (res: any) => {
+          this.initializeTransactionResponse = res;
+          this.isLoadingOrder = false;
+          console.log({ res });
+          window.location.href = res?.data?.initializePayment?.data?.authorizationUrl;
+          // this.clearCart();
+        }, error: (err: any) => {
+          this.isLoadingOrder = false;
+        }
+      });
+    }
+  }
+
+
 
 }

@@ -21,6 +21,10 @@ import { ProductlikesComponent } from './components/dashboard/productlikes/produ
 import { CartComponent } from './components/dashboard/cart/cart.component';
 import { AnalyticsComponent } from './components/dashboard/analytics/analytics.component';
 import { SingleproductComponent } from './components/dashboard/singleproduct/singleproduct.component';
+import { InitiateOrderComponent } from './components/dashboard/initiate-order/initiate-order.component';
+import { VendorsOrdersComponent } from './components/dashboard/vendors-orders/vendors-orders.component';
+import { BodyMeasurementComponent } from './components/dashboard/body-measurement/body-measurement.component';
+import { CheckoutComponent } from './components/dashboard/checkout/checkout.component';
 
 
 const routes: Routes = [
@@ -36,12 +40,14 @@ const routes: Routes = [
   { path: 'password-reset', component: PasswordresetComponent },
   { path: 'submit-password', component: PasswordRequestFormComponent},
   { path: 'single-product', component: SingleproductComponent},
-  { path: 'products', component: LandingPageComponent},
+  // { path: 'products', component: LandingPageComponent},
 
   { path: 'dashboard', component: DashboardComponent, children: [
     { path: '', redirectTo: 'overview', pathMatch: 'full' },
     { path: 'overview', component: OverviewComponent },
     { path: 'orders', component: OrdersComponent },
+    { path: 'vendor-orders', component: VendorsOrdersComponent },
+    { path: 'order', component: InitiateOrderComponent },
     { path: 'api-documentation', component: DocumentationComponent},
     { path: 'likes', component: ProductlikesComponent },
     { path: 'cart', component: CartComponent },
@@ -49,6 +55,11 @@ const routes: Routes = [
     { path: 'add-product', component: AddProductItemComponent },
     { path: 'api-documentation', component: DocumentationComponent},
     { path: 'analytics', component: AnalyticsComponent},
+    { path: 'body-measurement', component: BodyMeasurementComponent},
+    { path: 'checkout', component: CheckoutComponent},
+
+
+
 
     
   ]

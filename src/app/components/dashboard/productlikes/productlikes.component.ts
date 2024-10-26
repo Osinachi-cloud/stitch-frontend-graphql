@@ -10,6 +10,8 @@ import { PageRequest, ProductRequest, Products } from 'src/app/types/Type';
 })
 export class ProductlikesComponent {
 
+  isLoading: boolean = false;
+
   constructor(private productLikeServices: ProductlikesService,
     private cartService: CartService,
     private cdr: ChangeDetectorRef
@@ -34,17 +36,20 @@ export class ProductlikesComponent {
 
   }
   getLikedProducts(){
+    this.isLoading = true;
     console.log("called like api");
     this.productLikeServices.getAllProductLikes(this.pageRequest).subscribe({
       next: (res: any) => {
       console.log("called like api 2");
-
+        this.isLoading = false;
         console.log(res.data.getAllProductLikes.data);
         this.productLikes = res.data.getAllProductLikes.data;
         this.totalNumberOfLikes = res.data.getAllProductLikes.total;
         this.cdr.detectChanges();
+
       }, 
       error: (err: any) => {
+        this.isLoading = false;
         console.error(err);
       }
     })
