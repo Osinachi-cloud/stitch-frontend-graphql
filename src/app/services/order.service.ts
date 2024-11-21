@@ -90,7 +90,13 @@ export class OrderService extends ApolloService{
             currency
             customerId
             quantity
+            bodyMeasurementTag
             bodyMeasurementId
+              productVariationDto {
+                  color
+                  sleeveType
+                  bodyMeasurementTag
+              }
           }
         }
       }
@@ -169,7 +175,6 @@ export class OrderService extends ApolloService{
     });
   }
 
-
   getOrderByOrderId(orderId: string): Observable<FetchResult<any>>{
     const query = gql`
     query {
@@ -182,7 +187,12 @@ export class OrderService extends ApolloService{
           currency
           customerId
           quantity
-          bodyMeasurementId
+          bodyMeasurementTag
+              productVariationDto {
+                  color
+                  sleeveType
+                  bodyMeasurementTag
+              }
           bodyMeasurementDto {
                 neck
                 shoulder

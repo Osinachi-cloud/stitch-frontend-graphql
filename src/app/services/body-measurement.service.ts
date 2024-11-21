@@ -124,4 +124,43 @@ export class BodyMeasurementService extends ApolloService{
       }
     });
   }
+
+
+
+
+  getBodyMeasurementByUser(): Observable<FetchResult<any>> {
+    const query = gql`
+      query{
+        getBodyMeasurementByUser{
+          tag
+          neck
+          shoulder
+          chest
+          tummy
+          hipWidth
+          neckToHipLength
+          shortSleeveAtBiceps
+          midSleeveAtElbow
+          longSleeveAtWrist
+          waist
+          thigh
+          knee
+          ankle
+          trouserLength
+        }
+      }
+    `;
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+
+    return this.apollo.query<any>({
+      query: query,
+      variables: {
+
+      },
+      context: {
+        headers,
+      },
+    });
+  }
 }

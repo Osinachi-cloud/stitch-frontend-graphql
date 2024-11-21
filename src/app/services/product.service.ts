@@ -75,7 +75,7 @@ export class ProductService extends ApolloService {
             shortDescription
             productVariation {
               color
-              sleeveStyle
+              sleeveType
             }
             vendor{
                 customerId
@@ -123,7 +123,7 @@ export class ProductService extends ApolloService {
           country
           productVariation {
               color
-              sleeveStyle
+              sleeveType
           }
           vendor{
                 customerId
@@ -178,7 +178,7 @@ export class ProductService extends ApolloService {
             liked
             productVariation {
               color
-              sleeveStyle
+              sleeveType
             }
             vendor{
                 customerId

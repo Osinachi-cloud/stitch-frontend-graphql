@@ -55,7 +55,7 @@ export class CartComponent {
   }
 
   getAllCartItems() {
-    console.log("called cart endpoint");
+    console.log("called cart endpoints");
     this.isLoading = true;
     this.cartService.getCart(this.pageRequest).subscribe({
       next: (res: any) => {
@@ -63,6 +63,7 @@ export class CartComponent {
   
         this.cart = res.data.getCart.data;
         this.cartSingleProduct = this.cart[0];
+        console.log("cart", this.cart[0]);
         // window.location.reload();
         // this.getProductsIds(res.data.getCart.data);
 
@@ -168,6 +169,7 @@ export class CartComponent {
   }
 
   goToOrderPage() {
+    console.log(this.cartSingleProduct);
     this.isLoadingOrder = true;
     const paymentRequest: PaymentRequest = {
       amount: this.sumCartAmount,
@@ -175,6 +177,9 @@ export class CartComponent {
       quantity: this.cartSingleProduct?.quantity,
       productId: this.cartSingleProduct?.productId,
       vendorId: this.cartSingleProduct?.vendorId,
+      color: this.cartSingleProduct?.color,
+      sleeveType: this.cartSingleProduct?.sleeveType,
+      bodyMeasurementTag: this.cartSingleProduct?.measurementTag,
       narration: "Great Product",
       productCategoryName: this.cartSingleProduct?.category,
      

@@ -275,16 +275,16 @@
                                                 </div>
 
                                                 <div class="w-full"
-                                                    [ngClass]="{'has-error': !formData['sleeveStyle'].valid && formData['sleeveStyle'].touched}">
+                                                    [ngClass]="{'has-error': !formData['sleeveType'].valid && formData['sleeveType'].touched}">
                                                     <!-- <label class="" for="fname">Phone Number*</label> -->
                                                     <div class="border-none "
-                                                        *ngIf="formData['sleeveStyle'].touched && formData['sleeveStyle'].errors">
+                                                        *ngIf="formData['sleeveType'].touched && formData['sleeveType'].errors">
                                                         <div class="shadow-none border-none  text-[red]"
-                                                            *ngIf="formData['sleeveStyle'].errors['required']">
-                                                            sleeveStyle is required
+                                                            *ngIf="formData['sleeveType'].errors['required']">
+                                                            sleeveType is required
                                                         </div>
                                                         <div class="shadow-none text-[red]"
-                                                            *sleeveStyle="formData['sleeveStyle'].errors['pattern']">
+                                                            *sleeveType="formData['sleeveType'].errors['pattern']">
                                                             Name is not valid
                                                         </div>
                                                     </div>
@@ -292,8 +292,8 @@
                                                         class="rounded-[8px] bg-[#f1f1f1] px-[0.5rem] py-[1.3rem] flex justify-between mb-[10px]">
                                                         <input
                                                             class=" border-none shadow-none bg-transparent outline-none w-[40rem] p-[0.5rem]"
-                                                            type="text" placeholder="Sleeve Style" name="sleeveStyle"
-                                                            formControlName="sleeveStyle">
+                                                            type="text" placeholder="Sleeve Style" name="sleeveType"
+                                                            formControlName="sleeveType">
                                                     </div>
                                                 </div>
 

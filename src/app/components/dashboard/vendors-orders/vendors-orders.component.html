@@ -618,6 +618,26 @@
                                         <div>{{orderDetail?.status?.replaceAll("_", " ").toLowerCase()}}</div>
                                     </div>
 
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
+                                        <div>Color</div>
+                                        <!-- <div>{{orderDetail?.productVariationDto?.color}}</div> -->
+                                        <!-- <div class="bg-['orderDetail?.productVariationDto?.color'] h-[1rem] w-[2rem]"></div> -->
+                                         <div class="flex items-center justify-center gap-3">
+                                            <div>{{ orderDetail?.productVariationDto?.color }}</div>
+                                            <div [style.backgroundColor]="orderDetail?.productVariationDto?.color"
+                                                class="h-[2rem] w-[4rem]"></div>
+                                         </div>
+
+
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between font-[NUNITO-LIGHT] text-[16px] border-b py-[1rem] border-grey pr-[1rem]">
+                                        <div>Sleeve Type</div>
+                                        <div>{{orderDetail?.productVariationDto?.sleeveType}}</div>
+                                    </div>
+
                                 </div>
 
                                 <div class="flex mx-auto justify-between w-[80%]">
@@ -640,7 +660,7 @@
                                             Order</span>
                                         <span *ngIf="orderDetail.status == 'VENDOR_PROCESSING_COMPLETED'">In
                                             Transit</span>
-                                            
+
                                         <span *ngIf="orderDetail.status == 'IN_TRANSIT'">Delivered</span>
 
                                         <span *ngIf="updateLoading" class="spinner"></span>

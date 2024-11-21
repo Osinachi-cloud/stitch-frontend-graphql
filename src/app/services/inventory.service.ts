@@ -159,7 +159,7 @@ export class InventoryService extends ApolloService {
           discount
           productVariation {
             color
-            sleeveStyle
+            sleeveType
           }
         }
       }

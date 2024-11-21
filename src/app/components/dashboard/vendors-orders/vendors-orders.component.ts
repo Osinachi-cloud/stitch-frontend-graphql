@@ -147,10 +147,11 @@ export class VendorsOrdersComponent {
   }
 
   getOrderById() {
+    console.log("got to order");
     // this.isLoading = false;
     this.orderService.getOrderByOrderId(this.orderRef).subscribe({
       next: (response: any) => {
-        // console.log(response);
+        console.log(response);
         // this.isLoading = true;
         this.orderDetail = response?.data.getOrderByOrderId;
         // console.log(this.orderDetail);

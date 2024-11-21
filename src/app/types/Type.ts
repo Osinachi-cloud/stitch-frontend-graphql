@@ -144,6 +144,9 @@ export interface ContactVerificationResponse {
     vendorId: String
     narration: String
     quantity: number
+    color:string 
+    sleeveType: string
+    bodyMeasurementTag: string
     // orderId: String
     // customerId: String
   }
@@ -214,6 +217,12 @@ export interface BodyMeasurementObj {
   id: number;
   name: string;
   value: string
+}
+
+export interface ProductVariationRequest {
+  color: string
+  sleeveType: string
+  measurement: string
 }
 
 

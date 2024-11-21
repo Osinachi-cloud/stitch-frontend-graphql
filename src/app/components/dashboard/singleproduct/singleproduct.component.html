@@ -1,4 +1,74 @@
+<!-- <div *ngIf="showTerminalFormModal"
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+
+    <div class="relative w-full my-6 mx-auto" (click)="$event.stopPropagation()">
+        <div class="bg-[rgba(0,0,0,0.6)] flex items-center justify-center h-screen">
+            <div (click)="toggleProductVariationModal()" class="cursor-pointer absolute top-10 right-10 text-[30px]">X
+            </div>
+            <div class="w-[33%] py-[5rem] px-[4rem] bg-white rounded-lg shadow-lg">
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">Select Colour</h3>
+                    <div class="flex gap-3">
+                        <div *ngFor="let variation of productVariations"
+                            [ngStyle]="{'background-color': variation.color}" class="w-7 h-7 rounded-lg cursor-pointer"
+                            [class.border-2]="selectedColor === variation.color" (click)="selectColor(variation.color)">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-[16px] font-medium text-gray-700 mb-2">Sleeves</h3>
+                    <div class="text-[12px] flex gap-3">
+                        <button *ngFor="let variation of productVariations"
+                            class="px-4 py-2 font-medium text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
+                            [class.bg-blue-200]="selectedSleeve === variation.sleeveType"
+                            (click)="selectSleeve(variation.sleeveType)">
+                            {{ variation.sleeveType }}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium text-gray-700 mb-1">Select Measurements</h3>
+                    <p class="text-gray-500 mb-2">Select the measurement you want for your order.</p>
+                    <div class="text-[12px] flex flex-wrap gap-3">
+                        <button *ngFor="let measurement of bodyMeasurements"
+                            class="px-3 py-2 font-medium text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
+                            [class.bg-blue-200]="selectedMeasurement === measurement.tag"
+                            (click)="selectMeasurement(measurement.tag)">
+                            {{ measurement.tag }}
+                        </button>
+                    </div>
+                </div>
+
+                <button (click)="addToCart()"
+                    class="w-[50%] mt-10 py-3 text-lg font-semibold text-white bg-black rounded hover:bg-gray-800">
+                    ADD TO CART
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showTerminalFormModal" class="fixed inset-0 z-40 bg-transparent"></div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="p-[2rem] w-[90%] m-auto">
+
 
     <div class="grid grid-cols-3">
         <div class="col-span-2 grid grid-cols-4 gap-[2rem]">
@@ -29,62 +99,123 @@
             <div class="grid gap-[0.5rem]">
                 <div class="grid grid-cols-3">
                     <div class="col-span-1">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">name</div>
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">name</div>
                     </div>
                     <div class="col-span-2">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">{{singleProduct.name}}</div>
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">{{singleProduct.name}}
+                        </div>
 
                     </div>
                 </div>
 
                 <div class="grid grid-cols-3">
                     <div class="col-span-1">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">Category</div>
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">Category</div>
                     </div>
                     <div class="col-span-2">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">{{singleProduct.category}}</div>
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">{{singleProduct.category}}
+                        </div>
 
                     </div>
                 </div>
 
                 <div class="grid grid-cols-3">
                     <div class="col-span-1">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">Vendor</div>
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">Vendor</div>
                     </div>
                     <div class="col-span-2">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">{{singleProduct.vendorId}}</div>
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">{{singleProduct.vendorId}}
+                        </div>
 
                     </div>
                 </div>
 
                 <div class="grid grid-cols-3">
                     <div class="col-span-1">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">Quantity Left in Stock</div>
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">Quantity Left in Stock
+                        </div>
                     </div>
                     <div class="col-span-2">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">{{singleProduct.outOfStock ? "Out of stock" : singleProduct.quantity}}</div>
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">{{singleProduct.outOfStock
+                            ? "Out of stock" : singleProduct.quantity}}</div>
 
                     </div>
                 </div>
 
                 <div class="grid grid-cols-3">
                     <div class="col-span-1">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">Unit Price</div>
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">Unit Price</div>
                     </div>
                     <div class="col-span-2">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">{{singleProduct.amount}}</div>
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">{{singleProduct.amount}}
+                        </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-3">
                     <div class="col-span-1">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">Style</div>
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">Style</div>
                     </div>
                     <div class="col-span-2">
-                        <div class="border border-[grey] h-[3rem] m-auto  flex items-center">Style</div>
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">Style</div>
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
+            <div class="py-[3rem]">
+                <div class="mb-6">
+                    <!-- <h3 class="text-lg font-medium text-gray-700 mb-1">Select Measurements</h3> -->
+                    <!-- <p class="text-gray-500 mb-2">Select the measurement for the order.</p> -->
+                    <div class="text-[12px]">
+                        <select 
+                            [(ngModel)]="selectedMeasurement" 
+                            class="px-3 py-2 font-medium text-[black] bg-gray-200 rounded">
+                            <option value="" default disabled>Select a measurement</option>
+                            <option *ngFor="let measurement of bodyMeasurements" [value]="measurement.tag">
+                                {{ measurement.tag }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-[8rem]">
+
+                    <div class="mb-6 col-span-1">
+                        <h3 class="text-lg font-medium text-gray-700 mb-2">Select Colour</h3>
+                        <div class="flex gap-3">
+                            <div *ngFor="let variation of productVariations"
+                                [ngStyle]="{'background-color': variation.color}"
+                                class="w-7 h-7 rounded-lg cursor-pointer"
+                                [class.border-2]="selectedColor === variation.color"
+                                (click)="selectColor(variation.color)">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-6 col-span-1">
+                        <h3 class="text-[16px] font-medium text-gray-700 mb-2">Sleeves</h3>
+                        <div class="text-[12px] flex gap-3">
+                            <button *ngFor="let variation of productVariations"
+                                class="px-4 py-2 font-medium text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
+                                [class.bg-blue-200]="selectedSleeve === variation.sleeveType"
+                                (click)="selectSleeve(variation.sleeveType)">
+                                {{ variation.sleeveType }}
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
 
             <div class="flex gap-[2rem] mt-[3rem]">
                 <div>
@@ -94,7 +225,7 @@
                             class="text-[16px] p-[0.5rem] cursor-pointer flex justify-center items-center"><img
                                 src="/assets/icons/remove.png" alt=""></div>
                         <div class="text-[16px] p-[0.5rem] text-[grey]">{{count}}</div>
-                        <div (click)="addCount()"
+                        <div (click)="addCount(selectedProductVariation)"
                             class="text-[16px] p-[0.5rem] cursor-pointer flex justify-center items-center"><img
                                 src="/assets/icons/add.png" alt=""></div>
                     </div>
@@ -107,7 +238,8 @@
             </div>
 
             <div class="mt-[2rem] flex gap-[2rem]">
-                <div (click)="addToCart()" class="bg-[#000] p-[1rem] px-[2rem]  text-[#fff] uppercase font-[500] cursor-pointer">Add to cart
+                <div (click)="addToCart()"
+                    class="bg-[#000] p-[1rem] px-[2rem]  text-[#fff] uppercase font-[500] cursor-pointer">Add to Cart
                 </div>
                 <div class="p-[1rem] border px-[2rem] border-[#000] text-[#82848B] uppercase font-[500] cursor-pointer">
                     BUY NOW</div>
@@ -138,27 +270,28 @@
 
 
 <div *ngIf="showLoginOptionModal"
-class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
-<div class="relative w-full my-6 mx-auto max-w-3xl ">
-  <div
-    class="border-0 rounded-[20px] shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-    <div class="grid place-items-center items-center p-[4rem] w-full">
-      <div class="py-[2rem] grid gap-[1rem]">
-        <div class="text-center text-[16px] font-[500] leading-[30px]">You have to login to like a product</div>
-      </div>
-      <div class="flex gap-[1rem] mt-[2rem] items-center place-items-center">
-        <a href="/login"
-          class="bg-[black] no-underline text-[#fff] p-[1rem] px-[2rem] rounded-[8px] hover:no-underline hover:text-[#a5f4a5]">Login</a>
-        <div (click)="toggleTerminalFormModal()"
-          class="bg-[#f9f9f9] text-[#000]  p-[1rem] px-[2rem] border border-[#000] rounded-[8px] cursor-pointer">
-          Continue shopping</div>
-      </div>
+    class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+    <div class="relative w-full my-6 mx-auto max-w-3xl ">
+        <div
+            class="border-0 rounded-[20px] shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <div class="grid place-items-center items-center p-[4rem] w-full">
+                <div class="py-[2rem] grid gap-[1rem]">
+                    <div class="text-center text-[16px] font-[500] leading-[30px]">You have to login to like a product
+                    </div>
+                </div>
+                <div class="flex gap-[1rem] mt-[2rem] items-center place-items-center">
+                    <a href="/login"
+                        class="bg-[black] no-underline text-[#fff] p-[1rem] px-[2rem] rounded-[8px] hover:no-underline hover:text-[#a5f4a5]">Login</a>
+                    <div (click)="toggleTerminalFormModal()"
+                        class="bg-[#f9f9f9] text-[#000]  p-[1rem] px-[2rem] border border-[#000] rounded-[8px] cursor-pointer">
+                        Continue shopping</div>
+                </div>
 
+            </div>
+            <div class="flex items-center justify-end p-6 rounded-b">
+            </div>
+        </div>
     </div>
-    <div class="flex items-center justify-end p-6 rounded-b">
-    </div>
-  </div>
-</div>
 </div>
 <div *ngIf="showLoginOptionModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
 

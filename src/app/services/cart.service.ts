@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FetchResult } from '@apollo/client';
 import { Observable } from 'rxjs';
 import { ApolloService } from './apollo.service';
-import { PageRequest, ProductRequest , Products } from '../types/Type';
+import { PageRequest, ProductRequest, Products, ProductVariationRequest } from '../types/Type';
 import { gql } from 'apollo-angular';
 import { HttpHeaders } from '@angular/common/http';
 import { TokenService } from './token.service';
@@ -11,7 +11,7 @@ import { UtilService } from './util.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CartService extends ApolloService{
+export class CartService extends ApolloService {
 
   // token = TokenService.getToken();
   // userAuthenticated = this.token || this.token?.length > 0;
@@ -44,14 +44,17 @@ export class CartService extends ApolloService{
             productImage
             vendorId
             category
+            color
+            sleeveType
+            measurementTag
 
           }
         }
       }
     `;
-  
+
     const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
-  
+
     return this.apollo.query<any>({
       query: query,
       variables: {
@@ -122,13 +125,12 @@ export class CartService extends ApolloService{
 
     const token = TokenService.getToken();
 
-    if(this.userAuthenticated){
-      
-     headers = new HttpHeaders({
-      'Authorization': `Bearer ${TokenService.getToken()}`,
-      'Content-Type': 'application/json'
-    }); 
-  }
+    if (this.userAuthenticated) {
+      headers = new HttpHeaders({
+        'Authorization': `Bearer ${TokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      });
+    }
 
     // const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
 
@@ -141,6 +143,87 @@ export class CartService extends ApolloService{
     });
   }
 
+
+  addProductCartWithVariationZ(productId: string, productVariation: ProductVariationRequest): Observable<FetchResult<any>> {
+    console.log(productId, productVariation.measurement, productVariation.color, productVariation.sleeveType);
+    const mutation = gql`
+      mutation addProductCartWithVariation($productId: String!, $productVariation: {
+        color:"${"red"}"
+        sleeveType:"${"short"}"
+        measurementTag:"${"john"}"
+      }) {
+        addProductCartWithVariation(productId: $productId, productVariation: $productVariation){
+            code
+            message
+        }
+      }
+    `;
+
+    // color:"${productVariation.color}"
+    // sleeveType:"${productVariation.sleeveType}"
+    // measurementTag:"${productVariation.measurement}"
+
+    let headers = new HttpHeaders();
+
+    const token = TokenService.getToken();
+
+    if (this.userAuthenticated) {
+
+      headers = new HttpHeaders({
+        'Authorization': `Bearer ${TokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      });
+    }
+
+    // const headers = new HttpHeaders().set('Authorization', `Bearer ${TokenService.getToken()}`);
+
+    return this.apollo.mutate<any>({
+      mutation: mutation,
+      variables: { productId },
+      context: {
+        headers,
+      },
+    });
+  }
+
+
+  addProductCartWithVariation(productId: string, productVariation: ProductVariationRequest): Observable<FetchResult<any>> {
+    const mutation = gql`
+      mutation addProductCartWithVariation($productId: String!, $productVariation: ProductVariationRequest!) {
+        addProductCartWithVariation(productId: $productId, productVariation: $productVariation) {
+          code
+          message
+        }
+      }
+    `;
+
+    let headers = new HttpHeaders();
+    const token = TokenService.getToken();
+    if (this.userAuthenticated) {
+
+      headers = new HttpHeaders({
+        'Authorization': `Bearer ${TokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      });
+    }
+
+    return this.apollo.mutate<any>({
+      mutation: mutation,
+      variables: {
+        productId,
+        productVariation: {
+          color: productVariation.color,
+          sleeveType: productVariation.sleeveType,
+          measurementTag: productVariation.measurement
+        }
+      },
+      context: {
+        headers,
+      },
+    });
+  }
+
+
   sumAmountByQuantityByCustomerId(): Observable<FetchResult<any>> {
     const query = gql`
       query sumAmountByQuantityByCustomerId{
@@ -152,14 +235,14 @@ export class CartService extends ApolloService{
 
     return this.apollo.query<any>({
       query: query,
-      variables: { },
+      variables: {},
       context: {
         headers,
       },
     });
   }
 
-  
+
   clearCart(): Observable<FetchResult<any>> {
     const mutation = gql`
       mutation clearCart{
@@ -174,15 +257,10 @@ export class CartService extends ApolloService{
 
     return this.apollo.mutate<any>({
       mutation: mutation,
-      variables: { },
+      variables: {},
       context: {
         headers,
       },
     });
   }
-
-  
-
-  
-  
 }

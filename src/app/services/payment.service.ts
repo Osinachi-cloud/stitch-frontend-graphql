@@ -24,6 +24,9 @@ export class PaymentService extends ApolloService{
         productId: "${paymentRequest.productId}",
         vendorId:  "${paymentRequest.vendorId}",
         narration: "${paymentRequest.narration}",
+        sleeveType: "${paymentRequest.sleeveType}",
+        color: "${paymentRequest.color}",
+        bodyMeasurementTag: "${paymentRequest.bodyMeasurementTag}",
         productCategoryName: "${paymentRequest.productCategoryName}" 
       }){
       status
