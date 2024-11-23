@@ -70,7 +70,7 @@
 <div class="p-[2rem] w-[90%] m-auto">
 
 
-    <div class="grid grid-cols-3">
+    <div class="grid grid-cols-3 gap-[2rem]">
         <div class="col-span-2 grid grid-cols-4 gap-[2rem]">
 
             <div class="grid col-span-1">
@@ -86,7 +86,8 @@
 
             </div>
             <div class="col-span-3">
-                <img src="/assets/images/single-product-big.png" alt="">
+                <!-- <img src="/assets/images/single-product-big.png" alt=""> -->
+                <img class="h-[100%] m-auto" [src]="'data:image/png;base64,' + singleProduct.productImage" alt="">
             </div>
 
 
@@ -102,7 +103,8 @@
                         <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">name</div>
                     </div>
                     <div class="col-span-2">
-                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">{{singleProduct.name}}
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">
+                            {{singleProduct.name}}
                         </div>
 
                     </div>
@@ -113,7 +115,8 @@
                         <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">Category</div>
                     </div>
                     <div class="col-span-2">
-                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">{{singleProduct.category}}
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">
+                            {{singleProduct.category}}
                         </div>
 
                     </div>
@@ -124,7 +127,8 @@
                         <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">Vendor</div>
                     </div>
                     <div class="col-span-2">
-                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">{{singleProduct.vendorId}}
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">
+                            {{singleProduct.vendorId}}
                         </div>
 
                     </div>
@@ -132,11 +136,13 @@
 
                 <div class="grid grid-cols-3">
                     <div class="col-span-1">
-                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">Quantity Left in Stock
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">Quantity Left in
+                            Stock
                         </div>
                     </div>
                     <div class="col-span-2">
-                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">{{singleProduct.outOfStock
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">
+                            {{singleProduct.outOfStock
                             ? "Out of stock" : singleProduct.quantity}}</div>
 
                     </div>
@@ -147,7 +153,8 @@
                         <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">Unit Price</div>
                     </div>
                     <div class="col-span-2">
-                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">{{singleProduct.amount}}
+                        <div class="border border-[grey] h-[3rem] px-[1rem] m-auto  flex items-center">
+                            {{singleProduct.amount}}
                         </div>
                     </div>
                 </div>
@@ -172,8 +179,7 @@
                     <!-- <h3 class="text-lg font-medium text-gray-700 mb-1">Select Measurements</h3> -->
                     <!-- <p class="text-gray-500 mb-2">Select the measurement for the order.</p> -->
                     <div class="text-[12px]">
-                        <select 
-                            [(ngModel)]="selectedMeasurement" 
+                        <select [(ngModel)]="selectedMeasurement"
                             class="px-3 py-2 font-medium text-[black] bg-gray-200 rounded">
                             <option value="" default disabled>Select a measurement</option>
                             <option *ngFor="let measurement of bodyMeasurements" [value]="measurement.tag">

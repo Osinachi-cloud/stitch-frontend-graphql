@@ -56,12 +56,7 @@ const routes: Routes = [
     { path: 'api-documentation', component: DocumentationComponent},
     { path: 'analytics', component: AnalyticsComponent},
     { path: 'body-measurement', component: BodyMeasurementComponent},
-    { path: 'checkout', component: CheckoutComponent},
-
-
-
-
-    
+    { path: 'checkout', component: CheckoutComponent}, 
   ]
 }
 ];
